@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+    goodreads-notebook:
+        container_name: goodreads-notebook
+        build:
+            context: .
+            dockerfile: ./notebooks/goodreads/Dockerfile
+        image: goodreads-notebook:latest
+        volumes:
+            - "./notebooks/goodreads:/notebook"
+        ports:
+            - "8001:8888"
