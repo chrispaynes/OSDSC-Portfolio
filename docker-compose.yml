@@ -10,3 +10,13 @@ services:
             - "./notebooks/goodreads:/notebook"
         ports:
             - "8001:8888"
+    data-scrape-notebook:
+        container_name: data-scrape-notebook
+        build:
+            context: .
+            dockerfile: ./notebooks/data_scrape/Dockerfile
+        image: data-scrape-notebook:latest
+        volumes:
+            - "./notebooks/data_scrape:/notebook"
+        ports:
+            - "8002:8888"
