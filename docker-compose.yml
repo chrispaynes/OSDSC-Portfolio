@@ -20,3 +20,13 @@ services:
             - "./notebooks/data_scrape:/notebook"
         ports:
             - "8002:8888"
+    randomized-optimization-8-queens-notebook:
+        container_name: randomized-optimization-8-queens-notebook
+        build:
+            context: .
+            dockerfile: ./notebooks/randomized_optimization_8_queens/Dockerfile
+        image: randomized-optimization-8-queens-notebook:latest
+        volumes:
+            - "./notebooks/randomized_optimization_8_queens:/notebook"
+        ports:
+            - "8003:8888"
