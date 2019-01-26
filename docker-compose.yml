@@ -2,31 +2,28 @@ version: "3.7"
 services:
     goodreads-notebook:
         container_name: goodreads-notebook
-        build:
-            context: .
-            dockerfile: ./notebooks/goodreads/Dockerfile
-        image: goodreads-notebook:latest
+        image: local/jupyter_nb_base:latest
         volumes:
-            - "./notebooks/goodreads:/notebook"
+            - "./goodreads_nb/notebook:/notebook"
         ports:
             - "8001:8888"
     data-scrape-notebook:
         container_name: data-scrape-notebook
         build:
             context: .
-            dockerfile: ./notebooks/data_scrape/Dockerfile
+            dockerfile: ./data_scrape_nb/Dockerfile
         image: data-scrape-notebook:latest
         volumes:
-            - "./notebooks/data_scrape:/notebook"
+            - "./data_scrape_nb/notebook:/notebook"
         ports:
             - "8002:8888"
     randomized-optimization-8-queens-notebook:
         container_name: randomized-optimization-8-queens-notebook
         build:
             context: .
-            dockerfile: ./notebooks/randomized_optimization_8_queens/Dockerfile
+            dockerfile: ./randomized_optimization_8_queens_nb/Dockerfile
         image: randomized-optimization-8-queens-notebook:latest
         volumes:
-            - "./notebooks/randomized_optimization_8_queens:/notebook"
+            - "./randomized_optimization_8_queens_nb/notebook:/notebook"
         ports:
             - "8003:8888"

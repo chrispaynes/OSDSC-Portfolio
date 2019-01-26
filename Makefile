@@ -1,10 +1,13 @@
-.PHONY: goodreadsNB
+.PHONY: jupyterNBBaseImage goodreadsNB datascrapeNB randomizedOptimization8QueensNB
+
+jupyterNBBaseImage:
+	docker build ./docker -t local/jupyter_nb_base
 
 goodreadsNB:
-	docker-compose up goodreads-notebook
+	python -m webbrowser -t "http://goodreads-notebook.localhost:8001" && docker-compose up goodreads-notebook
 
 datascrapeNB:
-	docker-compose up data-scrape-notebook
+	python -m webbrowser -t "http://data-scrape-notebook.localhost:8002" && docker-compose up data-scrape-notebook
 
 randomizedOptimization8QueensNB:
-	docker-compose up randomized-optimization-8-queens-notebook
+	python -m webbrowser -t "http://randomized-optimization-8-queens-notebook.localhost:8003" && docker-compose up randomized-optimization-8-queens-notebook
