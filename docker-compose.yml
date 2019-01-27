@@ -12,7 +12,6 @@ services:
         build:
             context: .
             dockerfile: ./data_scrape_nb/Dockerfile
-        image: data-scrape-notebook:latest
         volumes:
             - "./data_scrape_nb/notebook:/notebook"
         ports:
@@ -22,7 +21,6 @@ services:
         build:
             context: .
             dockerfile: ./randomized_optimization_8_queens_nb/Dockerfile
-        image: randomized-optimization-8-queens-notebook:latest
         volumes:
             - "./randomized_optimization_8_queens_nb/notebook:/notebook"
         ports:
@@ -32,8 +30,17 @@ services:
         build:
             context: .
             dockerfile: ./tf_linear_regression_nb/Dockerfile
-        image: tf-linear-regression-notebook:latest
         volumes:
             - "./tf_linear_regression_nb/notebook:/notebook"
         ports:
             - "8004:8888"
+    mnist-handwritten-notebook:
+        container_name: mnist-handwritten-notebook
+        build:
+            context: .
+            dockerfile: ./mnist_handwritten_nb/Dockerfile
+        volumes:
+            - "./mnist_handwritten_nb/notebook:/notebook"
+        ports:
+            - "8005:8888"
+

@@ -1,4 +1,4 @@
-.PHONY: jupyterNBBaseImage goodreadsNB datascrapeNB randomizedOptimization8QueensNB
+.PHONY: jupyterNBBaseImage goodreadsNB datascrapeNB randomizedOptimization8QueensNB tfLinearRegressionsNB mnistHandwrittenNB
 
 jupyterNBBaseImage:
 	docker build ./docker -t local/jupyter_nb_base
@@ -14,3 +14,6 @@ randomizedOptimization8QueensNB:
 
 tfLinearRegressionsNB:
 	python -m webbrowser -t "http://tf-linear-regression-notebook.localhost:8004" && docker-compose up tf-linear-regression-notebook
+
+mnistHandwrittenNB:
+	python -m webbrowser -t "http://mnist-handwritten-notebook.localhost:8005" && docker-compose up mnist-handwritten-notebook
