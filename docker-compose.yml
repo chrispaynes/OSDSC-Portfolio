@@ -27,3 +27,13 @@ services:
             - "./randomized_optimization_8_queens_nb/notebook:/notebook"
         ports:
             - "8003:8888"
+    tf-linear-regression-notebook:
+        container_name: tf-linear-regression-notebook
+        build:
+            context: .
+            dockerfile: ./tf_linear_regression_nb/Dockerfile
+        image: tf-linear-regression-notebook:latest
+        volumes:
+            - "./tf_linear_regression_nb/notebook:/notebook"
+        ports:
+            - "8004:8888"

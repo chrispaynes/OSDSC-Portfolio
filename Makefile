@@ -11,3 +11,6 @@ datascrapeNB:
 
 randomizedOptimization8QueensNB:
 	python -m webbrowser -t "http://randomized-optimization-8-queens-notebook.localhost:8003" && docker-compose up randomized-optimization-8-queens-notebook
+
+tfLinearRegressionsNB:
+	python -m webbrowser -t "http://tf-linear-regression-notebook.localhost:8004" && docker-compose up tf-linear-regression-notebook
