@@ -1,3 +1,7 @@
 FROM local/jupyter_nb_base
 
-RUN pip3 install tensorflow
+RUN apt-get update \
+    && pip install --upgrade pip \
+    && conda install -y python=3.6
+
+RUN pip install tensorflow
