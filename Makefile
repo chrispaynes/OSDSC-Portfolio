@@ -17,3 +17,6 @@ tfLinearRegressionsNB:
 
 mnistHandwrittenNB:
 	python -m webbrowser -t "http://mnist-handwritten-notebook.localhost:8005" && docker-compose up mnist-handwritten-notebook
+
+practicalMLtutNB:
+	python -m webbrowser -t "http://practical-ml-tut-notebook.localhost:8006" && docker-compose up practical-ml-tut-notebook

@@ -43,4 +43,12 @@ services:
             - "./mnist_handwritten_nb/notebook:/notebook"
         ports:
             - "8005:8888"
-
+    practical-ml-tut-notebook:
+        container_name: practical-ml-tut-notebook
+        build:
+            context: .
+            dockerfile: ./practical_ml_tut_nb/Dockerfile
+        volumes:
+            - "./practical_ml_tut_nb/notebook:/notebook"
+        ports:
+            - "8006:8888"
