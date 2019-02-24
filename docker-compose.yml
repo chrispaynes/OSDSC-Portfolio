@@ -52,3 +52,10 @@ services:
             - "./practical_ml_tut_nb/notebook:/notebook"
         ports:
             - "8006:8888"
+    timeseries_airbnb_nb:
+        container_name: timeseries_airbnb_nb
+        image: local/jupyter_nb_base:latest
+        volumes:
+            - "./timeseries_airbnb_nb/notebook:/notebook"
+        ports:
+            - "8007:8888"

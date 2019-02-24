@@ -20,3 +20,6 @@ mnistHandwrittenNB:
 
 practicalMLtutNB:
 	python -m webbrowser -t "http://practical-ml-tut-notebook.localhost:8006" && docker-compose up practical-ml-tut-notebook
+
+timeseriesAirbnbNB:
+	python -m webbrowser -t "http://timeseries_airbnb_nb.localhost:8007" && docker-compose up timeseries_airbnb_nb
