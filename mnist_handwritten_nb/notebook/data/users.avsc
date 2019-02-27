@@ -1,0 +1,12 @@
+[
+    {
+        "type": "array",
+        "name": "Fart",
+        "items": "float"
+    },
+    {
+        "type": "array",
+        "name": "Suit",
+        "items": "int"
+    }
+]
