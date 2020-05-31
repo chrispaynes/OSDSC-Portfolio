@@ -60,10 +60,10 @@ white_wine <- white_wine %>%
     quality %in% seq(0, 4) ~ "below avg.",
     quality == 5 ~ "avg.",
     quality %in% seq(6, 7) ~ "above avg.",
-    quality %in% seq(8, 10) ~ "Exceptional"
+    quality %in% seq(8, 10) ~ "exceptional"
   ))
 
-white_wine$quality_lev_f <- factor(white_wine$quality_lev_f, levels = c("below avg.", "avg.", "above avg.", "Exceptional"))
+white_wine$quality_lev_f <- factor(white_wine$quality_lev_f, levels = c("below avg.", "avg.", "above avg.", "exceptional"))
 ```
 
 ```{r}
@@ -432,16 +432,11 @@ Above Average quality wines have the largest Alcohol content range
 Average quality wines tended to have an Alcohol content range between 9 and 10
 Exceptional Quality Wines had an ABV between 11 and 13
 ```{r}
-ggplot(aes(
-  y = quality,
-  x = alcohol
-),
-data = white_wine
-) +
-  geom_point(
-    alpha = 1 / 20,
-    aes(color = factor(round(alcohol / 0.5) * 0.5))
-  ) +
+ggplot(aes(y = quality,
+           x = alcohol),
+       data = white_wine) +
+  geom_point(alpha = 1 / 20,
+             aes(color = factor(round(alcohol / 0.5) * 0.5))) +
   geom_point(
     stat = "summary",
     fun = mean,
@@ -451,8 +446,11 @@ data = white_wine
     stroke = 1
   ) +
   scale_y_continuous(breaks = seq(0, 10)) +
-  scale_x_continuous(breaks = seq(floor(min(white_wine$alcohol)), max(white_wine$alcohol), 0.5)) +
-  facet_wrap(~quality_lev_f, scales = "free") +
+  scale_x_continuous(
+    breaks = seq(floor(min(white_wine$alcohol)), max(white_wine$alcohol), 0.5),
+    limits = quantile(white_wine$alcohol, probs = c(0.01, .99))
+  ) +
+  facet_wrap( ~ quality_lev_f, scales = "free") +
   guides(colour = guide_legend(title = "ABV %", override.aes = list(alpha = 1))) +
   ggtitle("Wine Quality and Alcohol Content Distribution Averages")
 ```
@@ -462,16 +460,11 @@ data = white_wine
 - average quality wine has a largest variability in density
 - Above Average wine has the smallest variability in density
 ```{r}
-ggplot(aes(
-  y = quality,
-  x = density
-),
-data = white_wine
-) +
-  geom_point(
-    alpha = 1 / 10,
-    aes(color = factor(round(density / 0.0025) * 0.0025))
-  ) +
+ggplot(aes(y = quality,
+           x = density),
+       data = white_wine) +
+  geom_point(alpha = 1 / 10,
+             aes(color = factor(round(density / 0.0025) * 0.0025))) +
   geom_point(
     stat = "summary",
     fun = mean,
@@ -481,8 +474,11 @@ data = white_wine
     stroke = 1
   ) +
   scale_y_continuous(breaks = seq(0, 10)) +
-  scale_x_continuous(breaks = seq(floor(min(white_wine$density)), max(white_wine$density), 0.005)) +
-  facet_wrap(~quality_lev_f, scales = "free") +
+  scale_x_continuous(
+    breaks = seq(floor(min(white_wine$density)), max(white_wine$density), 0.0025),
+    limits = quantile(white_wine$density, probs = c(0, .99))
+  ) +
+  facet_wrap( ~ quality_lev_f, scales = "free") +
   guides(colour = guide_legend(title = "Density", override.aes = list(alpha = 1))) +
   ggtitle("Wine Quality and Density Distribution Averages")
 ```
@@ -828,12 +824,12 @@ ggMarginal(
 )
 ```
 
-##### Below Average and Exception Wine Quality Compared to Alcohol and Wine Density
+##### Below Average and Exceptional Wine Quality Compared to Alcohol and Wine Density
 - as density decreases and alcohol increases, so does the quality of wine
 ```{r}
 ggMarginal(
   ggplot(
-    data = white_wine[white_wine$quality_lev_f %in% c("below avg.", "Exceptional"), ],
+    data = white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"), ],
     aes(
       x = alcohol,
       y = density,
@@ -849,7 +845,7 @@ ggMarginal(
     )) +
     theme_bw(15) +
     ggtitle(
-      "Below Average and Exception Wine Quality",
+      "Below Average and Exceptional Wine Quality",
       subtitle = "Compared to Alcohol and Wine Density"
     ),
   type = "densigram",
@@ -860,7 +856,7 @@ ggMarginal(
 )
 ```
 
-##### Below Average and Exception Wine Quality Compared to Total Sulfur Dioxide and Chlorides
+##### Below Average and Exceptional Wine Quality Compared to Total Sulfur Dioxide and Chlorides
 - Exceptional Wines are below 0.06 Chloride and are generally between 84 and 134 Total Sulfur Dioxide
 ```{r}
 ggMarginal(
@@ -887,7 +883,7 @@ ggMarginal(
     )) +
     theme_bw(15) +
     ggtitle(
-      "Below Average and Exception Wine Quality",
+      "Below Average and Exceptional Wine Quality",
       subtitle = "Compared to Total Sulfur Dioxide and Chlorides"
     ),
   type = "densigram",
@@ -898,13 +894,14 @@ ggMarginal(
 )
 ```
 
-##### Below Average and Exception Wine Quality Compared to Total Sulfur Dioxide and Volatile Acidity
-- there's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines
-- Exceptional wines tended to have slightly more clustering in their values, but that difference between Below Average wines is negligible
+##### Below Average and Exceptional Wine Quality Compared to Total Sulfur Dioxide and Volatile Acidity
+There's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines
+
+Exceptional wines tended to have slightly more clustering in their values, but that difference between Below Average wines is negligible
 ```{r}
 ggMarginal(
   ggplot(
-    data = white_wine[white_wine$quality_lev_f %in% c("below avg.", "Exceptional"), ],
+    data = white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"), ],
     aes(
       x = total.sulfur.dioxide,
       y = volatile.acidity,
@@ -926,7 +923,7 @@ ggMarginal(
     )) +
     theme_bw(15) +
     ggtitle(
-      "Below Average and Exception Wine Quality",
+      "Below Average and Exceptional Wine Quality",
       subtitle = "Compared to Total Sulfur Dioxide and Volatile Acidity"
     ),
   type = "densigram",
@@ -953,13 +950,12 @@ ggplot(white_wine, aes(pH, citric.acid)) +
 ```
 
 #### Exceptional Wine Quality and the Relationship Between Alcohol and Wine Density
-- tend toward higher alcohol and lower density
+tend toward higher alcohol and lower density
 ```{r}
-ggplot(white_wine[white_wine$quality_lev_f %in% c("exceptional"), ], aes(alcohol, density)) +
+ggplot(white_wine[white_wine$quality_lev_f %in% c("exceptional"),], aes(alcohol, density)) +
   geom_point(aes(size = quality),
-    position = position_jitter(height = 0),
-    color = "steelblue"
-  ) +
+             position = position_jitter(height = 0),
+             color = "steelblue") +
   scale_x_continuous(breaks = seq(floor(min(white_wine$alcohol)), max(white_wine$alcohol), 0.5)) +
   labs(x = "Alcohol", y = "Density") +
   guides(size = guide_legend(title = "Wine Quality Levels", override.aes = list(alpha = 1))) +
@@ -968,14 +964,10 @@ ggplot(white_wine[white_wine$quality_lev_f %in% c("exceptional"), ], aes(alcohol
 
 #### Exceptional Wine Quality and the Relationship Between Alcohol and Residual Sugars
 ```{r}
-ggplot(white_wine[white_wine$quality > 7, ], aes(alcohol, residual.sugar, colour = quality)) +
-  geom_point(
-    position = position_jitter(height = 0),
-    alpha = 1 / 1
-  ) +
+ggplot(white_wine[white_wine$quality_lev_f %in% c("exceptional"), ], aes(alcohol, residual.sugar, colour = quality)) +
+  geom_point(position = position_jitter(height = 0),
+             alpha = 1 / 1) +
   scale_x_continuous(breaks = seq(floor(min(white_wine$alcohol)), max(white_wine$alcohol), 0.5)) +
-  scale_y_log10() +
-  # theme(legend.position = c(0.1, 0.75)) +
   labs(x = "Alcohol", y = "Residual Sugar") +
   guides(colour = guide_legend(title = "Wine Quality Levels", override.aes = list(alpha = 1))) +
   ggtitle("Exceptional Wine Quality and the Relationship Between Alcohol and Residual Sugar")
@@ -1097,6 +1089,117 @@ there are no 1, 2 or 10 rated wines
 
 # Final Plots and Summary
 You will select three plots from your analysis to polish and share in this section. The three plots should show different trends and should be polished with appropriate labels, units, and titles (see the Project Rubric for more information).
+
+#### Plot 1
+```{r}
+ggplot(aes(
+  y = quality,
+  x = chlorides
+),
+data = white_wine
+) +
+  geom_point(
+    alpha = 1 / 5,
+    aes(color = factor(round(
+      chlorides / .025
+    ) * .025))
+  ) +
+  geom_point(
+    stat = "summary",
+    fun = mean,
+    shape = 21,
+    colour = "black",
+    size = 5,
+    stroke = 1
+  ) +
+  scale_y_continuous(breaks = seq(0, 10)) +
+  scale_x_continuous(
+    limits = quantile(white_wine$chlorides, probs = c(0.05, 0.95)),
+    breaks = seq(floor(min(
+      white_wine$chlorides
+    )), max(white_wine$chlorides), 0.005)
+  ) +
+  facet_wrap(~quality_lev_f, scales = "free") +
+  guides(colour = guide_legend(title = "Chlorides", override.aes = list(alpha = 1))) +
+  ggtitle("Wine Quality and Chlorides Distribution Averages")
+```
+#### Plot 1 Description
+- the Chloride level decreases as the wine quality increases
+- the Chloride range between the different quality levels is pretty narrow. Despite its lower ranking in the Top 5 R-Squared values, this narrow range may indicate that the amount of Chlorides goes a long way in affecting a wine's quality
+
+#### Plot 2
+```{r}
+ggMarginal(
+  ggplot(
+    data = white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"), ],
+    aes(
+      x = total.sulfur.dioxide,
+      y = volatile.acidity,
+      colour = quality_lev_f
+    )
+  ) +
+    geom_point() +
+    scale_x_continuous(
+      breaks = seq(
+        min(white_wine$total.sulfur.dioxide),
+        max(white_wine$total.sulfur.dioxide),
+        25
+      ),
+      limits = quantile(white_wine$total.sulfur.dioxide, probs = c(0, 0.97)),
+    ) +
+    scale_y_continuous(limits = quantile(white_wine$volatile.acidity, probs = c(0, 0.97)), ) +
+    guides(colour = guide_legend(
+      title = "Wine Quality Levels", override.aes = list(alpha = 1)
+    )) +
+    theme_bw(15) +
+    scale_x_log10() +
+    ggtitle(
+      "Below Average and Exceptional Wine Quality",
+      subtitle = "Compared to Total Sulfur Dioxide and Volatile Acidity"
+    ),
+  type = "densigram",
+  margins = "both",
+  size = 3,
+  groupColour = TRUE,
+  groupFill = TRUE
+)
+```
+#### Plot 2 Description
+There's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines. However, Exceptional wines tended to have slightly more clustering in their values in both Total Sulfur Dioxide and Volatile Acidity. The Total Sulfur Dioxide values for Exceptional wines form a near-normal distribution, whereas the Volatile Acidity form a looser normal distribution with a higher variability in values. The Below Average wines have significantly longer tails in their  Total Sulfur Dioxide distribution. but that difference between Below Average wines is negligible
+
+#### Plot 3
+```{r}
+ggMarginal(
+  ggplot(
+    data = white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"), ],
+    aes(
+      x = alcohol,
+      y = density,
+      colour = quality_lev_f
+    )
+  ) +
+    geom_point() +
+    scale_x_continuous(breaks = seq(
+      min(white_wine$alcohol), max(white_wine$alcohol), 1
+    )) +
+    guides(colour = guide_legend(
+      title = "Wine Quality Levels", override.aes = list(alpha = 1)
+    )) +
+    theme_bw(15) +
+    ggtitle(
+      "Below Average and Exceptional Wine Quality",
+      subtitle = "Compared to Alcohol and Wine Density"
+    ),
+  type = "densigram",
+  margins = "both",
+  size = 3,
+  groupColour = TRUE,
+  groupFill = TRUE
+)
+```
+#### Plot 3 Description
+As density decreases and alcohol increases, so did the quality of wine.
+The balance between Alcohol and Density is key determinant of wine quality. Below Average wines tended to have a higher density and Exceptional wines had a lower density. The opposite was true for Alcohol levels — as Alcohol level increased, so did the wine quality. Below Average wine tended to have a broader range of Alcohol and Density values whereas the Exceptional wines tended to cluster around the 12% to 13% ABV and 0.985 to 0.9925 Density levels.
 
 ---
 
