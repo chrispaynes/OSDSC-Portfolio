@@ -412,7 +412,7 @@ The "quality" variable was used to create 4 Quality-Level factors for a "quality
 Another variable called "fixed_to_volatile_acid_level" was created to investigate if the balance between Fixed and Volatile Acids plays any role in perceived quality. Likewise another variable called "sugar_to_sulfates_ratio" was created to investigate if the balance between Residual Sugar and Sulfates plays any role in perceived quality.
 
 #### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
-The most unusual distribution thus far is the Chlorides distribution. The interquartile range is only 0.01 and there are a significant number of outliers above the interquartile range. Many other variables have outliers, so I expect to need to limit data based on quartiles to reduce outliers or use a log10 transformation.
+The most unusual distribution thus far is the Chlorides distribution. The interquartile range is only 0.01 and there are a significant number of outliers above the interquartile range. Many other variables have outliers, so I expect to need to limit data based on quartiles to reduce outliers or use a log10 transformation. Most transforms performed will serve to eliminate distributions tails or reveal what sort of distribution a variable has.
 
 ---
 
@@ -450,10 +450,7 @@ ggpairs(
           panel.grid.major = element_blank())
 ```
 
-There are too many variables at play in the above Correlation Chart, let's focus on variables with a strong correlation with Wine Quality.
-- There's a strong positive or negative correlation between Alcohol and most other variables except for Volatile Acidity.
-- Strongest positive correlation between Wine Quality is that of Alcohol.
-- Strongest negative correlation between Wine Quality is that of Wine Density.
+There are too many variables at play in the above Correlation Chart, let's focus on variables with a strong correlation with Wine Quality. There's a strong positive or negative correlation between Alcohol and most other variables except for Volatile Acidity. The Strongest positive correlation between Wine Quality is that of Alcohol. The Strongest negative correlation between Wine Quality is that of Wine Density.
 
 ```{r}
 white_wine_smaller_subset <-
@@ -475,10 +472,7 @@ ggpairs(
 ```
 
 #### Wine Quality and Alcohol Lineplot
-there's a narrower alcohol range for Quality 8 wines
-Above Average quality wines have the largest Alcohol content range
-Average quality wines tended to have an Alcohol content range between 9 and 10
-Exceptional Quality Wines had an ABV between 11 and 13
+There's a smaller alcohol range for Quality 3 and Exceptional wines. Above Average quality wines have the largest Alcohol content range. Average quality wines tended to have an Alcohol content range between 9 and 10. Exceptional Quality Wines had an ABV between 11 and 13.
 
 ```{r}
 ggplot(aes(y = quality,
@@ -505,9 +499,7 @@ ggplot(aes(y = quality,
 ```
 
 #### Wine Quality and Wine Density Lineplot
-- mean density appears to decrease as the wine quality increases
-- average quality wine has a largest variability in density
-- Above Average wine has the smallest variability in density
+The mean density appears to decrease as the wine quality increases. The average quality wine has a largest variability in density. Quality 3 and Exceptional wines have the smallest density range.
 
 ```{r}
 ggplot(aes(y = quality,
@@ -534,8 +526,7 @@ ggplot(aes(y = quality,
 ```
 
 #### Wine Quality and Total Sulfur Dioxide Lineplot
-- the Total Sulfur Dioxide level appears to decrease as the quality increases
-- all quality levels have a large range in values, however the maximum Total Sulfur Dioxide for Exceptional wines is much lower than that of lower quality wines.
+The Total Sulfur Dioxide level appears to decrease as the quality increases. All quality levels exception for Quality 9 have a large range in values, however the maximum Total Sulfur Dioxide for Exceptional wines is much lower than that of lower quality wines.
 
 ```{r}
 ggplot(aes(
@@ -571,8 +562,7 @@ data = white_wine
 ```
 
 #### Wine Quality and Chlorides Lineplot
-- the Chloride level decreases as the wine quality increases
-- the Chloride range between the different quality levels is pretty narrow. Despite its lower ranking in the Top 5 R-Squared values, this narrow range may indicate that the amount of Chlorides goes a long way in affecting a wine's quality
+The Chloride level decreases as the wine quality increases. The Chloride range between the different quality levels is pretty narrow. Despite its lower ranking in the Top 5 R-Squared values, this narrow range may indicate that the amount of Chlorides goes a long way in affecting a wine's quality.
 
 ```{r}
 ggplot(aes(
@@ -608,9 +598,7 @@ data = white_wine
 ```
 
 #### Wine Quality and Volatile Acidity Lineplot
-- similar Volatile Acidity between Below Average and Exceptional Wines
-- Above Average Wines have a similar Volatile Acidity of around 0.25
-- Excluding Quality 3 and 9 Wines, all quality levels seemed to have a similar range in values. However, I would assume with more data points for Quality 3 and 9 Wines, we'd likely see similarly large range.
+There's similar Volatile Acid levels between Below Average and Exceptional Wines. Above Average Wines have a similar mean Volatile Acidity of around 0.25. Excluding Quality 3 and 9 Wines, all quality levels seem to have a similar range in values. However, I would assume that with more data points for Quality 3 and 9 Wines, we'd likely see a similarly large range.
 
 ```{r}
 ggplot(aes(
@@ -646,8 +634,7 @@ data = white_wine
 ```
 
 #### Wine Quality and pH Distribution Averages
-- not a significant difference in pH values between wine quality levels with most values being between 3.1 and 3.25 pH
-- average and Above Average wines had the largest pH ranges
+There's not a significant difference in pH values between wine quality levels with most values being between 3.1 and 3.25 pH. Average and Above Average wines had the largest pH ranges.
 
 ```{r}
 ggplot(aes(
@@ -676,8 +663,7 @@ data = white_wine
 ```
 
 #### Wine Quality and Citric Acid Distribution Averages
-- Exceptional Quality Wines and Quality 3 Wines have the smallest range of Citric Acid values
-- Average and Above Average Wines have the largest range of Citric Acid values
+Exceptional Quality Wines and Quality 3 Wines have the smallest range of Citric Acid values. Average and Above Average Wines have the largest range of Citric Acid values.
 
 ```{r}
 ggplot(white_wine, aes(quality, citric.acid)) +
@@ -694,11 +680,11 @@ ggplot(white_wine, aes(quality, citric.acid)) +
   theme(legend.position = c(0.1, 0.75)) +
   labs(x = "Wine Quality", y = "Citric Acid Concentration") +
   guides(colour = guide_legend(title = "Wine Quality Levels", override.aes = list(alpha = 1))) +
-  ggtitle("Quality and Citric Acid Distribution Averages")
+  ggtitle("Wine Quality and Citric Acid Distribution Averages")
 ```
 
 #### Quality and pH Percentiles
-The 1st and the 99th Percentile for pH values become significantly smaller for Exceptional Wines
+The 1st and the 99th Percentile for pH values become significantly smaller for Exceptional Wines.
 
 ```{r}
 ggplot(aes(
@@ -740,7 +726,7 @@ data = white_wine
 ```
 
 #### Quality and Sugar to Sulphate Ratio Percentile Lineplot
-Narrower Sugar to Sulfate Ratio range for the Exceptional quality wines
+Narrower Sugar to Sulfate Ratio range for the Exceptional quality wines.
 
 ```{r}
 ggplot(aes(x = quality,
@@ -780,7 +766,7 @@ ggplot(aes(x = quality,
 ```
 
 #### Quality and Alcohol Lineplot
-Average quality wines tend to be between 9% and 11% ABV and ABV tends to increase linearly with quality
+Average quality wines tend to be between 9% and 11% ABV. ABV tends to increase linearly with wine quality.
 
 ```{r}
 ggplot(aes(
@@ -840,17 +826,8 @@ data = white_wine
 
 
 #### Marginal Histograms
-scatterhist” in Matlab, apparently. The seaborn version also shows the strength of the linear relationship between the x and y variables.
-Plot a scatter plot with optional smoothing curves or contour lines, and marginal histogram/density plots
-the aim of smoothing is to give a general idea of relatively slow changes of value with little attention paid to the close matching of data values, while curve fitting concentrates on achieving as close a match as possible.
-The combination of the individual data points (the jittered dots that represent Kanban cards) and the aggregated data (stacked bar charts) tells a more complete story than having only the aggregation or only the individual dots.
-
 ##### Quality and Alcohol Density Plot
-- linear model indicating that the alcohol level generally increases as the quality increases
-- there significantly more Quality 8 Exceptional Wines than there are Quality 9 Exceptional Wines
-- the Quality 9 wines are most likely to be around 13% ABV.
-- Qualities 4-7 have a generally even distribution of alcohol levels ranging from 8.5% to 13%
-- the majority of the Above Average Quality wines are of Quality 6 at 11% ABV
+The linear model indicates that the alcohol level generally increases as the quality increases. There significantly more Quality 8 Exceptional Wines than there are Quality 9 Exceptional Wines. The Quality 9 wines are most likely to be around 13% ABV. Qualities 4-7 have a generally even distribution of alcohol levels ranging from 8.5% to 13%. The majority of the Above Average Quality wines are of Quality 6 at 11% ABV.
 
 ```{r}
 WVPlots::ScatterHist(
@@ -885,7 +862,7 @@ ggMarginal(
 ```
 
 ##### Below Average and Exceptional Wine Quality Compared to Alcohol and Wine Density
-- as density decreases and alcohol increases, so does the quality of wine
+As density decreases and alcohol increases, so does the quality of wine.
 
 ```{r}
 ggMarginal(
@@ -918,7 +895,7 @@ ggMarginal(
 ```
 
 ##### Below Average and Exceptional Wine Quality Compared to Total Sulfur Dioxide and Chlorides
-- Exceptional Wines are below 0.06 Chloride and are generally between 84 and 134 Total Sulfur Dioxide
+Exceptional Wines are below 0.06 Chloride and are generally between 84 and 134 Total Sulfur Dioxide.
 
 ```{r}
 ggMarginal(
@@ -957,9 +934,7 @@ ggMarginal(
 ```
 
 ##### Below Average and Exceptional Wine Quality Compared to Total Sulfur Dioxide and Volatile Acidity
-There's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines
-
-Exceptional wines tended to have slightly more clustering in their values, but that difference between Below Average wines is negligible
+There's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines. Exceptional wines tended to have slightly more clustering in their values, but that difference between Below Average wines is negligible
 
 ```{r}
 ggMarginal(
@@ -996,6 +971,18 @@ ggMarginal(
   groupFill = TRUE
 )
 ```
+
+---
+
+# Bivariate Analysis
+#### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
+The most significant relationships related to quality were the relationship between Quality and Alcohol (0.436) and the negative relationship between Quality and Density (-0.307). The mean density appears to decrease as the wine quality increases and inversely, the alcohol level increases as the wine quality increases.
+
+# Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
+Two of the most interesting and unexpected relationships were between Total Sulfur Dioxide and Density (0.53), Total Sulfur Dioxide and Alcohol (-0.499), as well as the negative relationship between Alcohol and Density (-0.78). This may indicate that denser wines can hold more Total Sulfur Dioxide in solution and/or the Total Sulfur Dioxide in solution contributes to density. The relationship between Total Sulfur Dioxide and Alcohol may indicate that Sulfur Dioxide dissipates as the Alcohol level increases with fermentation. The Alcohol and Density relationship seems to indicate that Alcohol decreases density sense alcohol is less dense than water and residual sugar.
+
+# What was the strongest relationship you found?
+The strongest relationship was the negative relationship between Alcohol and Density with a correlation value of -0.78. Overall Alcohol appears to correlate with many variables.
 
 ---
 
