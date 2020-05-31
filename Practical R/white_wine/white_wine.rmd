@@ -978,55 +978,60 @@ ggMarginal(
 #### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
 The most significant relationships related to quality were the relationship between Quality and Alcohol (0.436) and the negative relationship between Quality and Density (-0.307). The mean density appears to decrease as the wine quality increases and inversely, the alcohol level increases as the wine quality increases.
 
-# Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
+#### Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
 Two of the most interesting and unexpected relationships were between Total Sulfur Dioxide and Density (0.53), Total Sulfur Dioxide and Alcohol (-0.499), as well as the negative relationship between Alcohol and Density (-0.78). This may indicate that denser wines can hold more Total Sulfur Dioxide in solution and/or the Total Sulfur Dioxide in solution contributes to density. The relationship between Total Sulfur Dioxide and Alcohol may indicate that Sulfur Dioxide dissipates as the Alcohol level increases with fermentation. The Alcohol and Density relationship seems to indicate that Alcohol decreases density sense alcohol is less dense than water and residual sugar.
 
-# What was the strongest relationship you found?
+#### What was the strongest relationship you found?
 The strongest relationship was the negative relationship between Alcohol and Density with a correlation value of -0.78. Overall Alcohol appears to correlate with many variables.
 
 ---
 
 # Multivariate Plots Section
 
-#### Wine Quality and the Relationship Between pH and Citric Acid
+#### Below Average and Exceptional Wine Quality and the Relationship Between pH and Citric Acid
 
 ```{r}
-ggplot(white_wine, aes(pH, citric.acid)) +
-  geom_point(aes(colour = quality_lev_f, alpha = 1 / 20)) +
-  scale_x_continuous(breaks = seq(floor(min(white_wine$pH)), max(white_wine$pH), 0.1)) +
+ggplot(white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"),], aes(pH, citric.acid)) +
+  geom_point(aes(colour = quality_lev_f, alpha = 1 / 10)) +
+  scale_y_continuous(limits = quantile(white_wine$citric.acid, probs = c(0.05, .97))) +
+  scale_x_continuous(limits = quantile(white_wine$pH, probs = c(0.05, .95)),
+                     breaks = seq(floor(min(white_wine$pH)), max(white_wine$pH), 0.1)) +
   theme(legend.position = c(0.1, 0.75)) +
   labs(x = "pH", y = "Citric Acid Concentration") +
   guides(colour = guide_legend(title = "Wine Quality Levels", override.aes = list(alpha = 1))) +
-  ggtitle("Wine Quality and the Relationship Between pH and Citric Acid")
+  ggtitle("Below Average and Exceptional Wine Quality and the Relationship Between pH and Citric Acid")
 ```
 
-#### Exceptional Wine Quality and the Relationship Between Alcohol and Wine Density
-tend toward higher alcohol and lower density
+#### Below Average and Exceptional Wine Quality and the Relationship Between Alcohol and Wine Density
+Exceptional quality wines tend toward higher alcohol and lower density.
 
 ```{r}
-ggplot(white_wine[white_wine$quality_lev_f %in% c("exceptional"),], aes(alcohol, density)) +
+ggplot(white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"), ], aes(alcohol, density, color = quality_lev_f, alpha = 1/5)) +
   geom_point(aes(size = quality),
-             position = position_jitter(height = 0),
-             color = "steelblue") +
+             position = position_jitter(height = 0)) +
   scale_x_continuous(breaks = seq(floor(min(white_wine$alcohol)), max(white_wine$alcohol), 0.5)) +
   labs(x = "Alcohol", y = "Density") +
   guides(size = guide_legend(title = "Wine Quality Levels", override.aes = list(alpha = 1))) +
-  ggtitle("Exceptional Wine Quality and the Relationship Between Alcohol and Wine Density")
+  ggtitle("Below Average and Exceptional Wine Quality and the Relationship Between Alcohol and Wine Density")
 ```
 
-#### Exceptional Wine Quality and the Relationship Between Alcohol and Residual Sugars
-
+#### Below Average and Exceptional Wine Quality and the Relationship Between Alcohol and Residual Sugars
+Below Average wines have a bit of clustering around the low end of Residual Sugars, but their Alcohol Range is wide. Above Average wines favor higher alcohol and generally have Residual Sugar values below 10.
 ```{r}
-ggplot(white_wine[white_wine$quality_lev_f %in% c("exceptional"), ], aes(alcohol, residual.sugar, colour = quality)) +
-  geom_point(position = position_jitter(height = 0),
-             alpha = 1 / 1) +
-  scale_x_continuous(breaks = seq(floor(min(white_wine$alcohol)), max(white_wine$alcohol), 0.5)) +
+ggplot(white_wine[white_wine$quality_lev_f %in% c("below avg.", "exceptional"), ], aes(alcohol, residual.sugar, colour = quality_lev_f)) +
+  geom_point(position = position_jitter(height = 0)) +
+  scale_y_continuous(limits = quantile(white_wine$residual.sugar, probs = c(0.1, 0.9)),) +
+  scale_x_continuous(
+    limits = quantile(white_wine$alcohol, probs = c(0.1, 0.95)),
+    breaks = seq(9.5, max(white_wine$alcohol), 0.5)
+  ) +
   labs(x = "Alcohol", y = "Residual Sugar") +
   guides(colour = guide_legend(title = "Wine Quality Levels", override.aes = list(alpha = 1))) +
-  ggtitle("Exceptional Wine Quality and the Relationship Between Alcohol and Residual Sugar")
+  ggtitle("Below Average and Exceptional Wine Quality and the Relationship Between Alcohol and Residual Sugar")
 ```
 
 #### Wine Quality with Alcohol and pH Cross Comparision
+All wines quality levels tend to have the same range of pH values. Average wines tend to cluster around 3.0 to 3.3 pH levels and 9% to 10% ABV. Above Average wines have the greatest range of values for both pH and Alcohol levels.
 
 ```{r}
 ggplot(data = white_wine, mapping = aes(y = pH, x = alcohol)) +
@@ -1038,6 +1043,7 @@ ggplot(data = white_wine, mapping = aes(y = pH, x = alcohol)) +
 ```
 
 #### Wine Quality with Residual Sugar and pH Cross Comparison
+Most wines tend to cluster around low values (2 to 3) for Residual Sugar yet have an even range of pH values.
 
 ```{r}
 ggplot(
@@ -1055,6 +1061,7 @@ ggplot(
 ```
 
 #### Wine Quality with Alcohol and Residual Sugar Cross Comparison
+Most wines tend to cluster around low values (2 to 3) for Residual Sugar. Average and Above Average wines tend to have alcohol levels between 9 and 12.5.
 
 ```{r}
 ggplot(
@@ -1072,6 +1079,7 @@ ggplot(
 ```
 
 #### Wine Quality with Residual Sugar and Total Sulfur Dioxide Cross Comparison
+Most wines tend to cluster around low values (2 to 3) for Residual Sugar and share a similar range of 50 to 200 for their Total Sulfur Dioxide.
 
 ```{r}
 ggplot(
@@ -1089,7 +1097,7 @@ ggplot(
 ```
 
 #### Summarize Alcohol for Quality Levels
-the higher quality wines tended to be on the upper end of the alcohol range with values between 11.40 to 12.18
+Higher quality wines tended to be on the upper end of the alcohol range with values between 11.40 to 12.18.
 
 ```{r}
 by(white_wine$alcohol, white_wine$quality_lev_f, summary)
@@ -1112,10 +1120,7 @@ by(
 ```
 
 #### Summarize sugar_to_sulfates_ratio for Quality Levels
-the minimum Residual Sugar to Sulfate Level is the highest for Quality 9 wines
-the mean Residual Sugar to Sulfate Level is lowest for Quality 9 wines
-the maximum Residual Sugar to Sulfate Level is lower for both lower (Quality 3 and 4) and the highest quality wine
-the Residual Sugar to Sulfate Level range is smallest for Quality 9 wines
+The minimum Residual Sugar to Sulfate Level is the highest for Quality 9 wines. The mean Residual Sugar to Sulfate Level is lowest for Quality 9 wines. The maximum Residual Sugar to Sulfate Level is lower for both lower (Quality 3 and 4) and the highest quality wine. The Residual Sugar to Sulfate Level range is smallest for Quality 9 wines.
 
 ```{r}
 by(
@@ -1126,16 +1131,15 @@ by(
 ```
 
 #### Summarize pH for Quality Levels
-excluding wines of quality 3 and 4, as the quality of wine increase, so does the mean pH value
-the max pH level for wines of quality 8 and 9 drops significantly compared to qualities 3 through 7
+Excluding wines of quality 3 and 4, as the quality of wine increase, so does the mean pH value
+the max pH level for wines of quality 8 and 9 drops significantly compared to qualities 3 through 7.
 
 ```{r}
 by(white_wine$pH, white_wine$quality_lev_f, summary)
 ```
 
 #### Summarize Total Sulfur Dioxide for Quality Levels
-the lowest quality wine has over 3x times as many max Total Sulfur Dioxide when compared to the highest rated
-excluding Quality 5 wines, the max Total Sulfur Dioxide tended to decrease as the quality increased
+The lowest quality wine has over 3x times the maximum Total Sulfur Dioxide when compared to the highest rated. Excluding Quality 5 wines, the max Total Sulfur Dioxide tended to decrease as the quality increased.
 
 ```{r}
 by(white_wine$total.sulfur.dioxide, white_wine$quality_lev_f, summary)
@@ -1144,13 +1148,19 @@ by(white_wine$total.sulfur.dioxide, white_wine$quality_lev_f, summary)
 ---
 
 # Multivariate Analysis
-in many cases there are quite a few similarities between the highest and lowest quality wines
-there"s an interesting gap between the 8 and 9 qualities wines
-there are no 1, 2 or 10 rated wines
+
 
 #### Talk about some of the relationships you observed in this part of the investigation. Were there features that strengthened each other in terms of looking at your feature(s) of interest?
+The most notable relationship was that of Wine Quality, Alcohol and Density. Exceptional quality wines tend toward higher alcohol and lower density and Below Average wines Exceptional quality wines tend toward lower alcohol and higher density.
+
+The relationship between Quality, Alcohol and Residual sugars was less definitive, but Below Average wines have a bit of clustering around the low end of Residual Sugars, but their Alcohol Range is wide. Above Average wines favor higher alcohol and generally have Residual Sugar values below 10.
+
+There weren't any significant relationships between Quality, pH and Citric Acid. Values for both Below Average and Exceptional wines were seemingly equally distributed.
+
+There weren't any significant relationships between Quality, Alcohol and pH. All wines quality levels tend to have the same range of pH values. Average wines tend to cluster around 3.0 to 3.3 pH levels and 9% to 10% ABV. Above Average wines have the greatest range of values for both pH and Alcohol levels.
 
 #### Were there any interesting or surprising interactions between features?
+In many cases there are quite a few similarities between the highest and lowest quality wines. The Average and Above Average wines offered the greatest range of values for most variables. There were interesting discrepancies between a few of the Quality 8 and 9 wines. Quality 9 wines tended to see higher alcohol levels, lower Total Sulfur Dioxide, a lower Sugar-To-Sulfate Ratios and increased mean pH value.
 
 ---
 
