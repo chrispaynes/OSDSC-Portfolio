@@ -1245,7 +1245,7 @@ ggMarginal(
 ```
 
 #### Plot 2 Description
-There's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines. However, Exceptional wines tended to have slightly more clustering in their values in both Total Sulfur Dioxide and Volatile Acidity. The Total Sulfur Dioxide values for Exceptional wines form a near-normal distribution, whereas the Volatile Acidity form a looser normal distribution with a higher variability in values. The Below Average wines have significantly longer tails in their  Total Sulfur Dioxide distribution. but that difference between Below Average wines is negligible
+There's a lot of similarity between Total Sulfur Dioxide and Volatile Acidity for both Below Average and Exceptional Wines. However, Exceptional wines tended to have slightly more clustering in their values in both Total Sulfur Dioxide and Volatile Acidity. The Total Sulfur Dioxide values for Exceptional wines form a near-normal distribution, whereas the Volatile Acidity form a looser normal distribution with a higher variability in values. The Below Average wines have significantly longer tails in their Total Sulfur Dioxide distribution, but that difference between Below Average wines is negligible.
 
 #### Plot 3
 
@@ -1280,37 +1280,19 @@ ggMarginal(
 ```
 
 #### Plot 3 Description
-As density decreases and alcohol increases, so did the quality of wine.
-The balance between Alcohol and Density is key determinant of wine quality. Below Average wines tended to have a higher density and Exceptional wines had a lower density. The opposite was true for Alcohol levels — as Alcohol level increased, so did the wine quality. Below Average wine tended to have a broader range of Alcohol and Density values whereas the Exceptional wines tended to cluster around the 12% to 13% ABV and 0.985 to 0.9925 Density levels. It is worth pointing out that it's unclear if wines received a higher quality because of their higher ABV, because of their lower density or a combination of both factors.
+As density decreases and alcohol increases, so did the quality of wine. The balance between Alcohol and Density is key determinant of wine quality. Below Average wines tended to have a higher density and Exceptional wines had a lower density. The opposite was true for Alcohol levels — as Alcohol level increased, so did the wine quality. Below Average wine tended to have a broader range of Alcohol and Density values whereas the Exceptional wines tended to cluster around the 12% to 13% ABV and 0.985 to 0.9925 Density levels. It is worth pointing out that it's unclear if wines received a higher quality because of their higher ABV, because of their lower density or a combination of both factors.
 
 ---
 
 # Reflection
-This should contain a few sentences about your struggles, successes, and ideas for future exploration on the data set (see the Project Rubric for more information).
 
-Struggles
-- determining which variables to compare
-- determining how to transform, limit
-- determine which type of plots or functions provided the needed information
-- remembering which packages provided which functionality
-- hoping to find a strong correlation between Wine Quality and variables (pH and Citric Acid specifically) when there simply wasn't a strong correlation compared to other variables.
-- understanding which additional ratios or calculations would serve as an additional column vector to explore
+#### Struggles
+Some of the major struggles with this analysis were determining which variables to compare, determining how and when to transform or limit vectors and determining which type of plots or functions conveyed information in the clearest manner. Also, determining which R packages provided which statistical and plotting functionality made the initial investigate progress slowly. Early on, one struggle was hoping to find a strong correlation between Wine Quality and variables (pH and Citric Acid specifically) when there simply wasn't a strong correlation compared to other variables. Lastly, understanding which additional ratios or calculations would serve as an additional column vector to explore was initially unclear until re-examining the variable definitions and variable relationships.
 
-Successes
-- Using Adjusted R-Squared values and GGPairs helped isolate which variable relationships were worth exploring and highlighted whether a positive or negative correlation existed between the variables.
-- partitioning the numerical Quality vector into descriptive factors made it easier to group wines by quality using common quality descriptors.
-- realizing there was a strong correlation between Alcohol and Density helped drive a comparison between Alcohol, Density and Quality and unveil a strong relationship between the 3 variables. It makes sense that as the density or sugars decreases, the amount of alcohol increases.
+#### Successes
+The largest success came from using Adjusted R-Squared values and GGPairs to help isolate which variable relationships were worth exploring. These tools also highlighted whether a positive or negative correlation existed between the variables and helped explain interactions and trends visible on plots.
+Grouping the numerical Quality vector into descriptive factors made it easier to group wines by quality using common quality descriptors and made easier to see trends between different wine quality groupings.
+Lastly, realizing there was a strong correlation between Alcohol and Density helped drive a comparison between Alcohol, Density and Quality — this ultimately unveiled a strong relationship between the 3 variables, which makes sense in retrospect that as the density or sugars decreases, the amount of alcohol increases.
 
-Future Exploration
-- larger data set specifically for Below Average and Exceptional wines. There was plenty of data for Average Quality wine but fewer data points for the tails of the Quality Distribution
-- more chemical compounds from the white
-- the grape varietal(s) used
-- the age
-- the price
-- the brand
-- production region
-- explore creating optional models
-
-
-# Step Five - Knit your RMD file
-Your knitted RMD file should not be one long chunk of R code. It should contain text and plots interspersed throughout. The goal is to give the person reading the file insight into what you were thinking as you explored your data.
+#### Future Exploration
+There's plenty of room for further exploration and modeling. As with most analysis, a larger data set specifically for Below Average and Exceptional wines would tease out trends and smooth out averages. There was plenty of data for Average Quality wine but fewer data points for the tails of the Quality Distribution. Also, more chemical compounds and variables from the wine such as grape varietal(s), age, price, brand, and region would be interesting to explore.
