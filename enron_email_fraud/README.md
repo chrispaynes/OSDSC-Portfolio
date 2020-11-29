@@ -1,19 +1,9 @@
-# What will I learn?
-
-Deal with an imperfect, real-world dataset
-Validate a machine learning result using test data
-Evaluate a machine learning result using quantitative metrics
-Create, select and transform features
-Compare the performance of machine learning algorithms
-Tune machine learning algorithms for maximum performance
-Communicate your machine learning algorithm results clearly
-
 # Table of Contents
-- [What will I learn?](#what-will-i-learn)
 - [Table of Contents](#table-of-contents)
 - [Requirements](#requirements)
-- [File Archicture](#file-archicture)
+- [File Architecture](#file-architecture)
 - [Project Summary](#project-summary)
+- [Project Features](#project-features)
 - [Data Exploration](#data-exploration)
       - [Statistical Summary](#statistical-summary)
       - [Data Features](#data-features)
@@ -29,52 +19,56 @@ Communicate your machine learning algorithm results clearly
       - [Features With Low Correlation](#features-with-low-correlation)
       - [Features With High Mean Correlation To Other Features](#features-with-high-mean-correlation-to-other-features)
       - [Features With Low Mean Correlation To Other Features](#features-with-low-mean-correlation-to-other-features)
-      - [Recursive Feature Reduction (RFE) with Logistic Regression Classifier](#recursive-feature-reduction-rfe-with-logistic-regression-classifier)
-      - [Recursive Feature Reduction (RFE) with Random Forest Classifier](#recursive-feature-reduction-rfe-with-random-forest-classifier)
+      - [Recursive Feature Elimination (RFE) with Logistic Regression Classifier](#recursive-feature-elimination-rfe-with-logistic-regression-classifier)
+      - [Recursive Feature Elimination (RFE) with Random Forest Classifier](#recursive-feature-elimination-rfe-with-random-forest-classifier)
     - [Selected Features](#selected-features)
 - [Feature Engineering](#feature-engineering)
 - [Dimensionality Reduction / Feature Scaling](#dimensionality-reduction--feature-scaling)
-- [Model Parameter Tuning](#model-parameter-tuning)
-- [Model Validation](#model-validation)
-- [Model Evaluation Metrics](#model-evaluation-metrics)
-    - [Confusion Matrix](#confusion-matrix)
-    - [Classification Report](#classification-report)
-- [Classifier Validation Results](#classifier-validation-results)
+- [Model Validation & Classifier Validation Results](#model-validation--classifier-validation-results)
     - [Gaussian Naive Bayes](#gaussian-naive-bayes)
-        - [Validating GaussianNB (PCA): random_state = 0](#validating-gaussiannb-pca-random_state--0)
-        - [Validating GaussianNB (StandardScaler + PCA): random_state = 0](#validating-gaussiannb-standardscaler--pca-random_state--0)
-        - [Validating GaussianNB (MinMaxScaler + PCA): random_state = 0](#validating-gaussiannb-minmaxscaler--pca-random_state--0)
+        - [GaussianNB (PCA): random_state = 0](#gaussiannb-pca-random_state--0)
+        - [GaussianNB (StandardScaler + PCA): random_state = 0](#gaussiannb-standardscaler--pca-random_state--0)
+        - [GaussianNB (MinMaxScaler + PCA): random_state = 0](#gaussiannb-minmaxscaler--pca-random_state--0)
     - [Decision Tree](#decision-tree)
-        - [Validating DecisionTreeClassifier (PCA): random_state = 0](#validating-decisiontreeclassifier-pca-random_state--0)
-        - [Validating DecisionTreeClassifier (StandardScaler + PCA): random_state = 0](#validating-decisiontreeclassifier-standardscaler--pca-random_state--0)
-        - [Validating DecisionTreeClassifier (MinMaxScaler + PCA): random_state = 0](#validating-decisiontreeclassifier-minmaxscaler--pca-random_state--0)
+        - [DecisionTreeClassifier (PCA): random_state = 0](#decisiontreeclassifier-pca-random_state--0)
+        - [DecisionTreeClassifier (StandardScaler + PCA): random_state = 0](#decisiontreeclassifier-standardscaler--pca-random_state--0)
+        - [DecisionTreeClassifier (MinMaxScaler + PCA): random_state = 0](#decisiontreeclassifier-minmaxscaler--pca-random_state--0)
     - [AdaBoost](#adaboost)
-        - [Validating AdaBoost (PCA): random_state = 0](#validating-adaboost-pca-random_state--0)
-        - [Validating AdaBoost (StandardScaler + PCA): random_state = 0](#validating-adaboost-standardscaler--pca-random_state--0)
-        - [Validating AdaBoost (MinMaxScaler + PCA): random_state = 0](#validating-adaboost-minmaxscaler--pca-random_state--0)
+        - [AdaBoost (PCA): random_state = 0](#adaboost-pca-random_state--0)
+        - [AdaBoost (StandardScaler + PCA): random_state = 0](#adaboost-standardscaler--pca-random_state--0)
+        - [AdaBoost (MinMaxScaler + PCA): random_state = 0](#adaboost-minmaxscaler--pca-random_state--0)
     - [KNN](#knn)
-        - [Validating KNeighbors (PCA): random_state = 0](#validating-kneighbors-pca-random_state--0)
-        - [Validating KNeighbors (StandardScaler + PCA): random_state = 0](#validating-kneighbors-standardscaler--pca-random_state--0)
-        - [Validating KNeighbors (MinMaxScaler + PCA): random_state = 0](#validating-kneighbors-minmaxscaler--pca-random_state--0)
+        - [KNeighbors (PCA): random_state = 0](#kneighbors-pca-random_state--0)
+        - [KNeighbors (StandardScaler + PCA): random_state = 0](#kneighbors-standardscaler--pca-random_state--0)
+        - [KNeighbors (MinMaxScaler + PCA): random_state = 0](#kneighbors-minmaxscaler--pca-random_state--0)
     - [Random Forest](#random-forest)
-        - [Validating RandomForest (PCA): random_state = 0](#validating-randomforest-pca-random_state--0)
-        - [Validating RandomForest (StandardScaler + PCA): random_state = 0](#validating-randomforest-standardscaler--pca-random_state--0)
-      - [Validating RandomForest (MinMaxScaler + PCA): random_state = 0](#validating-randomforest-minmaxscaler--pca-random_state--0)
-
+        - [RandomForest (PCA): random_state = 0](#randomforest-pca-random_state--0)
+        - [RandomForest (StandardScaler + PCA): random_state = 0](#randomforest-standardscaler--pca-random_state--0)
+      - [RandomForest (MinMaxScaler + PCA): random_state = 0](#randomforest-minmaxscaler--pca-random_state--0)
+- [Model Parameter Tuning](#model-parameter-tuning)
+- [Parameter-Tuned Classifier Validation Results](#parameter-tuned-classifier-validation-results)
+    - [DecisionTreeClassifier (RobustScaler + PCA) -- Tuned: random_state = 42](#decisiontreeclassifier-robustscaler--pca----tuned-random_state--42)
+    - [RandomForest (RobustScaler + PCA) -- Tuned: random_state = 42](#randomforest-robustscaler--pca----tuned-random_state--42)
+    - [KNeighbors (PCA) -- Tuned: random_state = 42](#kneighbors-pca----tuned-random_state--42)
+    - [AdaBoost (PCA) -- Tuned: random_state = 42](#adaboost-pca----tuned-random_state--42)
+- [Selected Classifier](#selected-classifier)
+    - [10-Fold Model Evaluation Metrics](#10-fold-model-evaluation-metrics)
+      - [Confusion Matrix](#confusion-matrix)
+- [Additional Resources](#additional-resources)
 
 # Requirements
 - Python 2.7
 - [Starter Code + Enron dataset]("https://github.com/udacity/ud120-projects.git)
--
 
 
-# File Archicture
+# File Architecture
 
 | Filename                  | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | enron_email.ipynb         | Jupyter Notebook contained detailed data exploration and charts                                                                                                                                                                                                                                                                                                                                                           |
 | poi_id.py                 | Starter code for the POI identifier, you will write your analysis here. You will also submit a version of this file for your evaluator to verify your algorithm and results.                                                                                                                                                                                                                                              |
-| utils.py                  |                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| utils.py                  | Data formatting, plotting and validation functions                                                                                                                                                                                                                                                                                                                                                                        |
+| trial_models.py           | Collection of Model Pipelines that were used to narrow down which classifier to use.                                                                                                                                                                                                                                                                                                                                      |
 | final_project_dataset.pkl | The dataset for the project, more details below.                                                                                                                                                                                                                                                                                                                                                                          |
 | tester.py                 | When you turn in your analysis for evaluation by Udacity, you will submit the algorithm, dataset and list of features that you use (these are created automatically in poi_id.py). The evaluator will then use this code to test your result, to make sure we see performance that’s similar to what you report. You don’t need to do anything with this code, but we provide it for transparency and for your reference. |
 | emails_by_address         | this directory contains many text files, each of which contains all the messages to or from a particular email address. It is for your reference, if you want to create more advanced features based on the details of the emails dataset. You do not need to process the e-mail corpus in order to complete the project.                                                                                                 |
@@ -82,16 +76,29 @@ Communicate your machine learning algorithm results clearly
 # Project Summary
 In 2000, Enron was one of the largest companies in the United States. By 2002, it had collapsed into bankruptcy due to widespread corporate fraud. In the resulting Federal investigation, a significant amount of typically confidential information entered into the public record, including tens of thousands of emails and detailed financial data for top executives. In this project, you will play detective, and put your new skills to use by building a person of interest identifier based on financial and email data made public as a result of the Enron scandal. To assist you in your detective work, we've combined this data with a hand-generated list of persons of interest in the fraud case, which means individuals who were indicted, reached a settlement or plea deal with the government, or testified in exchange for prosecution immunity.
 
-Steps to Success
 We will provide you with starter code that reads in the data, takes your features of choice, then puts them into a NumPy array, which is the input form that most sklearn functions assume. Your job is to engineer the features, pick and tune an algorithm, and to test and evaluate your identifier.
 
 As preprocessing to this project, we've combined the Enron email and financial data into a dictionary, where each key-value pair in the dictionary corresponds to one person. The dictionary key is the person's name, and the value is another dictionary, which contains the names of all the features and their values for that person.
 
 You are encouraged to make, transform or rescale new features from the starter features. If you do this, you should store the new feature to my_dataset, and if you use the new feature in the final algorithm, you should also add the feature name to my_feature_list, so your evaluator can access it during testing.
 
+# Project Features
+- Deal with an imperfect, real-world dataset
+- Validate a machine learning result using test data
+- Evaluate a machine learning result using quantitative metrics
+- Create, select and transform features
+- Compare the performance of machine learning algorithms
+- Tune machine learning algorithms for maximum performance
+- Communicate your machine learning algorithm results clearly
+
+
 # Data Exploration
-- 20 features
-- 146 records
+- 146 Samples
+- 21 Features
+- Most features were successfully converted to a Float value. The 'email_address' feature can safely ignored because it's a non-numerical value.
+- 2 samples ('THE TRAVEL AGENCY IN THE PARK', 'TOTAL') appear to not be individuals, so they will likely be removed from the dataset.
+- The 'other' feature will likely be discarded because it's unclear what that feature encompasses
+- 'deferred_income', 'deferral_payments', 'restricted_stock', and 'restricted_stock_deferred' have can encompass negative values
 
 #### Statistical Summary
 | Statistic    | bonus       | deferral_payments | deferred_income | director_fees | email_address | exercised_stock_options | expenses   | from_messages | from_poi_to_this_person | from_this_person_to_poi | loan_advances | long_term_incentive | other       | restricted_stock | restricted_stock_deferred | salary      | shared_receipt_with_poi | to_messages | total_payments | total_stock_value |
@@ -143,9 +150,13 @@ The features in the data fall into three major types, namely financial features,
 | BAY FRANKLIN R     | 400000.00  | 260455.00         | -201641.00      | nan           | nan           | nan                     | 129142.00 | nan           | nan                     | nan                     | nan           | nan                 | 69.00      | False | 145796.00        | -82782.00                 | 239671.00 | nan                     | nan         | 827696.00      | 63014.00          |
 
 # Outlier Removal
+- We're removing the 'TOTAL' sample because it's an outlier in the data and represents an aggregate value
+- 'THE TRAVEL AGENCY IN THE PARK' doesn't represent a person, but rather an entity
+- The remainder of the outliers across the features are actual individuals that for whatever reason have a disproportionately large value. If needed, we'll experiment with reducing these imbalances with feature scaling.
+- There's a significant class imbalance for the POI feature
 
 # Feature Selection
-Feature Selection was handled in multiple steps to methodically reduce 20+ features to 3:
+Fewer features can allow machine learning algorithms to run more efficiently (less space or time complexity) and be more effective. Some machine learning algorithms can be misled by irrelevant input features, resulting in worse predictive performance. Feature Selection was handled in multiple steps to methodically reduce 20+ features to 3:
 
 ---
 
@@ -281,7 +292,12 @@ Choosing the `exercised_stock_options` feature because it has the highest correl
 
 Since the `exercised_stock_options` is highly correlated with other features, we'll choose 2 additional features with low Mean Correlation values so that we better represent the larger feature set. Of the remaining features, `expenses` feature has the lowest mean correlation between features, so that seems like a good choice for a highly independent variable.  `bonus` has a moderately high correlation with `POI` so that feels like a good choice to supplement the other feature that's highly-correlated with POI.
 
-#### Recursive Feature Reduction (RFE) with Logistic Regression Classifier
+#### Recursive Feature Elimination (RFE) with Logistic Regression Classifier
+RFE is effective at selecting those features that are more or most relevant in predicting the target variable. RFE works by searching for a subset of features by starting with all features in the training dataset and successfully removing features until the desired number remains.
+
+This is achieved by fitting the given machine learning algorithm used in the core of the model, ranking features by importance, discarding the least important features, and re-fitting the model. This process is repeated until a specified number of features remains.
+
+
 | Feature                        | Feature Importance Rank (lower is better) |
 | ------------------------------ | ----------------------------------------- |
 | total_stock_value              | 1                                         |
@@ -298,7 +314,7 @@ Since the `exercised_stock_options` is highly correlated with other features, we
 | <b>bonus</b>                   | 8                                         |
 | total_payments                 | 9                                         |
 
-#### Recursive Feature Reduction (RFE) with Random Forest Classifier
+#### Recursive Feature Elimination (RFE) with Random Forest Classifier
 | Feature                        | Feature Importance Rank (lower is better) |
 | ------------------------------ | ----------------------------------------- |
 | poi                            | 1                                         |
@@ -321,40 +337,19 @@ Since the `exercised_stock_options` is highly correlated with other features, we
 1. expenses
 
 # Feature Engineering
+Creating a `pct_poi_messages` feature that calculates the percentage of a sample's total messages that are to or from a POI.
 
 # Dimensionality Reduction / Feature Scaling
-- Principle Component Analysis
+Many machine learning algorithms perform better when numerical input variables are scaled to a standard range. Several features have a positively-skewed distribution or outliers and maybe benefit from feature scaling to bring values to a standard range In fact, none of the features resemble a standard distribution. To overcome this, we'll experiment with Feature Scaling and Dimensionality Reduction using:
+- Principle Component Analysis PCA()
 - StandardScaler
 - MinMaxScaler
+- RobustScaler
 
-# Model Parameter Tuning
-- GridCV
-
-# Model Validation
-- cross_validate
-- StratifiedShuffleSplit
-
-# Model Evaluation Metrics
-- confusion_matrix
-- precision
-- recall
-- accuracy
-- F1 Score
--
-
-### Confusion Matrix
-| n = x      | Predicted POI | Actual POI |
-| ---------- | ------------- | ---------- |
-| Actual POI |               |            |
-| Actual POI |               |            |
-
-### Classification Report
-
-
-# Classifier Validation Results
+# Model Validation & Classifier Validation Results
 Below are individual validation results for various classifier types and parameters that I experimented with.
 
-Each permutation used a Scikit Learn Pipeline with PCA as well as Standard or MinMax feature scaling.
+Each permutation used a Scikit Learn Pipeline with PCA as well as Robust, Standard or MinMax feature scaling.
 
 Classifier parameters were tuned using GridSearchCV cross validation.
 
@@ -365,7 +360,7 @@ Calculations were aggregrated across each of the 10 StratifiedShuffleSplit split
 Note: the results below were generated using the `validate_classifier()` function and will differ slightly from results from the `test_classifier()` function, due to the different `random_state` values supplied to the `StratifiedShuffleSplit()` function.
 
 ### Gaussian Naive Bayes
-##### Validating GaussianNB (PCA): random_state = 0
+##### GaussianNB (PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 85.92%
 
@@ -384,7 +379,7 @@ GaussianNB (PCA) Aggregate Confusion Matrix
 GaussianNB (StandardScaler + PCA)
 ```
 
-##### Validating GaussianNB (StandardScaler + PCA): random_state = 0
+##### GaussianNB (StandardScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 85.76%
 
@@ -402,7 +397,7 @@ GaussianNB (StandardScaler + PCA) Aggregate Confusion Matrix
  [ 15   5]]
 ```
 
-##### Validating GaussianNB (MinMaxScaler + PCA): random_state = 0
+##### GaussianNB (MinMaxScaler + PCA): random_state = 0
 
 ```
 Mean 10-Fold Cross Validation Test Score: 84.93%
@@ -423,7 +418,7 @@ DecisionTreeClassifier (PCA)
 ```
 
 ### Decision Tree
-##### Validating DecisionTreeClassifier (PCA): random_state = 0
+##### DecisionTreeClassifier (PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 82.02%
 
@@ -442,7 +437,7 @@ DecisionTreeClassifier (PCA) Aggregate Confusion Matrix
 
 ```
 
-##### Validating DecisionTreeClassifier (StandardScaler + PCA): random_state = 0
+##### DecisionTreeClassifier (StandardScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 84.21%
 
@@ -460,7 +455,7 @@ DecisionTreeClassifier (StandardScaler + PCA) Aggregate Confusion Matrix
  [ 14   6]]
 ```
 
-##### Validating DecisionTreeClassifier (MinMaxScaler + PCA): random_state = 0
+##### DecisionTreeClassifier (MinMaxScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 82.02%
 
@@ -479,7 +474,7 @@ DecisionTreeClassifier (MinMaxScaler + PCA) Aggregate Confusion Matrix
 ```
 
 ### AdaBoost
-##### Validating AdaBoost (PCA): random_state = 0
+##### AdaBoost (PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 86.36%
 
@@ -497,7 +492,7 @@ AdaBoost (PCA) Aggregate Confusion Matrix
  [ 14   6]]
 ```
 
-##### Validating AdaBoost (StandardScaler + PCA): random_state = 0
+##### AdaBoost (StandardScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 85.51%
 
@@ -515,7 +510,7 @@ AdaBoost (StandardScaler + PCA) Aggregate Confusion Matrix
  [ 17   3]]
 ```
 
-##### Validating AdaBoost (MinMaxScaler + PCA): random_state = 0
+##### AdaBoost (MinMaxScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 84.27%
 
@@ -534,7 +529,7 @@ AdaBoost (MinMaxScaler + PCA) Aggregate Confusion Matrix
 ```
 
 ### KNN
-##### Validating KNeighbors (PCA): random_state = 0
+##### KNeighbors (PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 84.93%
 
@@ -553,7 +548,7 @@ KNeighbors (PCA) Aggregate Confusion Matrix
 ```
 
 
-##### Validating KNeighbors (StandardScaler + PCA): random_state = 0
+##### KNeighbors (StandardScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 82.07%
 
@@ -571,7 +566,7 @@ KNeighbors (StandardScaler + PCA) Aggregate Confusion Matrix
  [ 19   1]]
 ```
 
-##### Validating KNeighbors (MinMaxScaler + PCA): random_state = 0
+##### KNeighbors (MinMaxScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 82.78%
 
@@ -591,7 +586,7 @@ KNeighbors (MinMaxScaler + PCA) Aggregate Confusion Matrix
 
 
 ### Random Forest
-#####  Validating RandomForest (PCA): random_state = 0
+##### RandomForest (PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 81.13%
 
@@ -609,7 +604,7 @@ RandomForest (PCA) Aggregate Confusion Matrix
  [ 16   4]]
 ```
 
-#####  Validating RandomForest (StandardScaler + PCA): random_state = 0
+##### RandomForest (StandardScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 82.44%
 
@@ -627,7 +622,7 @@ RandomForest (StandardScaler + PCA) Aggregate Confusion Matrix
  [ 14   6]]
 ```
 
-#### Validating RandomForest (MinMaxScaler + PCA): random_state = 0
+#### RandomForest (MinMaxScaler + PCA): random_state = 0
 ```
 Mean 10-Fold Cross Validation Test Score: 83.32%
 
@@ -644,3 +639,143 @@ RandomForest (MinMaxScaler + PCA) Aggregate Confusion Matrix
 [[116   4]
  [ 15   5]]
 ```
+
+# Model Parameter Tuning
+We're tuning each model by experimenting with its parameters. We'll narrow down the most effective parameters by monitoring the model's F1 Score, as well as what GridSearchCV consistently determines the best parameters are. Lastly, we'll add and remove pipeline steps until we find an optimal pipeline.
+
+Note: The RandomForest classifiers are commented out above because they take a signifcant amount of time to iterate through each set of parameter options.
+
+
+# Parameter-Tuned Classifier Validation Results
+The results below were created by using GridSearchCV and trial and error to determine which parameter values to tune the classifier to. It's also worth noting that the random_state variable was updated to 42 to reflect the random_state within the `test_classifier()` function.
+
+Classifiers were first tuned to reach a 0.3 threshold for both Precision and Recall, then tuned to increase the F1 Score and latest tuned to reduce the runtime of the classifier.
+
+The one classifier that failed to meet the 0.3 threshold was the the Gaussian Naive Bayes classifier. After attempting Feature Scaling and PCA, there werent' enough parameters to tune on the classifier to make a significant improvement to the classifier.
+
+### DecisionTreeClassifier (RobustScaler + PCA) -- Tuned: random_state = 42
+```
+Mean 10-Fold Cross Validation Test Score: 87.71%
+
+DecisionTreeClassifier (RobustScaler + PCA) -- Tuned Aggregate Model Classification Performance
+===============================================================================================
+Population:     140
+Accuracy:       0.9
+Precision:      0.71
+Recall:         0.5
+F1 Score:       0.59
+
+DecisionTreeClassifier (RobustScaler + PCA) -- Tuned Aggregate Confusion Matrix
+===============================================================================
+[[116   4]
+ [ 10  10]]
+```
+
+### RandomForest (RobustScaler + PCA) -- Tuned: random_state = 42
+```
+Mean 10-Fold Cross Validation Test Score: 90.92%
+
+RandomForest (RobustScaler + PCA) -- Tuned Aggregate Model Classification Performance
+=====================================================================================
+Population:     140
+Accuracy:       0.9
+Precision:      0.71
+Recall:         0.5
+F1 Score:       0.59
+
+RandomForest (RobustScaler + PCA) -- Tuned Aggregate Confusion Matrix
+=====================================================================
+[[116   4]
+ [ 10  10]]
+```
+
+### KNeighbors (PCA) -- Tuned: random_state = 42
+```
+Mean 10-Fold Cross Validation Test Score: 89.32%
+
+KNeighbors (PCA) -- Tuned Aggregate Model Classification Performance
+====================================================================
+Population:     140
+Accuracy:       0.89
+Precision:      0.78
+Recall:         0.35
+F1 Score:       0.48
+
+KNeighbors (PCA) -- Tuned Aggregate Confusion Matrix
+====================================================
+[[118   2]
+ [ 13   7]]
+```
+
+### AdaBoost (PCA) -- Tuned: random_state = 42
+```
+Mean 10-Fold Cross Validation Test Score: 88.07%
+
+AdaBoost (PCA) -- Tuned Aggregate Model Classification Performance
+==================================================================
+Population:     140
+Accuracy:       0.88
+Precision:      0.59
+Recall:         0.5
+F1 Score:       0.54
+
+AdaBoost (PCA) -- Tuned Aggregate Confusion Matrix
+==================================================
+[[113   7]
+ [ 10  10]]
+```
+
+
+# Selected Classifier
+DecisionTreeClassifier (RobustScaler + PCA)
+
+Of the 4 models that we've tuned, all 4 achieved a Precision and Recall above 0.3 for the 10-Fold Cross Validation with a total of 140 samples. The Random Forest ensemble classifier with Robust Scaling and PCA as well as the Decision Tree classifier with Robust Scaling and PCA both achieved an F1 Score of 0.58824.
+```
+Pipeline(
+    steps=[
+        ("scaler", RobustScaler()),
+        ("pca", PCA(n_components=2)),
+        (
+            "clf",
+            DecisionTreeClassifier(
+                criterion="gini",
+                splitter="random",
+                min_samples_split=4,
+                random_state=42,
+            ),
+        ),
+    ]
+)
+```
+
+
+
+### 10-Fold Model Evaluation Metrics
+| metric     | value | description                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Population | 140   | The total number of training observations included in the matrix                                                                                                                                                                                                                                                                                                                                                                             |
+| Accuracy   | 0.9   | Accuracy represents the percentage of predictions where the classifier correctly classified a sample. While Accuracy does indicate the model's ability to classify a sample, it's not the ideal or primary metric since our classification is skewed toward having more individuals that are not a POI. This means 90% of the time the model correctly classified a sample, and 10% of the time the model incorrectly classified the sample. |
+| Precision  | 0.71  | Precision represents the percentage of positive predictions where the model classified a sample as a POI and that sample was actually a POI. Out of 14 positive predictions, 71% of the time the model correctly classified the sample as a POI.                                                                                                                                                                                             |
+| Recall     | 0.5   | Recall represents the percentage of Actual POI samples where the classifier correctly classified the sample as a POI. Out of 20 POI samples, 50% of the time the model correctly classified the sample as a POI.                                                                                                                                                                                                                             |
+| F1 Score   | 0.59  | The F1 Score is the Harmonic Mean between Precision and Recall -- this is the metric that we wanted to focus on improving because it balances Precision and Recall.                                                                                                                                                                                                                                                                          |
+
+#### Confusion Matrix
+Allows for understanding how correct the classifier predictions were in comparision to the actual values.
+
+| n = 140                   | Predicted Non-POI (0) | Predict POI (1) |
+| ------------------------- | --------------------- | --------------- |
+| <b>Actual Non-POI (0)</b> | 116 (TN)              | 4 (FP)          |
+| <b>Actual POI (1)</b>     | 10 (FN)               | 10 (TP)         |
+
+# Additional Resources
+- [How to Scale Data With Outliers for Machine Learning](https://machinelearningmastery.com/robust-scaler-transforms-for-machine-learning/)
+- [Recursive Feature Elimination (RFE) for Feature Selection in Python](https://machinelearningmastery.com/rfe-feature-selection-in-python/)
+- [How to select all columns, except one column in pandas?
+](https://stackoverflow.com/questions/29763620/how-to-select-all-columns-except-one-column-in-pandas)
+- [How to change the space between histograms in pandas](https://stackoverflow.com/questions/52359595/how-to-change-the-space-between-histograms-in-pandas/52359774)
+- [Making sense of the confusion matrix](https://www.youtube.com/watch?v=8Oog7TXHvFY)
+- [How to evaluate a classifier in scikit-learn](https://www.youtube.com/watch?v=85dtiMz9tSo)
+- [StatQuest: Principal Component Analysis (PCA), Step-by-Step](https://www.youtube.com/watch?v=FgakZw6K1QQ)
+-[StatQuest: Logistic Regression](https://www.youtube.com/watch?v=yIYKR4sgzI8)
+- [Machine Learning Fundamentals: Cross Validation](https://www.youtube.com/watch?v=fSytzGwwBVw)
+- [Support Vector Machines, Clearly Explained!!!](https://www.youtube.com/watch?v=efR1C6CvhmE)

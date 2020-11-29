@@ -4,6 +4,7 @@ import pandas as pd
 from feature_format import featureFormat, targetFeatureSplit
 
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.decomposition import PCA
 from sklearn.model_selection import (
     train_test_split,
     cross_val_score,
@@ -17,28 +18,8 @@ import seaborn as sns
 from scipy import stats
 
 
-def summarizeFeature(data, feature):
-    """prints a statistical summary for an individual DataFrame feature
-
-    Args:
-        data (pandas.core.frame.DataFrame): DataFrame that contains the feature
-        feature (string): name of the feature
-    """
-
-    print "\nSUMMARY FOR: '{}'".format(feature.upper())
-    print "=" * 25
-    print (data[feature].astype(np.float64).describe())
-    print
-
-
 def Draw(
-    pred,
-    features,
-    poi,
-    mark_poi=False,
-    name="image.png",
-    f1_name="feature 1",
-    f2_name="feature 2",
+    pred, features, poi, mark_poi=False, f1_name="Feature 1", f2_name="Feature 2",
 ):
     """ some plotting code designed to help you visualize your clusters """
 
@@ -46,27 +27,32 @@ def Draw(
     ### drawing more than five clusters
     colors = ["b", "c", "k", "m", "g"]
     for ii, pp in enumerate(pred):
+        # print (ii, pp)
         plt.scatter(features[ii][0], features[ii][1], color=colors[pred[ii]])
 
-    ### if you like, place red stars over points that are POIs (just for funsies)
     if mark_poi:
         for ii, pp in enumerate(pred):
             if poi[ii]:
                 plt.scatter(features[ii][0], features[ii][1], color="r", marker="*")
+
     plt.xlabel(f1_name)
     plt.ylabel(f2_name)
-    plt.savefig(name)
-    plt.show()
+    plt.grid(True)
+    # plt.show()
 
 
-def plotData(data_dict, features, xLabel, yLabel, markOutlier=True):
+def plotData(data_dict, features, xLabel, yLabel, scaler=None, markOutlier=True):
     data = featureFormat(data_dict, features=features)
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    plt.title(
-        "POIs with {} and {}:".format(yLabel.upper(), xLabel.upper()), loc="center"
-    )
+    plt.title("{} and {}:".format(yLabel.upper(), xLabel.upper()), loc="center")
     feature_x, feature_y = features
+
+    # print ("DATA", data)
+    # exit()
+    if scaler:
+        # print ("featurex", data[:, 0])
+        data = scaler.fit_transform(data)
 
     zScores = abs(stats.zscore(data, axis=0))
 
@@ -95,8 +81,6 @@ def plotData(data_dict, features, xLabel, yLabel, markOutlier=True):
     plt.xlabel(xLabel)
     plt.ylabel(yLabel)
     plt.grid(True)
-    plt.figure()
-    plt.show()
 
 
 def create_features(df, features_list):
@@ -151,12 +135,14 @@ def calculate_pct_poi_msgs(series):
 def validate_classifier(
     clf_name,
     clf,
+    features_list,
     features,
     labels,
     folds=10,
     reports={
         "classification": False,
         "best_estimator": False,
+        "best_params": False,
         "confusion_matrix": False,
     },
     random_state=None,
@@ -183,10 +169,15 @@ def validate_classifier(
         * 100,
     )
 
+    # print ("features", features)
+    # exit()
+
     sss = StratifiedShuffleSplit(n_splits=folds, random_state=random_state)
 
     cf_matricies = []
     TP, TN, FP, FN = 0, 0, 0, 0
+    y_pred = None
+    X_train, X_test, y_train, y_test = None, None, None, None
 
     for train_index, test_index in sss.split(features, labels):
         # print ("TRAIN:", train_index, "TEST:", test_index)
@@ -196,6 +187,9 @@ def validate_classifier(
         clf.fit(X_train, y_train)
         if reports.get("best_estimator"):
             print ("GridSearch Best Estimator", clf.best_estimator_)
+
+        if reports.get("best_params"):
+            print ("GridSearch Best Params", clf.best_params_)
 
         y_pred = clf.predict(X_test)
 
@@ -224,6 +218,15 @@ def validate_classifier(
             print "Confusion Matrix"
             print cfm
             print
+
+    Draw(
+        y_pred.astype(int),
+        PCA(n_components=2).fit_transform(MinMaxScaler().fit_transform(X_test)),
+        poi=y_test,
+        mark_poi=True,
+        f1_name=features_list[1],
+        f2_name=features_list[2],
+    )
 
     # aggregate summary information
     population, acc, precision, recall, f1 = 0, 0, 0, 0, 0

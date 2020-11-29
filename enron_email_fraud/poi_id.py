@@ -36,13 +36,14 @@ sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 from tester import dump_classifier_and_data, test_classifier
 from utils import (
-    summarizeFeature,
     Draw,
     plotData,
     create_features,
     calculate_pct_poi_msgs,
     validate_classifier,
 )
+
+from trial_models import trial_models
 
 # setup environment
 pp = pprint.PrettyPrinter(indent=4)
@@ -55,7 +56,9 @@ pd.options.display.float_format = "{:.2f}".format
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)
 
+# set a consistent randomization
 RANDOM_STATE = 42
+# set a consistent number of folds/splits
 FOLDS = 10
 
 ### Task 1: Select what features you'll use.
@@ -81,25 +84,6 @@ df = pd.DataFrame(data_dict).transpose().apply(pd.to_numeric, errors="coerce")
 df = df.drop(["TOTAL", "THE TRAVEL AGENCY IN THE PARK"], errors="ignore", axis=0)
 df = df.fillna(0)
 
-# histogram showing the distribution of selected data features (excluding POI)
-feats = df[features_list].iloc[:, 1:]
-# pd.DataFrame(MinMaxScaler().fit_transform(feats), columns=feats.columns).hist(
-#     alpha=0.75, figsize=(10, 10)
-# )
-
-# summarize selected features (except for POI)
-for feature in features_list[1:]:
-    summarizeFeature(df, feature)
-
-    plotData(
-        df.to_dict(orient="index"),
-        features=["poi", feature,],
-        xLabel="POI",
-        yLabel=feature,
-        scaler=RobustScaler(),
-    )
-
-
 ### Task 3: Create new feature(s)
 df["pct_poi_messages"] = df.apply(calculate_pct_poi_msgs, axis=1)
 
@@ -110,90 +94,28 @@ features, labels, my_dataset = create_features(df, features_list)
 pca = PCA()
 
 ### Task 4: Try a variety of classifiers
+
+# models = trial_models
+# these models below were tuned.
+# comment out this variable and comment in the `models = trial_models` variable above to run the trial models
 models = [
-    # {
-    #     "title": "GaussianNB (PCA)",
-    #     "pipeline": Pipeline(steps=[("pca", pca), ("clf", GaussianNB()),]),
-    #     "param_grid": {"pca__n_components": [1]},
-    # },
-    # {
-    #     "title": "GaussianNB (StandardScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[("scaler", StandardScaler()), ("pca", pca), ("clf", GaussianNB())]
-    #     ),
-    #     "param_grid": {"pca__n_components": range(1, len(features_list) - 1) + [None],},
-    # },
-    # {
-    #     "title": "GaussianNB (MinMaxScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[("scaler", MinMaxScaler()), ("pca", pca), ("clf", GaussianNB())]
-    #     ),
-    #     "param_grid": {"pca__n_components": range(1, len(features_list) - 1) + [None],},
-    # },
-    # {
-    #     "title": "DecisionTreeClassifier (RobustScaler + PCA) -- Tuned",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", RobustScaler()),
-    #             ("pca", pca),
-    #             ("clf", DecisionTreeClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "scaler__quantile_range": [(25, 75),],
-    #         "pca__n_components": [2],
-    #         "clf__criterion": ["gini"],
-    #         "clf__splitter": ["random"],
-    #         "clf__min_samples_split": [4],
-    #     },
-    # },
-    # {
-    #     "title": "DecisionTreeClassifier (PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("pca", pca),
-    #             ("clf", DecisionTreeClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__criterion": ["gini", "entropy"],
-    #         "clf__splitter": ["best", "random"],
-    #         "clf__min_samples_split": [2, 4, 6, 8, 10, 20, 30, 40],
-    #     },
-    # },
-    # {
-    #     "title": "DecisionTreeClassifier (StandardScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", StandardScaler()),
-    #             ("pca", pca),
-    #             ("clf", DecisionTreeClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__criterion": ["gini", "entropy"],
-    #         "clf__splitter": ["best", "random"],
-    #         "clf__min_samples_split": [2, 4, 6, 8, 10, 20, 30, 40],
-    #     },
-    # },
-    # {
-    #     "title": "DecisionTreeClassifier (MinMaxScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", MinMaxScaler()),
-    #             ("pca", pca),
-    #             ("clf", DecisionTreeClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__criterion": ["gini", "entropy"],
-    #         "clf__splitter": ["best", "random"],
-    #         "clf__min_samples_split": [2, 4, 6, 8, 10, 20, 30, 40],
-    #     },
-    # },
+    {
+        "title": "DecisionTreeClassifier (RobustScaler + PCA) -- Tuned",
+        "pipeline": Pipeline(
+            steps=[
+                ("scaler", RobustScaler()),
+                ("pca", pca),
+                ("clf", DecisionTreeClassifier(random_state=RANDOM_STATE)),
+            ]
+        ),
+        "param_grid": {
+            "scaler__quantile_range": [(25, 75),],
+            "pca__n_components": [2],
+            "clf__criterion": ["gini"],
+            "clf__splitter": ["random"],
+            "clf__min_samples_split": [4],
+        },
+    },
     {
         "title": "AdaBoost (PCA) -- Tuned",
         "pipeline": Pipeline(
@@ -211,181 +133,36 @@ models = [
             "clf__learning_rate": [1],
         },
     },
-    # {
-    #     "title": "AdaBoost (PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("pca", PCA()),
-    #             ("clf", AdaBoostClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__n_estimators": [25, 50, 75, 100],
-    #         "clf__algorithm": ["SAMME", "SAMME.R"],
-    #     },
-    # },
-    # {
-    #     "title": "AdaBoost (StandardScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", StandardScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", AdaBoostClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__n_estimators": [25, 50, 75, 100],
-    #         "clf__algorithm": ["SAMME", "SAMME.R"],
-    #     },
-    # },
-    # {
-    #     "title": "AdaBoost (MinMaxScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", MinMaxScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", AdaBoostClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__n_estimators": [25, 50, 75, 100],
-    #         "clf__algorithm": ["SAMME", "SAMME.R"],
-    #     },
-    # },
-    # {
-    #     "title": "KNeighbors (PCA) -- Tuned",
-    #     "pipeline": Pipeline(steps=[("pca", PCA()), ("clf", KNeighborsClassifier()),]),
-    #     "param_grid": {
-    #         "pca__n_components": [2],
-    #         "clf__n_neighbors": [2],
-    #         "clf__weights": ["uniform"],
-    #         "clf__algorithm": ["ball_tree"],
-    #         "clf__leaf_size": [2],
-    #         "clf__p": [1],
-    #     },
-    # },
-    # {
-    #     "title": "KNeighbors (PCA)",
-    #     "pipeline": Pipeline(steps=[("pca", PCA()), ("clf", KNeighborsClassifier()),]),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__n_neighbors": [2, 4, 6, 8],
-    #         "clf__weights": ["uniform", "distance"],
-    #         "clf__algorithm": ["ball_tree", "kd_tree", "brute",],
-    #         "clf__leaf_size": [5, 10],
-    #         "clf__p": [1, 2],
-    #     },
-    # },
-    # {
-    #     "title": "KNeighbors (StandardScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", StandardScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", KNeighborsClassifier()),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__n_neighbors": [2, 4, 6, 8],
-    #         "clf__weights": ["uniform", "distance"],
-    #         "clf__algorithm": ["ball_tree", "kd_tree", "brute",],
-    #         "clf__leaf_size": [5, 10],
-    #         "clf__p": [1, 2],
-    #     },
-    # },
-    # {
-    #     "title": "KNeighbors (MinMaxScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", MinMaxScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", KNeighborsClassifier()),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__n_neighbors": [2, 4, 6, 8],
-    #         "clf__weights": ["uniform", "distance"],
-    #         "clf__algorithm": ["ball_tree", "kd_tree", "brute",],
-    #         "clf__leaf_size": [5, 10],
-    #         "clf__p": [1, 2],
-    #     },
-    # },
-    # {
-    #     "title": "RandomForest (RobustScaler + PCA) -- Tuned",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", RobustScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", RandomForestClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         "pca__n_components": [2],
-    #         "scaler__quantile_range": [(32, 68)],
-    #         "clf__criterion": ["gini"],
-    #         "clf__n_estimators": [20],
-    #         "clf__min_samples_split": [2],
-    #         "clf__class_weight": [None],
-    #     },
-    # },
-    # {
-    #     "title": "RandomForest (PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("pca", PCA()),
-    #             ("clf", RandomForestClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         # "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__criterion": ["gini", "entropy"],
-    #         "clf__n_estimators": [5, 10, 25, 50, 100],
-    #         "clf__max_depth": [2, 4, 6, 8, 10, 20],
-    #         "clf__min_samples_split": [2, 6, 10, 20, 30],
-    #         "clf__class_weight": ["balanced", "balanced_subsample"],
-    #     },
-    # },
-    # {
-    #     "title": "RandomForest (StandardScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", StandardScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", RandomForestClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         # "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__criterion": ["gini", "entropy"],
-    #         "clf__n_estimators": [5, 10, 25, 50, 100],
-    #         "clf__max_depth": [2, 4, 6, 8, 10, 20],
-    #         "clf__min_samples_split": [2, 6, 10, 20, 30],
-    #         "clf__class_weight": ["balanced", "balanced_subsample"],
-    #     },
-    # },
-    # {
-    #     "title": "RandomForest (MinMaxScaler + PCA)",
-    #     "pipeline": Pipeline(
-    #         steps=[
-    #             ("scaler", MinMaxScaler()),
-    #             ("pca", PCA()),
-    #             ("clf", RandomForestClassifier(random_state=RANDOM_STATE)),
-    #         ]
-    #     ),
-    #     "param_grid": {
-    #         # "pca__n_components": range(1, len(features_list) - 1) + [None],
-    #         "clf__criterion": ["gini", "entropy"],
-    #         "clf__n_estimators": [5, 10, 25, 50, 100],
-    #         "clf__max_depth": [2, 4, 6, 8, 10, 20],
-    #         "clf__min_samples_split": [2, 6, 10, 20, 30],
-    #         "clf__class_weight": ["balanced", "balanced_subsample"],
-    #     },
-    # },
+    {
+        "title": "KNeighbors (PCA) -- Tuned",
+        "pipeline": Pipeline(steps=[("pca", PCA()), ("clf", KNeighborsClassifier()),]),
+        "param_grid": {
+            "pca__n_components": [2],
+            "clf__n_neighbors": [2],
+            "clf__weights": ["uniform"],
+            "clf__algorithm": ["ball_tree"],
+            "clf__leaf_size": [2],
+            "clf__p": [1],
+        },
+    },
+    {
+        "title": "RandomForest (RobustScaler + PCA) -- Tuned",
+        "pipeline": Pipeline(
+            steps=[
+                ("scaler", RobustScaler()),
+                ("pca", PCA()),
+                ("clf", RandomForestClassifier(random_state=RANDOM_STATE)),
+            ]
+        ),
+        "param_grid": {
+            "pca__n_components": [2],
+            "scaler__quantile_range": [(32, 68)],
+            "clf__criterion": ["gini"],
+            "clf__n_estimators": [20],
+            "clf__min_samples_split": [2],
+            "clf__class_weight": [None],
+        },
+    },
 ]
 
 ### Task 4: Try a variety of classifiers
@@ -430,7 +207,7 @@ clf = Pipeline(
 
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall
-# test_classifier(clf=clf, dataset=my_dataset, feature_list=features_list, folds=FOLDS)
+test_classifier(clf=clf, dataset=my_dataset, feature_list=features_list, folds=FOLDS)
 
 ### Task 6: Dump your classifier, dataset, and features_list so anyone can
 ### check your results. You do not need to change anything below, but make sure
