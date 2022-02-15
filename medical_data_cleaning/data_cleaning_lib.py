@@ -1,3 +1,9 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import LabelEncoder
+
 
 def create_boxplots(df):
     # create a histogram for numerical columns    
@@ -12,7 +18,7 @@ def create_histograms(df):
 
     fig, axes = plt.subplots(len(numeric_cols), 1, figsize=(15, 50))
 
-    # create a histogram for numerical columns
+    # create a histogram for numerical columnsgi
     rounded_df = df.round()
     for ax, col in zip(axes, numeric_cols):
         ax.set_title(col)
@@ -32,7 +38,7 @@ def plot_categorical_counts(df, cols):
     fig, axes = plt.subplots(len(cols) // 3, 3, figsize=(30, 30))
     axes = axes.flatten()
 
-    for ax, c in zip(axes, ctg_cols):
+    for ax, c in zip(axes, cols):
         try:
             sns.countplot(data=df, y=c, ax=ax)
         except Exception as e:
