@@ -2,29 +2,17 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from statsmodels.formula.api import ols
-from statsmodels.api import qqplot
-from statsmodels.tools import add_constant
-import statsmodels.api as sm
 
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import RidgeCV
-from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.feature_selection import RFE
 from sklearn.feature_selection import RFECV
-from sklearn.linear_model import ElasticNet
-from sklearn.linear_model import LassoCV
-from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
 
-from statsmodels.graphics.mosaicplot import mosaic
-from statsmodels.formula.api import logit
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix
 from sklearn import metrics
 
 import scikitplot as skplt
@@ -33,6 +21,9 @@ from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.pipeline import Pipeline
 
+sigmoid = lambda x: 1 / (1 + math.exp(-x))
+
+
 def reset_cols(data, target_var):
     y_col = [target_var]
     x_cols = data.columns[~data.columns.isin(y_col)]
@@ -40,7 +31,7 @@ def reset_cols(data, target_var):
     return y_col, x_cols
 
 
-def create_vif_dataframe(data, x_cols): 
+def create_vif_dataframe(data, x_cols):
     VIFS = {
         col: variance_inflation_factor(data[x_cols].values, i).round(3)
         for i, col in enumerate(x_cols)
@@ -72,21 +63,19 @@ def plot_feature_cross_val_scores(min_num_features, model):
     plt.show()
 
 
-def predict_additional_charges(
-    Age, HighBlood_Yes, Initial_Admin_Emergency_Admission, Stroke_Yes
+def predict_log_odds(
+    Complication_Risk_Low, Initial_Admin_Emergency_Admission, Initial_Days
 ):
-    intercept = -3009.6806
-    B1 = 225.7506
-    B2 = 8637.6523
-    B3 = 512.2099
-    B4 = 360.9263
+    intercept = -21.5604
+    B1 = -0.4576
+    B2 = 0.7642
+    B3 = 28.5984
 
     equation = (
         intercept
-        + (B1 * Age)
-        + (B2 * HighBlood_Yes)
-        + (B3 * Initial_Admin_Emergency_Admission)
-        + (B4 * Stroke_Yes)
+        + (B1 * Complication_Risk_Low)
+        + (B2 * Initial_Admin_Emergency_Admission)
+        + (B3 * Initial_Days)
     )
     y = round(equation, 2)
 
@@ -147,14 +136,16 @@ def create_conf_matrix(y_test, y_pred):
     plt.ylabel("Actual label")
     plt.xlabel("Predicted label")
 
-    #  True Positive Rate (also Sensitivity or Recall
     print("Accuracy:", rnd(metrics.accuracy_score(y_test, y_pred)))
     print("Precision:", rnd(metrics.precision_score(y_test, y_pred)))
     print(
-        "Recall / Sensitivity (Identified TPs) :",
+        "Recall / Sensitivity:",
         rnd(metrics.recall_score(y_test, y_pred)),
     )
+    print("F1 Score:", rnd(metrics.f1_score(y_test, y_pred)))
     print("ROC-AUC Score:", rnd(metrics.roc_auc_score(y_test, y_pred)))
+    print("Confusion Matrix:")
+    print(c_matrix)
 
     plt.show()
 
@@ -178,11 +169,12 @@ def plot_cumulative_gains_curve(
 def plot_ROC_curve(x_test, y_test):
     lr = linear_model.LogisticRegression().fit(x_test, y_test)
     y_pred_proba = lr.predict_proba(x_test)[:, 1]
+    # false and true positive rates
     fpr, tpr, _ = metrics.roc_curve(y_true=y_test, y_score=y_pred_proba)
 
     auc = metrics.roc_auc_score(y_true=y_test, y_score=y_pred_proba)
 
-    plt.plot(fpr, tpr, label="data 1, auc=" + str(auc))
+    plt.plot(fpr, tpr, label="auc=" + str(round(auc, 2)))
     plt.legend(loc=4)
     plt.show()
 
@@ -243,6 +235,18 @@ def plot_cumulative_gains_curve(
     y_probas = lr.predict_proba(x_test)
     skplt.metrics.plot_cumulative_gain(y_test, y_probas, title=title, figsize=(10, 5))
     plt.show()
+
+
+def plot_lift_curve(x_train, x_test, y_train, y_test, title="Lift Curve"):
+    lr = LogisticRegression().fit(x_train, y_train)
+    x_train
+
+    # The returned estimates for all classes (0, 1) are ordered by the label of classes.
+    y_probas = lr.predict_proba(x_test)
+
+    skplt.metrics.plot_lift_curve(y_test, y_probas, title=title, figsize=(10, 5))
+    plt.show()
+
 
 def plot_feature_cross_val_scores(min_num_features, model):
     plt.plot(
