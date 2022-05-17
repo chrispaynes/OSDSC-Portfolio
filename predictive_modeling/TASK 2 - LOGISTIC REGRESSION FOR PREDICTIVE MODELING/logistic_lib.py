@@ -174,8 +174,14 @@ def plot_ROC_curve(x_test, y_test):
 
     auc = metrics.roc_auc_score(y_true=y_test, y_score=y_pred_proba)
 
-    plt.plot(fpr, tpr, label="auc=" + str(round(auc, 2)))
-    plt.legend(loc=4)
+    plt.plot(fpr, tpr, label=f"ROC Curve (AUC={round(auc, 3)})", lw=2, color="orange")
+    plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
+    
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("Receiver Operating Characteristic")
+    plt.legend(loc="lower right")
+
     plt.show()
 
     return round(auc, 2)
