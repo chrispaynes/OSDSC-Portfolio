@@ -72,7 +72,7 @@ def split_data(data, target_var, x_cols):
     sm = SMOTE(random_state=1)
 
     x_train, x_test, y_train, y_test = train_test_split(
-        data[x_cols], data[target_var], test_size=0.33, random_state=1
+        data[x_cols], data[target_var], test_size=0.33, random_state=1, stratify=data[target_var]
     )
 
     # The correct application of oversampling during k-fold cross-validation is to apply the method
