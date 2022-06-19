@@ -209,10 +209,14 @@ def plot_param_options_accuracy(
 
         # print("Best Estimator", cv.best_estimator_)
         print("Best Params", cv.best_params_)
-        print(
-            "feature_importances_",
-            X_train.columns[pipeline["feature_selection"].get_support()],
-        )
+        try:        
+            print(
+                "feature_importances_",
+                X_train.columns[pipeline["feature_selection"].get_support()],
+            )
+        except:
+            # ignore errors when there's no 'feature_selection' step
+            pass            
 
     plt.title(title)
     plt.plot(options, test_accuracy, label="Testing Accuracy")
