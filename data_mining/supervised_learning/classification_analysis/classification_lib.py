@@ -28,27 +28,6 @@ def reset_cols(data, target_var):
 
     return y_col, x_cols
 
-
-def create_vif_dataframe(data, x_cols):
-    VIFS = {
-        col: variance_inflation_factor(data[x_cols].values, i).round(3)
-        for i, col in enumerate(x_cols)
-    }
-
-    VIF_df = pd.DataFrame({"Feature": VIFS.keys(), "VIF": VIFS.values()}).sort_values(
-        by="VIF", ascending=False
-    )
-    VIF_df.style.hide_index()
-
-    return VIF_df
-
-
-def filter_high_vif_features(VIF_data, VIF_threshold=5):
-    low_collinearity_df = VIF_data[VIF_data.VIF < VIF_threshold]
-
-    return low_collinearity_df.Feature.sort_values().values
-
-
 def plot_feature_cross_val_scores(min_num_features, model):
     plt.plot(
         range(min_num_features, len(model.grid_scores_) + min_num_features),
@@ -59,13 +38,6 @@ def plot_feature_cross_val_scores(min_num_features, model):
     plt.xlabel("# Selected Features")
     plt.ylabel("Cross Validation Score (Accuracy)")
     plt.show()
-
-
-def standardize_data(data, x_cols):
-    standard_df = data.copy()
-    standard_df[x_cols] = StandardScaler().fit_transform(standard_df[x_cols])
-
-    return standard_df
 
 
 def split_data(data, target_var, x_cols):
