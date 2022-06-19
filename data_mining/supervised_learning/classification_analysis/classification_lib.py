@@ -271,6 +271,8 @@ def plot_lasso_feature_importance(X_train, y_train):
     barplot.set_title("Lasso Model Feature Importance")
 
     imp_coef[abs(imp_coef["Feature Importance"]) > 0]
+    
+    plt.show()
 
     return list(selected_cols)
 
