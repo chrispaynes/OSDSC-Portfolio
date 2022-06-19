@@ -1,66 +1,59 @@
-import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-import math
-
-from statsmodels.stats.outliers_influence import variance_inflation_factor
-
-from sklearn import linear_model
-from sklearn.model_selection import train_test_split
-from sklearn.feature_selection import RFE
-from sklearn.feature_selection import RFECV
+import pandas as pd
+import seaborn as sns
+from IPython.display import display
+from sklearn.ensemble import VotingClassifier
+from sklearn.inspection import DecisionBoundaryDisplay
+from sklearn.linear_model import LassoCV
+from sklearn.metrics import (RocCurveDisplay, accuracy_score, confusion_matrix,
+                             f1_score, precision_score, recall_score,
+                             roc_auc_score)
+from sklearn.model_selection import GridSearchCV
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-
-from sklearn.linear_model import LogisticRegression
-from sklearn import metrics
-
-import scikitplot as skplt
-
-from imblearn.over_sampling import SMOTE
-from imblearn.under_sampling import RandomUnderSampler
-from imblearn.pipeline import Pipeline
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 
 
-def reset_cols(data, target_var):
-    y_col = [target_var]
-    x_cols = data.columns[~data.columns.isin(y_col)]
+def create_classification_metrics(y_test, y_pred, figsize=(3, 3), fontsize=12):
+    c_matrix = confusion_matrix(y_test, y_pred)
+    rnd = lambda v: v.round(3)
 
-    return y_col, x_cols
-
-def plot_feature_cross_val_scores(min_num_features, model):
-    plt.plot(
-        range(min_num_features, len(model.grid_scores_) + min_num_features),
-        model.grid_scores_,
+    print("Accuracy:", rnd(accuracy_score(y_test, y_pred)))
+    print("Precision:", rnd(precision_score(y_test, y_pred)))
+    print(
+        "Recall / Sensitivity:",
+        rnd(recall_score(y_test, y_pred)),
     )
+    print("F1 Score:", rnd(f1_score(y_test, y_pred)))
+    print("ROC-AUC Score:", rnd(roc_auc_score(y_test, y_pred)))
 
-    plt.xticks(np.arange(0, len(model.grid_scores_) + 1, step=1))
-    plt.xlabel("# Selected Features")
-    plt.ylabel("Cross Validation Score (Accuracy)")
+    plt.figure(figsize=figsize)
+    plt.tight_layout()
+    heatmap = sns.heatmap(
+        pd.DataFrame(c_matrix), annot=True, cmap="YlGnBu", fmt="g", cbar=False
+    )
+    heatmap.set_xticklabels(heatmap.get_xmajorticklabels(), fontsize=fontsize)
+    heatmap.set_yticklabels(heatmap.get_ymajorticklabels(), fontsize=fontsize)
+    plt.title("Confusion matrix", y=1.1)
+    plt.ylabel("Actual label")
+    plt.xlabel("Predicted label")
     plt.show()
 
-
-def split_data(data, target_var, x_cols):
-    sm = SMOTE(random_state=1)
-
-    x_train, x_test, y_train, y_test = train_test_split(
-        data[x_cols], data[target_var], test_size=0.33, random_state=1, stratify=data[target_var]
-    )
-
-    # The correct application of oversampling during k-fold cross-validation is to apply the method
-    # to the training dataset only, then evaluate the model on the stratified but non-transformed test set.
-    sm = SMOTE(random_state=1).fit(x_train, y_train)
-    under = RandomUnderSampler(random_state=1).fit(x_train, y_train)
-
-    steps = [("over-sampler", sm), ("under-sampler", under)]
-    pipeline = Pipeline(steps=steps)
-    x_train, y_train = pipeline.fit_resample(x_train, y_train)
-
-    return x_train, x_test, y_train, y_test
+    return c_matrix
 
 
-def create_heatmap(data, title="DataFrame Correlation Heatmap"):
-    plt.figure(figsize=(50, 40))
+def create_heatmap(
+    data,
+    title="DataFrame Correlation Heatmap",
+    figsize=(50, 40),
+    fontsize=48,
+    title_fontsize=75,
+):
+    plt.figure(figsize=figsize)
 
     mask = np.triu(np.ones_like(data.corr(), dtype=bool))
 
@@ -70,91 +63,217 @@ def create_heatmap(data, title="DataFrame Correlation Heatmap"):
         vmin=-1,
         vmax=1,
         annot=True,
-        annot_kws={"fontsize": 24},
+        annot_kws={"fontsize": fontsize},
         fmt=".2f",
     )
-    heatmap.set_xticklabels(heatmap.get_xmajorticklabels(), fontsize=48)
-    heatmap.set_yticklabels(heatmap.get_ymajorticklabels(), fontsize=48)
-    heatmap.set_title(title, fontdict={"fontsize": 75}, pad=2)
+    heatmap.set_xticklabels(heatmap.get_xmajorticklabels(), fontsize=fontsize)
+    heatmap.set_yticklabels(heatmap.get_ymajorticklabels(), fontsize=fontsize)
+    heatmap.set_title(title, fontdict={"fontsize": title_fontsize}, pad=2)
+    plt.show()
 
 
-def create_conf_matrix(y_test, y_pred):
-    c_matrix = metrics.confusion_matrix(y_test, y_pred)
-    rnd = lambda v: v.round(3)
+def plot_voting_classifier(
+    df,
+    x_cols,
+    target_var,
+    estimators=[
+        ("DecisionTree", DecisionTreeClassifier(max_depth=4)),
+        ("KNN", KNeighborsClassifier(n_neighbors=12, leaf_size=30, p=1)),
+        ("SVC", SVC(gamma=0.1, kernel="rbf", probability=True)),
+        ("NaiveBayes", GaussianNB()),
+    ],
+):
 
-    sns.heatmap(pd.DataFrame(c_matrix), annot=True, cmap="YlGnBu", fmt="g")
-    plt.title("Confusion matrix", y=1.1)
-    plt.ylabel("Actual label")
-    plt.xlabel("Predicted label")
+    X = df[x_cols].values
+    y = df[[target_var]][target_var].values
 
-    print("Accuracy:", rnd(metrics.accuracy_score(y_test, y_pred)))
-    print("Precision:", rnd(metrics.precision_score(y_test, y_pred)))
-    print(
-        "Recall / Sensitivity:",
-        rnd(metrics.recall_score(y_test, y_pred)),
+    vc = VotingClassifier(estimators=estimators, voting="soft")
+
+    # fit all classifiers
+    for (_, clf) in estimators:
+        clf.fit(X, y)
+
+    # fit the voting classifier
+    vc.fit(X, y)
+
+    # create estimator subplots
+    f, axarr = plt.subplots(1, len(estimators) + 1, figsize=(20, 10))
+
+    # Plot decision regions
+    for idx, (title, clf) in enumerate(estimators + [("VotingClassifier", vc)]):
+        DecisionBoundaryDisplay.from_estimator(
+            clf,
+            X,
+            ylabel="Tenure",
+            xlabel=x_cols[0],
+            alpha=0.4,
+            ax=axarr[idx],
+            response_method="predict",
+        )
+
+        sns.scatterplot(
+            X[:, 0], X[:, 1], ax=axarr[idx], s=30, hue=df[target_var], edgecolor="k"
+        )
+        axarr[idx].set_title(f"{title}\nScore: {clf.score(X,y)}")
+
+    plt.show()
+
+
+def plot_accuracy_lines(
+    X_train, X_test, y_train, y_test, cv, title="", x_label="", xticks=[]
+):
+    x_points = [0, 1]
+
+    train_accuracy = cv.score(X_train, y_train)
+    test_accuracy = cv.score(X_test, y_test)
+
+    summary_df = pd.DataFrame(
+        {
+            "# Variables": [X_train.shape[1]],
+            "Train Acc.": [train_accuracy],
+            "Test Acc.": [test_accuracy],
+            "Best Model Params": [cv.best_params_],
+        }
     )
-    print("F1 Score:", rnd(metrics.f1_score(y_test, y_pred)))
-    print("ROC-AUC Score:", rnd(metrics.roc_auc_score(y_test, y_pred)))
-    print("Confusion Matrix:")
-    print(c_matrix)
 
-    plt.show()
+    try:
+        important_feats = X_train.columns[
+            cv.estimator["feature_selection"].get_support()
+        ]
+        summary_df["Imp. Feats."] = [list(important_feats)]
+        summary_df["# Imp. Feats."] = [len(important_feats)]
+    except:
+        # ignore errors when there's no 'feature_selection' step
+        pass
 
+    display(summary_df)
 
-def visualize_log_model(model, data, x, y, intercept, slope):
-    sns.regplot(x=x, y=y, data=data, ci=None, logistic=True)
-    plt.axline(xy1=(0, intercept), slope=slope, color="black")
-    plt.show()
-
-
-def plot_cumulative_gains_curve(
-    x_train, x_test, y_train, y_test, title="Cumulative Gains Curve"
-):
-    lr = LogisticRegression().fit(x_train, y_train)
-
-    y_probas = lr.predict_proba(x_test)
-    skplt.metrics.plot_cumulative_gain(y_test, y_probas, title=title, figsize=(5, 5))
-    plt.show()
-
-
-def plot_ROC_curve(x_test, y_test):
-    lr = linear_model.LogisticRegression().fit(x_test, y_test)
-    y_pred_proba = lr.predict_proba(x_test)[:, 1]
-    # false and true positive rates
-    fpr, tpr, _ = metrics.roc_curve(y_true=y_test, y_score=y_pred_proba)
-
-    auc = metrics.roc_auc_score(y_true=y_test, y_score=y_pred_proba)
-
-    plt.plot(fpr, tpr, label=f"ROC Curve (AUC={round(auc, 3)})", lw=2, color="orange")
-    plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
-    
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.title("Receiver Operating Characteristic")
-    plt.legend(loc="lower right")
-
-    plt.show()
-
-    return round(auc, 2)
-
-
-def plot_cumulative_gains_curve(
-    x_train, x_test, y_train, y_test, title="Cumulative Gains Curve"
-):
-    lr = LogisticRegression().fit(x_train, y_train)
-
-    y_probas = lr.predict_proba(x_test)
-    skplt.metrics.plot_cumulative_gain(y_test, y_probas, title=title, figsize=(10, 5))
-    plt.show()
-
-
-def plot_feature_cross_val_scores(min_num_features, model):
+    plt.figure(figsize=(10, 5))
+    plt.title(title)
     plt.plot(
-        range(min_num_features, len(model.grid_scores_) + min_num_features),
-        model.grid_scores_,
+        x_points,
+        [train_accuracy] * 2,
+        label=f"Training Accuracy: {round(train_accuracy, 2)}",
+    )
+    plt.plot(
+        x_points, [test_accuracy] * 2, label=f"Test Accuracy: {round(test_accuracy, 2)}"
+    )
+    plt.legend(loc="center left")
+    plt.xticks(xticks)
+    plt.xlabel(x_label)
+    plt.ylabel("Accuracy")
+    plt.show()
+
+
+def plot_param_options_accuracy(
+    X_train,
+    X_test,
+    y_train,
+    y_test,
+    pipeline,
+    param_grid,
+    options,
+    options_key,
+    title,
+    x_label,
+):
+    # visualize model accuracy of test vs training data using different n_neighbors
+
+    # Setup arrays to store train and test accuracies
+    neighbors = np.arange(1, len(options) + 1)
+    train_accuracy = np.empty(len(neighbors))
+    test_accuracy = np.empty(len(neighbors))
+
+    param_grid = param_grid or {
+        "imp__strategy": ["mean"],
+        "knn__n_neighbors": [5, 10, 15, 20, 25],
+        "knn__weights": ["uniform", "distance"],
+        "knn__leaf_size": [30],
+        "knn__p": np.arange(1, 3),
+    }
+
+    for i, k in enumerate(options):
+        param_grid[options_key] = [k]
+
+        cv = GridSearchCV(pipeline, param_grid=param_grid, cv=5)
+
+        # Fit the classifier to the training data
+        pipeline.fit(X_train, y_train)
+        cv.fit(X_train, y_train)
+
+        # Compute accuracy on the training set
+        train_accuracy[i] = cv.score(X_train, y_train)
+
+        # Compute accuracy on the testing set
+        test_accuracy[i] = cv.score(X_test, y_test)
+
+        # print("Best Estimator", cv.best_estimator_)
+        print("Best Params", cv.best_params_)
+        print(
+            "feature_importances_",
+            X_train.columns[pipeline["feature_selection"].get_support()],
+        )
+
+    plt.title(title)
+    plt.plot(options, test_accuracy, label="Testing Accuracy")
+    plt.plot(options, train_accuracy, label="Train Accuracy")
+    plt.legend()
+    plt.xlabel(x_label)
+    plt.ylabel("Accuracy")
+    plt.show()
+
+
+def plot_ROC_curve(estimator, X_test, y_test):
+    RocCurveDisplay.from_estimator(estimator, X_test, y_test, color="orange")
+    plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
+    plt.title("Receiver Operating Characteristic")
+    plt.show()
+
+
+def plot_lasso_feature_importance(X_train, y_train):
+    steps = [
+        ("scaler", StandardScaler()),
+        ("lasso", LassoCV()),
+    ]
+
+    pipeline = Pipeline(steps).fit(X_train, y_train)
+
+    reg = pipeline.named_steps.get("lasso")
+
+    print("Best alpha using built-in LassoCV:", reg.alpha_)
+    # coefficient of determination of the prediction.
+    print("Best score using built-in LassoCV:", reg.score(X_train, y_train))
+    # The amount of penalization chosen by cross validation.
+    coef = pd.Series(reg.coef_, index=X_train.columns)
+
+    selected_vars = abs(coef) > 0
+    selected_cols = coef[selected_vars == True].index
+    print("Lasso selected", list(selected_cols))
+    num_selected_vars = sum(selected_vars)
+
+    print(
+        f"Lasso selected {num_selected_vars} variables and eliminated { sum(abs(coef) == 0) } variables"
     )
 
-    plt.xticks(np.arange(0, len(model.grid_scores_) + 1, step=1))
-    plt.xlabel("# Selected Features")
-    plt.ylabel("Cross Validation Score (Accuracy)")
-    plt.show()
+    imp_coef = coef.sort_values()
+    imp_coef = pd.DataFrame(
+        {
+            "Feature Importance": imp_coef,
+            "Feature Importance (SN)": imp_coef.apply(np.format_float_scientific),
+        }
+    )
+    imp_coef.reset_index(inplace=True)
+    imp_coef = imp_coef.rename(columns={"index": "Feature"})
+
+    barplot = sns.barplot(
+        data=imp_coef, y="Feature", x="Feature Importance", orient="h"
+    )
+    barplot.set_title("Lasso Model Feature Importance")
+
+    imp_coef[abs(imp_coef["Feature Importance"]) > 0]
+
+    return list(selected_cols)
+
+
+def get_selected_features(X_train, cv, step_key="feature_selection"):
+    return X_train.columns[cv.estimator.named_steps[step_key].get_support()]
