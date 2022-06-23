@@ -9,7 +9,7 @@ from sklearn.linear_model import LassoCV
 from sklearn.metrics import (RocCurveDisplay, accuracy_score, confusion_matrix,
                              f1_score, precision_score, recall_score,
                              roc_auc_score)
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV, cross_val_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
@@ -119,26 +119,26 @@ def plot_voting_classifier(
     plt.show()
 
 
-def plot_accuracy_lines(
-    X_train, X_test, y_train, y_test, cv, title="", x_label="", xticks=[]
+def plot_error_lines(
+    X_train, X_test, y_train, y_test, estimator, title="", x_label="CV Fold", xticks=[], scoring='neg_mean_absolute_error'
 ):
-    x_points = [0, 1]
+    x_points = np.arange(0,5)
 
-    train_accuracy = cv.score(X_train, y_train)
-    test_accuracy = cv.score(X_test, y_test)
+    train_accuracy = abs(cross_val_score(estimator, X_train, X_train, scoring=scoring, n_jobs=-1))
+    test_accuracy = abs(cross_val_score(estimator, X_test, y_test, scoring=scoring, n_jobs=-1))
 
     summary_df = pd.DataFrame(
         {
             "# Variables": [X_train.shape[1]],
-            "Train Acc.": [train_accuracy],
-            "Test Acc.": [test_accuracy],
-            "Best Model Params": [cv.best_params_],
+            "Train MAE": [np.round(np.mean(train_accuracy), 2)],
+            "Test MAE": [np.round(np.mean(test_accuracy), 2)],
+            "Best Model Params": [estimator.best_params_],
         }
     )
 
     try:
         important_feats = X_train.columns[
-            cv.estimator["feature_selection"].get_support()
+            estimator.estimator["feature_selection"].get_support()
         ]
         summary_df["Imp. Feats."] = [list(important_feats)]
         summary_df["# Imp. Feats."] = [len(important_feats)]
@@ -150,18 +150,25 @@ def plot_accuracy_lines(
 
     plt.figure(figsize=(10, 5))
     plt.title(title)
-    plt.plot(
+    sns.regplot(
         x_points,
-        [train_accuracy] * 2,
-        label=f"Training Accuracy: {round(train_accuracy, 2)}",
+        y=train_accuracy,
+        ci=None,
+        line_kws={'linewidth': 1.5},
+        label=f"Train MAE: {round(np.mean(train_accuracy), 2)}",
     )
-    plt.plot(
-        x_points, [test_accuracy] * 2, label=f"Test Accuracy: {round(test_accuracy, 2)}"
-    )
-    plt.legend(loc="center left")
-    plt.xticks(xticks)
+    sns.regplot(
+        x_points,
+        y=test_accuracy,
+        ci=None,        
+        line_kws={'linewidth': 1.5},        
+        label=f"Test MAE: {round(np.mean(test_accuracy), 2)}",
+    )    
+
+    plt.legend()
+    plt.xticks(xticks or range(estimator.cv))
     plt.xlabel(x_label)
-    plt.ylabel("Accuracy")
+    plt.ylabel("Mean Absolute Error")
     plt.show()
 
 
