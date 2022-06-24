@@ -122,11 +122,11 @@ def plot_voting_classifier(
 def plot_error_lines(
     X_train, X_test, y_train, y_test, estimator, title="", x_label="CV Fold", xticks=[], scoring='neg_mean_absolute_error'
 ):
-    x_points = np.arange(0,5)
+    x_points = np.arange(0, estimator.cv)
 
-    train_accuracy = abs(cross_val_score(estimator, X_train, X_train, scoring=scoring, n_jobs=-1))
-    test_accuracy = abs(cross_val_score(estimator, X_test, y_test, scoring=scoring, n_jobs=-1))
-
+    train_accuracy = abs(cross_val_score(estimator, X_train, y_train, scoring=scoring, n_jobs=-1, cv=estimator.cv))
+    test_accuracy = abs(cross_val_score(estimator, X_test, y_test, scoring=scoring, n_jobs=-1, cv=estimator.cv))
+    
     summary_df = pd.DataFrame(
         {
             "# Variables": [X_train.shape[1]],
@@ -181,26 +181,35 @@ def plot_param_options_accuracy(
     param_grid,
     options,
     options_key,
-    title,
-    x_label,
+    step,
+    title = "",
+    x_label = "",    
+    scoring='neg_mean_absolute_error',
+    param_desc=""
 ):
     # visualize model accuracy of test vs training data using different n_neighbors
 
-    # Setup arrays to store train and test accuracies
-    neighbors = np.arange(1, len(options) + 1)
-    train_accuracy = np.empty(len(neighbors))
-    test_accuracy = np.empty(len(neighbors))
+    # Setup arrays to store train and test scores
+    opts_range = np.arange(1, len(options) + 1)
+    train_scores = np.empty(len(opts_range))
+    test_scores = np.empty(len(opts_range))
 
     param_grid = param_grid or {
-        "imp__strategy": ["mean"],
-        "knn__n_neighbors": [5, 10, 15, 20, 25],
-        "knn__weights": ["uniform", "distance"],
-        "knn__leaf_size": [30],
-        "knn__p": np.arange(1, 3),
-    }
+        'elasticNet__alpha': [1],
+        'elasticNet__copy_X': [True],
+        'elasticNet__fit_intercept': [True],
+        'elasticNet__l1_ratio': [0.5],
+        'elasticNet__max_iter': [1000],
+        'elasticNet__positive': [False],
+        'elasticNet__precompute': [False],
+        'elasticNet__random_state': [None],
+        'elasticNet__selection': ['cyclic'],
+        'elasticNet__tol': [0.0001],
+        'elasticNet__warm_start': [False]
+    }    
 
     for i, k in enumerate(options):
-        param_grid[options_key] = [k]
+        param_grid[f"{step}__{options_key}"] = [k]        
 
         cv = GridSearchCV(pipeline, param_grid=param_grid, cv=5)
 
@@ -208,14 +217,12 @@ def plot_param_options_accuracy(
         pipeline.fit(X_train, y_train)
         cv.fit(X_train, y_train)
 
-        # Compute accuracy on the training set
-        train_accuracy[i] = cv.score(X_train, y_train)
+        # Compute score on the training set
+        train_scores[i] = np.mean(abs(cross_val_score(cv, X_train, y_train, scoring=scoring, n_jobs=-1, cv=pipeline.cv)))
 
-        # Compute accuracy on the testing set
-        test_accuracy[i] = cv.score(X_test, y_test)
-
-        # print("Best Estimator", cv.best_estimator_)
-        print("Best Params", cv.best_params_)
+        # Compute score on the testing set
+        test_scores[i] = np.mean(abs(cross_val_score(cv, X_test, y_test, scoring=scoring, n_jobs=-1, cv=pipeline.cv)))       
+        
         try:        
             print(
                 "feature_importances_",
@@ -225,12 +232,13 @@ def plot_param_options_accuracy(
             # ignore errors when there's no 'feature_selection' step
             pass            
 
-    plt.title(title)
-    plt.plot(options, test_accuracy, label="Testing Accuracy")
-    plt.plot(options, train_accuracy, label="Train Accuracy")
+    print(param_desc)
+    plt.title(f"Varying {options_key}")
+    plt.plot(options, train_scores, label="Test MAE")
+    plt.plot(options, test_scores, label="Train MAE")
     plt.legend()
-    plt.xlabel(x_label)
-    plt.ylabel("Accuracy")
+    plt.xlabel(x_label or f"{step} {options_key} options")
+    plt.ylabel("Mean Absolute Error" or scoring)
     plt.show()
 
 
@@ -240,20 +248,23 @@ def plot_ROC_curve(estimator, X_test, y_test):
     plt.title("Receiver Operating Characteristic")
     plt.show()
 
+    
+from sklearn.linear_model import ElasticNetCV
 
-def plot_lasso_feature_importance(X_train, y_train):
+
+def plot_elastic_net_feature_importance(X_train, y_train):
     steps = [
         ("scaler", StandardScaler()),
-        ("lasso", LassoCV()),
+        ("elasticNet", ElasticNetCV()),
     ]
 
     pipeline = Pipeline(steps).fit(X_train, y_train)
 
-    reg = pipeline.named_steps.get("lasso")
+    reg = pipeline.named_steps.get("elasticNet")
 
-    print("Best alpha using built-in LassoCV:", reg.alpha_)
+    print("Best alpha using built-in ElasticNet:", reg.alpha_)
     # coefficient of determination of the prediction.
-    print("Best score using built-in LassoCV:", reg.score(X_train, y_train))
+    print("Best R2 score using built-in ElasticNet:", reg.score(X_train, y_train))
     # The amount of penalization chosen by cross validation.
     coef = pd.Series(reg.coef_, index=X_train.columns)
 
@@ -279,7 +290,7 @@ def plot_lasso_feature_importance(X_train, y_train):
     barplot = sns.barplot(
         data=imp_coef, y="Feature", x="Feature Importance", orient="h"
     )
-    barplot.set_title("Lasso Model Feature Importance")
+    barplot.set_title("ElasticNet Model Feature Importance")
 
     imp_coef[abs(imp_coef["Feature Importance"]) > 0]
     
