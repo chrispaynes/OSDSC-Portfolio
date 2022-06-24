@@ -2,20 +2,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import statsmodels.api as sm
 from IPython.display import display
-from sklearn.ensemble import VotingClassifier
-from sklearn.inspection import DecisionBoundaryDisplay
-from sklearn.linear_model import LassoCV
-from sklearn.metrics import (RocCurveDisplay, accuracy_score, confusion_matrix,
-                             f1_score, precision_score, recall_score,
-                             roc_auc_score)
+from sklearn.linear_model import ElasticNetCV
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
 from sklearn.model_selection import GridSearchCV, cross_val_score
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
+from statsmodels.api import qqplot
+from statsmodels.formula.api import ols
+from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 def create_classification_metrics(y_test, y_pred, figsize=(3, 3), fontsize=12):
@@ -72,66 +75,35 @@ def create_heatmap(
     plt.show()
 
 
-def plot_voting_classifier(
-    df,
-    x_cols,
-    target_var,
-    estimators=[
-        ("DecisionTree", DecisionTreeClassifier(max_depth=4)),
-        ("KNN", KNeighborsClassifier(n_neighbors=12, leaf_size=30, p=1)),
-        ("SVC", SVC(gamma=0.1, kernel="rbf", probability=True)),
-        ("NaiveBayes", GaussianNB()),
-    ],
-):
-
-    X = df[x_cols].values
-    y = df[[target_var]][target_var].values
-
-    vc = VotingClassifier(estimators=estimators, voting="soft")
-
-    # fit all classifiers
-    for (_, clf) in estimators:
-        clf.fit(X, y)
-
-    # fit the voting classifier
-    vc.fit(X, y)
-
-    # create estimator subplots
-    f, axarr = plt.subplots(1, len(estimators) + 1, figsize=(20, 10))
-
-    # Plot decision regions
-    for idx, (title, clf) in enumerate(estimators + [("VotingClassifier", vc)]):
-        DecisionBoundaryDisplay.from_estimator(
-            clf,
-            X,
-            ylabel="Tenure",
-            xlabel=x_cols[0],
-            alpha=0.4,
-            ax=axarr[idx],
-            response_method="predict",
-        )
-
-        sns.scatterplot(
-            X[:, 0], X[:, 1], ax=axarr[idx], s=30, hue=df[target_var], edgecolor="k"
-        )
-        axarr[idx].set_title(f"{title}\nScore: {clf.score(X,y)}")
-
-    plt.show()
-
-
 def plot_error_lines(
-    X_train, X_test, y_train, y_test, estimator, title="", x_label="CV Fold", xticks=[], scoring='neg_mean_absolute_error'
+    X_train,
+    X_test,
+    y_train,
+    y_test,
+    estimator,
+    title="",
+    x_label="CV Fold",
+    xticks=[],
+    scoring="neg_mean_absolute_error",
 ):
     x_points = np.arange(0, estimator.cv)
 
-    train_accuracy = abs(cross_val_score(estimator, X_train, y_train, scoring=scoring, n_jobs=-1, cv=estimator.cv))
-    test_accuracy = abs(cross_val_score(estimator, X_test, y_test, scoring=scoring, n_jobs=-1, cv=estimator.cv))
-    
+    train_accuracy = abs(
+        cross_val_score(
+            estimator, X_train, y_train, scoring=scoring, n_jobs=-1, cv=estimator.cv
+        )
+    )
+    test_accuracy = abs(
+        cross_val_score(
+            estimator, X_test, y_test, scoring=scoring, n_jobs=-1, cv=estimator.cv
+        )
+    )
+
     summary_df = pd.DataFrame(
         {
             "# Variables": [X_train.shape[1]],
-            "Train MAE": [np.round(np.mean(train_accuracy), 2)],
-            "Test MAE": [np.round(np.mean(test_accuracy), 2)],
+            f"Train {scoring}": [np.round(np.mean(train_accuracy), 2)],
+            f"Test {scoring}": [np.round(np.mean(test_accuracy), 2)],
             "Best Model Params": [estimator.best_params_],
         }
     )
@@ -154,21 +126,21 @@ def plot_error_lines(
         x_points,
         y=train_accuracy,
         ci=None,
-        line_kws={'linewidth': 1.5},
-        label=f"Train MAE: {round(np.mean(train_accuracy), 2)}",
+        line_kws={"linewidth": 1.5},
+        label=f"Train {scoring}: {round(np.mean(train_accuracy), 4)}",
     )
     sns.regplot(
         x_points,
         y=test_accuracy,
-        ci=None,        
-        line_kws={'linewidth': 1.5},        
-        label=f"Test MAE: {round(np.mean(test_accuracy), 2)}",
-    )    
+        ci=None,
+        line_kws={"linewidth": 1.5},
+        label=f"Test {scoring}: {round(np.mean(test_accuracy), 4)}",
+    )
 
     plt.legend()
     plt.xticks(xticks or range(estimator.cv))
     plt.xlabel(x_label)
-    plt.ylabel("Mean Absolute Error")
+    plt.ylabel(scoring)
     plt.show()
 
 
@@ -179,77 +151,60 @@ def plot_param_options_accuracy(
     y_test,
     pipeline,
     param_grid,
+    step,
     options,
     options_key,
-    step,
-    title = "",
-    x_label = "",    
-    scoring='neg_mean_absolute_error',
-    param_desc=""
+    scoring="neg_mean_absolute_error",
+    param_desc="",
+    cv=5,
 ):
-    # visualize model accuracy of test vs training data using different n_neighbors
-
     # Setup arrays to store train and test scores
     opts_range = np.arange(1, len(options) + 1)
     train_scores = np.empty(len(opts_range))
     test_scores = np.empty(len(opts_range))
 
-    param_grid = param_grid or {
-        'elasticNet__alpha': [1],
-        'elasticNet__copy_X': [True],
-        'elasticNet__fit_intercept': [True],
-        'elasticNet__l1_ratio': [0.5],
-        'elasticNet__max_iter': [1000],
-        'elasticNet__positive': [False],
-        'elasticNet__precompute': [False],
-        'elasticNet__random_state': [None],
-        'elasticNet__selection': ['cyclic'],
-        'elasticNet__tol': [0.0001],
-        'elasticNet__warm_start': [False]
-    }    
-
-    for i, k in enumerate(options):
-        param_grid[f"{step}__{options_key}"] = [k]        
-
-        cv = GridSearchCV(pipeline, param_grid=param_grid, cv=5)
-
+    for i, option in enumerate(options):
         # Fit the classifier to the training data
         pipeline.fit(X_train, y_train)
-        cv.fit(X_train, y_train)
+        estimator = GridSearchCV(pipeline, param_grid={f"{step}__{options_key}": [option]}, cv=cv).fit(
+            X_train, y_train
+        )
 
         # Compute score on the training set
-        train_scores[i] = np.mean(abs(cross_val_score(cv, X_train, y_train, scoring=scoring, n_jobs=-1, cv=pipeline.cv)))
+        train_scores[i] = np.mean(
+            abs(
+                cross_val_score(
+                    estimator, X_train, y_train, scoring=scoring, n_jobs=-1, cv=cv
+                )
+            )
+        )
 
         # Compute score on the testing set
-        test_scores[i] = np.mean(abs(cross_val_score(cv, X_test, y_test, scoring=scoring, n_jobs=-1, cv=pipeline.cv)))       
-        
-        try:        
+        test_scores[i] = np.mean(
+            abs(
+                cross_val_score(
+                    estimator, X_test, y_test, scoring=scoring, n_jobs=-1, cv=cv
+                )
+            )
+        )
+
+        try:
             print(
                 "feature_importances_",
                 X_train.columns[pipeline["feature_selection"].get_support()],
             )
         except:
             # ignore errors when there's no 'feature_selection' step
-            pass            
+            pass
 
     print(param_desc)
     plt.title(f"Varying {options_key}")
     plt.plot(options, train_scores, label="Test MAE")
     plt.plot(options, test_scores, label="Train MAE")
     plt.legend()
-    plt.xlabel(x_label or f"{step} {options_key} options")
+    plt.xlabel(f"{step} {options_key} options")
     plt.ylabel("Mean Absolute Error" or scoring)
     plt.show()
-
-
-def plot_ROC_curve(estimator, X_test, y_test):
-    RocCurveDisplay.from_estimator(estimator, X_test, y_test, color="orange")
-    plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
-    plt.title("Receiver Operating Characteristic")
-    plt.show()
-
-    
-from sklearn.linear_model import ElasticNetCV
 
 
 def plot_elastic_net_feature_importance(X_train, y_train):
@@ -262,19 +217,16 @@ def plot_elastic_net_feature_importance(X_train, y_train):
 
     reg = pipeline.named_steps.get("elasticNet")
 
-    print("Best alpha using built-in ElasticNet:", reg.alpha_)
-    # coefficient of determination of the prediction.
-    print("Best R2 score using built-in ElasticNet:", reg.score(X_train, y_train))
     # The amount of penalization chosen by cross validation.
     coef = pd.Series(reg.coef_, index=X_train.columns)
 
     selected_vars = abs(coef) > 0
     selected_cols = coef[selected_vars == True].index
-    print("Lasso selected", list(selected_cols))
+    print("ElasticNet selected", list(selected_cols))
     num_selected_vars = sum(selected_vars)
 
     print(
-        f"Lasso selected {num_selected_vars} variables and eliminated { sum(abs(coef) == 0) } variables"
+        f"ElasticNet selected {num_selected_vars} variables and eliminated { sum(abs(coef) == 0) } variables"
     )
 
     imp_coef = coef.sort_values()
@@ -293,7 +245,7 @@ def plot_elastic_net_feature_importance(X_train, y_train):
     barplot.set_title("ElasticNet Model Feature Importance")
 
     imp_coef[abs(imp_coef["Feature Importance"]) > 0]
-    
+
     plt.show()
 
     return list(selected_cols)
@@ -301,3 +253,63 @@ def plot_elastic_net_feature_importance(X_train, y_train):
 
 def get_selected_features(X_train, cv, step_key="feature_selection"):
     return X_train.columns[cv.estimator.named_steps[step_key].get_support()]
+
+
+def plot_feature_regression_results(model, x_cols):
+    # This plots four graphs in a 2 by 2 figure: 'endog versus exog', 'residuals versus exog', 'fitted versus exog' and 'fitted plus residual versus exog'
+    for feature in x_cols:
+        _ = sm.graphics.plot_regress_exog(
+            model, feature, fig=plt.figure(figsize=(12, 8))
+        )
+
+
+def create_regression_model(df, x_cols, target_var):
+    f = f"{target_var} ~ {' + '.join(x_cols)}"
+
+    return ols(
+        formula=f,
+        data=df,
+    ).fit()
+
+
+def print_OLS_results(model):
+    rnd = lambda v: v.round(3)
+
+    print("AIC", rnd(model.aic))
+    print("R-Squared", rnd(model.rsquared))
+    print("R-Squared Adjusted", rnd(model.rsquared_adj))
+    print("Mean-Squared Error:", rnd(model.mse_resid))
+    print("Residual Standard Error:", rnd(np.sqrt(model.mse_resid)), end="\n\n")
+    print(model.summary())
+
+
+def get_OLS_summary(X, y, output=True, qq_output=True):
+    # x = data[x_columns]
+    # y = data[y_column]
+    X = sm.add_constant(X)
+    results = sm.OLS(y, X).fit()
+
+    if qq_output:
+        _ = qqplot(data=results.resid, fit=True, line="45")
+
+    if output:
+        print_OLS_results(results)
+
+    return results
+
+
+def filter_high_VIF_features(X, VIF_threshold=5):
+    VIFS = {
+        col: variance_inflation_factor(X.values, i).round(3)
+        for i, col in enumerate(X)
+    }
+
+    VIF_df = pd.DataFrame({"Feature": VIFS.keys(), "VIF": VIFS.values()}).sort_values(
+        by="VIF", ascending=False
+    )
+
+    VIF_df.style.hide_index()
+
+    low_collinearity_df = VIF_df[VIF_df.VIF < VIF_threshold]
+
+    return VIF_df, low_collinearity_df.Feature.sort_values().values
