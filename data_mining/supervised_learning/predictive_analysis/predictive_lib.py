@@ -5,48 +5,12 @@ import seaborn as sns
 import statsmodels.api as sm
 from IPython.display import display
 from sklearn.linear_model import ElasticNetCV
-from sklearn.metrics import (
-    accuracy_score,
-    confusion_matrix,
-    f1_score,
-    precision_score,
-    recall_score,
-    roc_auc_score,
-)
 from sklearn.model_selection import GridSearchCV, cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from statsmodels.api import qqplot
 from statsmodels.formula.api import ols
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-
-
-def create_classification_metrics(y_test, y_pred, figsize=(3, 3), fontsize=12):
-    c_matrix = confusion_matrix(y_test, y_pred)
-    rnd = lambda v: v.round(3)
-
-    print("Accuracy:", rnd(accuracy_score(y_test, y_pred)))
-    print("Precision:", rnd(precision_score(y_test, y_pred)))
-    print(
-        "Recall / Sensitivity:",
-        rnd(recall_score(y_test, y_pred)),
-    )
-    print("F1 Score:", rnd(f1_score(y_test, y_pred)))
-    print("ROC-AUC Score:", rnd(roc_auc_score(y_test, y_pred)))
-
-    plt.figure(figsize=figsize)
-    plt.tight_layout()
-    heatmap = sns.heatmap(
-        pd.DataFrame(c_matrix), annot=True, cmap="YlGnBu", fmt="g", cbar=False
-    )
-    heatmap.set_xticklabels(heatmap.get_xmajorticklabels(), fontsize=fontsize)
-    heatmap.set_yticklabels(heatmap.get_ymajorticklabels(), fontsize=fontsize)
-    plt.title("Confusion matrix", y=1.1)
-    plt.ylabel("Actual label")
-    plt.xlabel("Predicted label")
-    plt.show()
-
-    return c_matrix
 
 
 def create_heatmap(
@@ -102,8 +66,8 @@ def plot_error_lines(
     summary_df = pd.DataFrame(
         {
             "# Variables": [X_train.shape[1]],
-            f"Train {scoring}": [np.round(np.mean(train_accuracy), 2)],
-            f"Test {scoring}": [np.round(np.mean(test_accuracy), 2)],
+            f"Train {scoring} (absolute)": [np.round(np.mean(train_accuracy), 2)],
+            f"Test {scoring} (absolute)": [np.round(np.mean(test_accuracy), 2)],
             "Best Model Params": [estimator.best_params_],
         }
     )
@@ -127,14 +91,14 @@ def plot_error_lines(
         y=train_accuracy,
         ci=None,
         line_kws={"linewidth": 1.5},
-        label=f"Train {scoring}: {round(np.mean(train_accuracy), 4)}",
+        label=f"Train {scoring} (absolute): {round(np.mean(train_accuracy), 4)}",
     )
     sns.regplot(
         x_points,
         y=test_accuracy,
         ci=None,
         line_kws={"linewidth": 1.5},
-        label=f"Test {scoring}: {round(np.mean(test_accuracy), 4)}",
+        label=f"Test {scoring} (absolute): {round(np.mean(test_accuracy), 4)}",
     )
 
     plt.legend()
@@ -150,7 +114,6 @@ def plot_param_options_accuracy(
     y_train,
     y_test,
     pipeline,
-    param_grid,
     step,
     options,
     options_key,
@@ -251,12 +214,10 @@ def plot_elastic_net_feature_importance(X_train, y_train):
     return list(selected_cols)
 
 
-def get_selected_features(X_train, cv, step_key="feature_selection"):
-    return X_train.columns[cv.estimator.named_steps[step_key].get_support()]
-
-
 def plot_feature_regression_results(model, x_cols):
-    # This plots four graphs in a 2 by 2 figure: 'endog versus exog', 'residuals versus exog', 'fitted versus exog' and 'fitted plus residual versus exog'
+    # This plots four graphs in a 2 by 2 figure: 'dependent versus independent variable',
+    # 'residuals versus independent variable', 'fitted versus independent variable' and
+    # 'fitted plus residual versus independent variable'
     for feature in x_cols:
         _ = sm.graphics.plot_regress_exog(
             model, feature, fig=plt.figure(figsize=(12, 8))
@@ -264,6 +225,8 @@ def plot_feature_regression_results(model, x_cols):
 
 
 def create_regression_model(df, x_cols, target_var):
+    # creates OLS regression model using the dependent and independent variables
+
     f = f"{target_var} ~ {' + '.join(x_cols)}"
 
     return ols(
@@ -284,8 +247,6 @@ def print_OLS_results(model):
 
 
 def get_OLS_summary(X, y, output=True, qq_output=True):
-    # x = data[x_columns]
-    # y = data[y_column]
     X = sm.add_constant(X)
     results = sm.OLS(y, X).fit()
 
