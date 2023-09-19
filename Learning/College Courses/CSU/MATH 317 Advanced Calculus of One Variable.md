@@ -1,0 +1,1 @@
+**Course Description:** Convergence of sequences, series: limits, continuity, differentiation, integration of one-variable functions.

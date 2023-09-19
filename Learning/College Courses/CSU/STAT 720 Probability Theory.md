@@ -1,0 +1,1 @@
+**Course Description:** Measure theoretic probability, characteristic functions; convergence; laws of large numbers; central limit, extreme value, asymptotic theory.

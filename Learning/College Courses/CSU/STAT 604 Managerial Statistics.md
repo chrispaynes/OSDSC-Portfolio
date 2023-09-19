@@ -1,0 +1,1 @@
+**Course Description:** Introduction to statistical thinking and methods used to support managerial decision making.604 and BUS 604.

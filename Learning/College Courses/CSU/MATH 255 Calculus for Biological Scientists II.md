@@ -1,0 +1,1 @@
+**Course Description:** Derivatives and integrals of functions of several variables, differential and difference equations, matrices, applications in the biosciences.

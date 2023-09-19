@@ -1,0 +1,1 @@
+**Course Description:** Entropy, mutual information, channel capacity, channel coding theorem, syndrome decoding, BCH codes, recent developments.

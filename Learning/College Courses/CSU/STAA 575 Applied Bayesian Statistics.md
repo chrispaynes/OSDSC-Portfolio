@@ -1,0 +1,1 @@
+**Course Description:** Bayesian analysis of statistical models, prior and posterior distributions, computing methods, interpretation.course.

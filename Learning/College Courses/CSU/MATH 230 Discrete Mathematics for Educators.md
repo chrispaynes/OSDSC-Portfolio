@@ -1,0 +1,1 @@
+**Course Description:** Voting theory, fair division, graph theory, linear programming, probability, teaching in small groups, proof techniques, mathematical technology.

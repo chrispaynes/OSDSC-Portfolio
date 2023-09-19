@@ -1,0 +1,1 @@
+**Course Description:** Study skills for calculus. Differentiation and integration of elementary functions with applications. Conic section.

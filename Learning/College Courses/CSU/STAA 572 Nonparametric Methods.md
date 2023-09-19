@@ -1,0 +1,1 @@
+**Course Description:** Rank-based methods, nonparametric inferential techniques, scatterplot smoothing, nonparametric function estimation, environmental applications.

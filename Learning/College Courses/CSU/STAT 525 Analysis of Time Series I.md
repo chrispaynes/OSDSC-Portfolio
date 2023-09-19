@@ -1,0 +1,1 @@
+**Course Description:** Trend and seasonality, stationary processes, Hilbert space techniques, spectral distribution function, fitting ARIMA models, linear prediction.

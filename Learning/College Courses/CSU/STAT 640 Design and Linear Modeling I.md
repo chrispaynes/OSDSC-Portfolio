@@ -1,0 +1,1 @@
+**Course Description:** Introduction to linear models; experimental design; fixed, random, and mixed models.

@@ -1,0 +1,1 @@
+**Course Description:** Distribution and uses of order statistics; nonparametric inferential techniques, their uses and mathematical properties.

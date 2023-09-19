@@ -1,0 +1,1 @@
+**Course Description:** Problem formulation. Modeling, theoretical and empirical. Variable selection. Derivation and simulation of solutions. Model testing including prediction.

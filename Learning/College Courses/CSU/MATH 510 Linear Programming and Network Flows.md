@@ -1,0 +1,1 @@
+**Course Description:** Optimization methods; linear programming, simplex algorithm, duality, sensitivity analysis, minimal cost network flows, transportation problem.

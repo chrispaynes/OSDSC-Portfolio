@@ -1,0 +1,1 @@
+**Course Description:** Fourier analysis and transforms, FFTs; sampling theorems, computational algorithms; wavelets; applications to communication, imaging, and compression.

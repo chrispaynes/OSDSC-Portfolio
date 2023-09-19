@@ -1,0 +1,1 @@
+**Course Description:** Minimal sufficiency, maximal invariance; Neyman-Pearson theory; Fisher, Kullback-Leibler information; asymptotic properties of maximum-likelihood methods.

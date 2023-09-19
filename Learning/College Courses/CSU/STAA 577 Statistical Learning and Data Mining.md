@@ -1,0 +1,1 @@
+**Course Description:** Applications-oriented overview into how to use statistical methods to do data mining, inference, and prediction.Online.

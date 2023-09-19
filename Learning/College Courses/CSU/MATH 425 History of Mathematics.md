@@ -1,0 +1,1 @@
+**Course Description:** Historical development of geometry, arithmetic, algebra, and calculus from ancient times to 20th century.

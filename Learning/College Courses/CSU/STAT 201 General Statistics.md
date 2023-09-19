@@ -1,0 +1,1 @@
+**Course Description:** Graphs, descriptive statistics, confidence intervals, hypothesis tests, correlation and simple regression, tests of association. Use JMP software to analyze data.offered: Online. Credit not allowed for both STAT 201 and STAT 204.

@@ -1,0 +1,1 @@
+**Course Description:** Effective consulting to meet with clients, analyze real data, and prepare reports.course.

@@ -1,0 +1,1 @@
+**Course Description:** Local and global geometry of curves and surfaces in Euclidean space, curvature, covariant differentiation, geodesics and the Gauss-Bonnet theorem.

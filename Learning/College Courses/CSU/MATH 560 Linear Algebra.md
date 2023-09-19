@@ -1,0 +1,1 @@
+**Course Description:** Finite dimensional vector spaces, inner products, dual spaces, transformations, projections, adjoints, norms, eigenvalues, eigenvectors.

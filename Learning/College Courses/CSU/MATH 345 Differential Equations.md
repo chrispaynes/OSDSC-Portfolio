@@ -1,0 +1,1 @@
+**Course Description:** First and second order equations, LaPlace transforms, first order systems of equations, numerical methods, applied linear algebra, linearization.

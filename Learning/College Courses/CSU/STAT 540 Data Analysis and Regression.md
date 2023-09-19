@@ -1,0 +1,1 @@
+**Course Description:** Introduction to multiple regression and data analysis with emphasis on graphics and computing.

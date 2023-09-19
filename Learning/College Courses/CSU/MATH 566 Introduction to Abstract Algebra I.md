@@ -1,0 +1,1 @@
+**Course Description:** Analysis of algebraic structures including groups, rings, fields, and vector spaces.

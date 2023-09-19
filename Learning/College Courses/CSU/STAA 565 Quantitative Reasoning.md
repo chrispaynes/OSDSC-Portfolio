@@ -1,0 +1,1 @@
+**Course Description:** Confounding, types of bias such as selection bias and regression effect bias, Simpson's paradox, experiments versus observational studies.may be offered: Online.

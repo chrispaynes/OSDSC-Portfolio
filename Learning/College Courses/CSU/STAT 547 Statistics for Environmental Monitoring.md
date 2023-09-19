@@ -1,0 +1,1 @@
+**Course Description:** Applications of statistics in environmental pollution studies involving air, water, or soil monitoring; sampling designs; trend analysis; censored data.may be offered: Online.

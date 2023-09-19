@@ -1,0 +1,1 @@
+**Course Description:** Puzzles, numbers and counting, subsets, recurrence relations, generating functions, inversion, counting with symmetry, networks, matchings.

@@ -1,0 +1,1 @@
+**Course Description:** Application of probability concepts to games of chance and gambling contests.
