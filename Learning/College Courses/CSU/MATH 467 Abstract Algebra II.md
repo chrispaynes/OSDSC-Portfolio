@@ -1,0 +1,1 @@
+**Course Description:** Advanced topics in abstract algebra: Euclidean domains, abstract vector spaces, extension fields, Galois theory.

@@ -1,0 +1,1 @@
+**Course Description:** Optimization and integration in statistics; Monte Carlo methods; simulation; bootstrapping; density estimation; smoothing.

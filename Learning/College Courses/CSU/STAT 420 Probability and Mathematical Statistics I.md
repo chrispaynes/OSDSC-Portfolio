@@ -1,0 +1,1 @@
+**Course Description:** Probability, random variables, distribution functions, and expectations; joint and conditional distributions and expectations; transformations.

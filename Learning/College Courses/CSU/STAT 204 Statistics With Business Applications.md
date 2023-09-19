@@ -1,0 +1,1 @@
+**Course Description:** Statistical methods in business; descriptive methods, simple probability, sampling distributions, confidence intervals, hypothesis testing, correlation, simple and multiple regression, practical concerns in inference. Use Excel software to analyze data.offered: Online. Credit not allowed for both STAT 201 and STAT 204.

@@ -1,0 +1,1 @@
+**Course Description:** One-way analysis of variance, factorial designs, blocked designs, multiple comparisons of means, and multiple regression.

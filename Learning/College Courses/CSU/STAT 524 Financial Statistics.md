@@ -1,0 +1,1 @@
+**Course Description:** Probability and statistical concepts and quantitative tools used in financial modeling and decision-making.specialization 

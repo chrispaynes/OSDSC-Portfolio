@@ -1,0 +1,1 @@
+**Course Description:** Regression and analysis of variance methods applied to both observational studies and designed experiments in the biological sciences.

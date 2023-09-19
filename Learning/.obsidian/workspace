@@ -1,0 +1,144 @@
+{
+  "main": {
+    "id": "5f06c10f151a4f6f",
+    "type": "split",
+    "children": [
+      {
+        "id": "3af8e05a06af4c44",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "NYC.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1debc442ba08fed4",
+    "type": "split",
+    "children": [
+      {
+        "id": "9cc98353e2830670",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491eae6b21155dc3",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "ea8a88d7c7e0f314",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "22ac9f1587397cc9",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9255baf0c8b7e911",
+    "type": "split",
+    "children": [
+      {
+        "id": "2e9fbc964ced9d16",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4bf92902c3cf3924",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "NYC.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2efec67a644fea4b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "NYC.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b9d5689cfe763658",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "0269450cf1a9326f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "NYC.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "3af8e05a06af4c44",
+  "lastOpenFiles": [
+    "TODAY.md",
+    "Capstone.md",
+    "TODO.md",
+    "NYC.md",
+    "Get Rid Of.md",
+    "D213 - Time Series.md",
+    "Guitar Observations.md",
+    "Shopping Lists.md",
+    "Reverb Templates.md",
+    "Pasted image 20220918125311.png"
+  ]
+}

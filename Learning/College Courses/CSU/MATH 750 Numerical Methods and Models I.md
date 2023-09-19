@@ -1,0 +1,1 @@
+**Course Description:** Derivation of model equations, introduction to solution techniques and computing.

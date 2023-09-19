@@ -1,0 +1,1 @@
+**Course Description:** Sample designs: simple random, stratified, systematic, cluster, unequal probability, two-phase; methods of estimation and sample size determination.

@@ -1,0 +1,1 @@
+**Course Description:** Random variables, continuous and discrete distributions, expectations, joint and conditional distributions, moments and moment generating functions, transformations, order statistics.the Graduate Certificate in Theory and Applications of Regression Models.

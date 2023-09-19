@@ -1,0 +1,1 @@
+**Course Description:** Survey design, simple random, stratified, and cluster samples. Estimation and variance estimation.course.

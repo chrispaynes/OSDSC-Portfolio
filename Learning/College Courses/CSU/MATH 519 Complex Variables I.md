@@ -1,0 +1,1 @@
+**Course Description:** Analytic functions, complex integration theory, singularities, elementary functions, and mapping.

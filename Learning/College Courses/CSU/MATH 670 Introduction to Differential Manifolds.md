@@ -1,0 +1,1 @@
+**Course Description:** Finite-dimensional differential manifolds, submanifolds, vector fields and flows, Lie groups and algebras.

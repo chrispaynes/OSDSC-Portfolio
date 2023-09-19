@@ -1,0 +1,1 @@
+**Course Description:** Introduction to rigorous probability theory in real Euclidean spaces based on a foundation of measure theory.

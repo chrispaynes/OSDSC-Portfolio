@@ -1,0 +1,1 @@
+**Course Description:** Topics selected from curves and surfaces, sheaf theory, algebraic geometry, singularity theory, vector bundles.

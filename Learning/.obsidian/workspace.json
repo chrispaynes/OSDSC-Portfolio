@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "4e04a185a80fdc17",
+    "type": "split",
+    "children": [
+      {
+        "id": "2ccc9128a1a3737a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d6c95850459a1a62",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Science/Linear Discriminant Analysis.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "71daf6f451dd8a8d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d3f1eedec4cd7b49",
+    "type": "split",
+    "children": [
+      {
+        "id": "b387135e7218b17e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fc785b9ac502760f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e380938e7227e322",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d7d85a1ac0b91678",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 416.5
+  },
+  "right": {
+    "id": "dd4cd17aef2c051d",
+    "type": "split",
+    "children": [
+      {
+        "id": "503160cc33670915",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20923a47145979fe",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "index.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8817099df3dd2c2b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "index.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a994efebee7d7ac0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "e95e0982082f13be",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "index.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false
+    }
+  },
+  "active": "fc785b9ac502760f",
+  "lastOpenFiles": [
+    "Business/index.md",
+    "Data Analytics/Looker/index.md",
+    "Data Engineering/ClickHouse/index.md",
+    "Data Engineering/DBT/index.md",
+    "Data Engineering/DuckDB/index.md",
+    "Data Engineering/DynamoDB/index.md",
+    "Data Engineering/ElasticSearch/index.md",
+    "Data Engineering/Fivetran/index.md",
+    "Data Engineering/PostgreSQL/index.md",
+    "Data Engineering/Snowflake/index.md",
+    "Data Governance/index.md",
+    "index.textClipping",
+    "Programming/SQL/index.md",
+    "Programming/Scala/index.md",
+    "Programming/Python/index.md",
+    "Programming/Julia/index.md",
+    "Programming/Golang/index.md",
+    "Technology/Sagemaker/index.md",
+    "Technology/Kubernetes/Argo/index.md",
+    "index copy.md",
+    "Data Science/Linear Discriminant Analysis.md",
+    "index.md",
+    "Data Science/Power Analysis.md",
+    "Data Science/Lift.md",
+    "Pre-Calculus/Math - Pre-Calculus.md",
+    "Technology/Kubernetes/Argo",
+    "Technology/Kubernetes",
+    "Programming/Julia",
+    "Bolster.md",
+    "Capstone.md",
+    "_IMAGES/Pasted image 20230904193138.png",
+    "Technology/Sagemaker",
+    "Data Analytics/Looker",
+    "Data Engineering/ClickHouse",
+    "Data Engineering/PostgreSQL",
+    "Data Engineering/DuckDB",
+    "Data Engineering/DynamoDB",
+    "_IMAGES/Pasted image 20230904192515.png",
+    "_IMAGES/Pasted image 20230904192956.png",
+    "_IMAGES/Pasted image 20230904191700.png",
+    "_IMAGES/Pasted image 20230904183653.png",
+    "_IMAGES/Pasted image 20230904183644.png",
+    "_IMAGES/Pasted image 20230904183407.png",
+    "_IMAGES/Pasted image 20230904183349.png",
+    "_IMAGES/Pasted image 20230830210544.png",
+    "_IMAGES/Pasted image 20230829222939.png"
+  ]
+}

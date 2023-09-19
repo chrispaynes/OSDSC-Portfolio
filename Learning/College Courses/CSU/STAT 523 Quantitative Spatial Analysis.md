@@ -1,0 +1,1 @@
+**Course Description:** Techniques in spatial analysis: point pattern analysis, spatial autocorrelation, trend surface and spectral analysis.

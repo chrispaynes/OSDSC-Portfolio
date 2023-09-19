@@ -1,0 +1,1 @@
+**Course Description:** Numerical computation of eigenvalues, numerical solution of ordinary and partial differential equations.

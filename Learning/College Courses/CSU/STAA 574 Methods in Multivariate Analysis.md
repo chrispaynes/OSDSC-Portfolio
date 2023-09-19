@@ -1,0 +1,1 @@
+**Course Description:** Multivariate ANOVA, principal components, factor analysis, cluster analysis, discrimination analysis.course.

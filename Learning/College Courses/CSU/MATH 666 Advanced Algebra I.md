@@ -1,0 +1,1 @@
+**Course Description:** Theory of rings and algebras with applications.

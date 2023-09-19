@@ -1,0 +1,1 @@
+**Course Description:** Linear and nonlinear systems, orbits, phase space, flows of vector fields, stability, bifurcation theory, chaos, strange attractors and applications.

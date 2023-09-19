@@ -1,0 +1,1 @@
+**Course Description:** Numerical methods, including finite elements, finite differences, spectral methods, method of lines, and conservation laws; stability and convergence analysis for PDEs; and applications in science and engineering.

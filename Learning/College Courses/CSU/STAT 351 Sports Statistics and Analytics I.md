@@ -1,0 +1,1 @@
+**Course Description:** Statistical methodology for sports data with emphasis on the unique aspects of analyzing sports data. Topics include summary statistics, probability, simulation, and statistical inference for sports data.STAT 351 and STAT 381A2.

@@ -1,0 +1,1 @@
+**Course Description:** Analysis of variance, covariance; randomization; completely randomized, randomized block, latin-square, split-plot, factorial and other designs.

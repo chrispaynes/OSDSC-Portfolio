@@ -1,0 +1,1 @@
+**Course Description:** Basic concepts in design and analysis of communication systems.ECE 303 and STAT 303.

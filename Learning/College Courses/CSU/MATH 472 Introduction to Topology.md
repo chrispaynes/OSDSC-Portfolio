@@ -1,0 +1,1 @@
+**Course Description:** Topologies on sets, continuous functions, homeomorphisms. Sequences and convergence, metric spaces, connectedness, path-connectedness. Separation properties. Compactness, Countability axioms.

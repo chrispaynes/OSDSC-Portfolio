@@ -1,0 +1,1 @@
+**Course Description:** Generalized additive models; recursive partitioning regression and classification; graphical models and belief networks; spatial statistics.

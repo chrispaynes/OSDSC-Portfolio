@@ -1,0 +1,1 @@
+**Course Description:** K-means clustering, perceptron algorithm, evaluating model performance, neural networks, learning theory and dimension reduction.may be offered: Online. Credit not allowed for both CS 545 and STAA 578.

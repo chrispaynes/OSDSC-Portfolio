@@ -1,0 +1,1 @@
+**Course Description:** Multivariate ANOVA, principal components, factor analysis, cluster analysis, discriminant analysis Credit not allowed for both STAR 502 and STAT 581A4.

@@ -1,0 +1,1 @@
+**Course Description:** Six Sigma techniques, DMAIC, CT trees, VOC tools, data collection, process capability, capability metrics, graphical data exploration, and process control.may be offered: Online.

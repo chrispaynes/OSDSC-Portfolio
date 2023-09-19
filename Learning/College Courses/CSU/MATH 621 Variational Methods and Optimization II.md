@@ -1,0 +1,1 @@
+**Course Description:** Unconstrained and constrained infinite dimensional optimization, variational inequalities, Lagrange multipliers, control, applications.

@@ -1,0 +1,1 @@
+**Course Description:** Biostatistical methods; confidence intervals, hypothesis tests, simple correlation and regression, one-way analysis of variance.307, or STAT 311.

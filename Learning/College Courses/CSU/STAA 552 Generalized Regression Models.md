@@ -1,0 +1,1 @@
+**Course Description:** Categorical data analysis, estimation and testing for contingency tables, introduction to generalized linear models, logit and probit models for binary regression, extensions to nominal and ordinal multicategory responses, count data, Poisson and negative binomial regression, log-linear models.course.

@@ -1,0 +1,1 @@
+**Course Description:** Descriptive statistics, probability theory, random variables, sampling distributions, hypothesis testing, confidence intervals, ANOVA, simple and multiple regression. R software is utilized for analyzing real world data sets.

@@ -1,0 +1,1 @@
+**Course Description:** Learn to be an intelligent consumer of statistical information. Concepts of randomness and probability, variation, types of measurement, errors in measurement, experiments versus observational studies, Simpson's paradox, biases in statistical studies, p-value.offered: Online.

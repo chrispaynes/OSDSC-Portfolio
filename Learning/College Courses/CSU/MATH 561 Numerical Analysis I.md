@@ -1,0 +1,1 @@
+**Course Description:** Numerical linear algebra, solving nonlinear systems, least squares, and minimization.

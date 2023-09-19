@@ -1,0 +1,1 @@
+**Course Description:** Statistical methods for experimenters and researchers emphasizing design and analysis of experiments.offered: Online. Credit not allowed for both STAR 512 and STAT 512.

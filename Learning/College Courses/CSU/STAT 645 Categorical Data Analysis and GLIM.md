@@ -1,0 +1,1 @@
+**Course Description:** Generalized linear models, binary and polytomous data, log linear models, quasilikelihood, survival data models.

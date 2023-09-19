@@ -1,0 +1,1 @@
+**Course Description:** General proof techniques, proof in abstract algebra, proof in analysis, and proof in combinatorics.

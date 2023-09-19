@@ -1,0 +1,1 @@
+**Course Description:** Hypergeometric functions, graph algorithms, hadamard matrices, strongly regular graphs, association schemes.

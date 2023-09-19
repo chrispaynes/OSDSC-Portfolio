@@ -1,0 +1,1 @@
+**Course Description:** Statistical power, one-way ANOVA, and multiple regression with indicator variables and interaction.302A, or STAT 381A1.

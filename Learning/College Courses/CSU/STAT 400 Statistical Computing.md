@@ -1,0 +1,1 @@
+**Course Description:** Computationally intensive statistical methods: optimization for statistical problems; simulation & Monte Carlo methods; resampling methods; smoothing.

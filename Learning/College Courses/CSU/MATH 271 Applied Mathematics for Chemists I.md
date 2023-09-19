@@ -1,0 +1,1 @@
+**Course Description:** Series and limits, Taylor series, complex variables, first- and second- order ordinary differential equations, matrices, linear transformations, determinants, and eigenvalues.

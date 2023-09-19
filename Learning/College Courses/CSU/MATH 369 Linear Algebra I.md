@@ -1,0 +1,1 @@
+**Course Description:** Linear systems, matrices, subspaces of Euclidean spaces, linear transformations on Euclidean spaces, eigenvalues, eigenvectors.

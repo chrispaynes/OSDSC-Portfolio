@@ -1,0 +1,1 @@
+**Course Description:** Second order linear PDEs, elliptic and parabolic equations, equations of math physics, separation of variables, Fourier series.

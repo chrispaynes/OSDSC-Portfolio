@@ -1,0 +1,1 @@
+**Course Description:** Comprehensive introduction to groups, rings, and fields.

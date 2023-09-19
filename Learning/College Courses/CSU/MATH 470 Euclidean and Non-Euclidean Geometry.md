@@ -1,0 +1,1 @@
+**Course Description:** Topics from real Euclidean, affine metric and non-Euclidean geometries emphasizing methods and connections with other areas of mathematics.

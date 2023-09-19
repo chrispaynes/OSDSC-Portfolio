@@ -1,0 +1,1 @@
+**Course Description:** Algebraic sets in projective space, the Nullstellensatz, rational maps and functions, coordinate rings, Hilbert functions, dimension, degree.

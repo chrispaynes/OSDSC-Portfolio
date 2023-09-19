@@ -1,0 +1,1 @@
+**Course Description:** Analysis of variance, covariance, randomized block, latin square, factorial, balanced and unbalanced designs. Applications to agriculture, biosciences. Implementation in R and JMP.STAR 514 and STAT 580A4.
