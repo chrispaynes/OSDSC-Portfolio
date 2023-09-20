@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Science/Linear Discriminant Analysis.md",
+                "file": "Programming/Scala/functional_programming.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 416.5
+    "width": 428.5
   },
   "right": {
     "id": "dd4cd17aef2c051d",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Science/Linear Discriminant Analysis.md",
+                "file": "Programming/Scala/functional_programming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Science/Linear Discriminant Analysis.md",
+                "file": "Programming/Scala/functional_programming.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Science/Linear Discriminant Analysis.md"
+                "file": "Programming/Scala/functional_programming.md"
               }
             }
           }
@@ -147,45 +147,45 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "d6c95850459a1a62",
+  "active": "fc785b9ac502760f",
   "lastOpenFiles": [
-    "Data Science/Power Analysis.md",
+    "Programming/Scala/operators and symbols.md",
+    "Programming/Scala/packages.md",
+    "Programming/Scala/syntax.md",
+    "Programming/SQL/index.md",
+    "Programming/Scala/functions.md",
+    "Programming/Scala/functional_programming.md",
+    "Programming/SQL/joins.md",
+    "Data Science/Evaluation Measures.md",
     "Data Science/Linear Discriminant Analysis.md",
-    "Data Science/Lift.md",
-    "Pre-Calculus/Math - Pre-Calculus.md",
+    "index.md",
+    "Technology/Kubernetes/Argo/index.md",
+    "Technology/Sagemaker/index.md",
     "Technology/Kubernetes/Argo",
-    "Technology/Kubernetes",
-    "Programming/Julia",
-    "Bolster.md",
-    "Capstone.md",
-    "_IMAGES/Pasted image 20230904193138.png",
     "Technology/Sagemaker",
-    "Data Analytics/Looker",
-    "Data Engineering/ClickHouse",
-    "Data Engineering/PostgreSQL",
-    "Data Engineering/DuckDB",
-    "Data Engineering/DynamoDB",
-    "Data Engineering/ElasticSearch",
-    "2023-09-09.md",
-    "Untitled.md",
-    "Shopping Lists.md",
-    "College Courses/CSU/MATH 101 Math in the Social Sciences.md",
-    "Frags.md",
-    "Marshall DSL40 CR.md",
-    "Data Science/Data Governance Kickoff.md",
-    "Untitled 1.md",
-    "Data Science/__PROGRESS__.md",
-    "Data Science/Apache Arrow.md",
-    "Linear Algebra/Math - Linear Algebra.md",
-    "Trigonometry/Math - Trigonometry.md",
-    "Statistics/Math - Statistics.md",
-    "Algebra/Math - Algebra.md",
-    "College Courses/CSU/STAT 740 Advanced Statistical Methods.md",
-    "College Courses/CSU/STAT 730 Advanced Theory of Statistics I.md",
-    "College Courses/CSU/STAT 720 Probability Theory.md",
-    "College Courses/CSU/STAT 699 Thesis.md",
-    "College Courses/CSU/STAT 695 Independent Study.md",
-    "College Courses/CSU/STAT 673 Hierarchical Modeling in Ecology.md",
+    "Technology/Kubernetes",
+    "Technology",
+    "Programming/Python/index.md",
+    "Programming/Julia/index.md",
+    "Programming/Golang/index.md",
+    "Programming/Scala",
+    "Programming/SQL",
+    "Programming/Python",
+    "Programming/Julia",
+    "Programming/Golang",
+    "Programming",
+    "Data Governance/index.md",
+    "Data Engineering/Snowflake/index.md",
+    "Data Engineering/PostgreSQL/index.md",
+    "Data Engineering/Fivetran/index.md",
+    "Data Engineering/ElasticSearch/index.md",
+    "Data Engineering/DynamoDB/index.md",
+    "Data Engineering/DuckDB/index.md",
+    "Data Engineering/DBT/index.md",
+    "Data Engineering/ClickHouse/index.md",
+    "Data Analytics/Looker/index.md",
+    "Business/index.md",
+    "_IMAGES/Pasted image 20230904193138.png",
     "_IMAGES/Pasted image 20230904192515.png",
     "_IMAGES/Pasted image 20230904192956.png",
     "_IMAGES/Pasted image 20230904191700.png",
