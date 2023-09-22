@@ -524,3 +524,53 @@ val evenSquares = for (num <- numbers if num % 2 == 0) yield num * num
 Here, only the even numbers are squared and included in the `evenSquares` list.
 
 `for` comprehensions with `yield` are a powerful and expressive way to work with collections in Scala, allowing you to transform, filter, and process elements concisely while maintaining readability.
+
+# with
+In Scala, the "with" keyword is used in a few different contexts:
+
+1. ==**Trait Mixing**: One of the primary uses of "with" in Scala is for trait mixing or trait composition. In Scala, a class can extend multiple traits by using the "with" keyword to mix them together. This allows a class to inherit and use the behavior defined in multiple traits.==
+
+   ```scala
+   trait Printable {
+     def print(): Unit
+   }
+
+   trait Loggable {
+     def log(): Unit
+   }
+
+   class MyClass extends Printable with Loggable {
+     def print(): Unit = println("Printing...")
+     def log(): Unit = println("Logging...")
+   }
+   ```
+
+   In this example, the class `MyClass` mixes in both the `Printable` and `Loggable` traits using the "with" keyword, so it can access the `print` and `log` methods defined in those traits.
+
+2. ==**Type Aliases**: The "with" keyword can also be used when defining type aliases, especially in the context of self-type annotations. It is used to specify a type alias that refers to a combination of types or traits.==
+
+   ```scala
+   trait A
+   trait B
+
+   type Combined = A with B
+   ```
+
+   Here, the "with" keyword is used in the type alias `Combined` to combine the types `A` and `B`.
+
+3. ==**Pattern Matching**: In pattern matching, the "with" keyword is used to match a complex pattern that includes subpatterns.==
+
+   ```scala
+   case class Person(name: String, age: Int)
+
+   val person = Person("Alice", 30)
+
+   person match {
+     case p @ Person(_, age) if age < 18 => println(s"Child: $p")
+     case p @ Person(name, age) if age >= 18 => println(s"Adult: $p")
+   }
+   ```
+
+   In this example, the "@" symbol is used with the "with" keyword to bind the matched `Person` object to the variable `p`.
+
+Overall, the "with" keyword in Scala is primarily associated with trait mixing and type aliases, and it plays a key role in creating flexible and modular code by allowing classes to inherit behavior from multiple traits.

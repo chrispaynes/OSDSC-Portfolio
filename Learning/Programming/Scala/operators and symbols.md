@@ -153,3 +153,31 @@ val doubledSet = doubleElements(set)   // Returns Set(8, 10, 12)
 In the `doubleElements` function, `[A <: Iterable[Int]]` is an upper type bound that ensures that `A` is a subtype of `Iterable[Int]`. This allows you to call `map` on the `input` collection, which is a method provided by `Iterable`, and then cast the result back to type `A`.
 
 ==The `<:` symbol is a way to express constraints on type parameters and ensure type safety in generic code. It allows you to specify that a type must be a subtype of another type, which can be helpful for designing generic functions and classes that work with a wide range of types while maintaining type safety.==
+
+# @
+In Scala, the "@" symbol is primarily used for two purposes:
+
+1. ==**Pattern Matching**: The "@" symbol is used in pattern matching to bind a part of a pattern to a variable. It allows you to match a complex pattern while still capturing specific subpatterns within it.== Here's a simple example:
+
+   ```scala
+   val pair = (1, 2)
+   pair match {
+     case (x, y @ 2) => println(s"x: $x, y: $y") // Matches (1, 2) and binds y to 2
+     case _ => println("No match")
+   }
+   ```
+
+   ==In this example, the "@" symbol is used to bind the value 2 to the variable `y` when the pattern `(x, y @ 2)` is matched.==
+
+2. ==**Annotation**: The "@" symbol is used to specify annotations in Scala. Annotations provide metadata about classes, methods, fields, or other program elements. Annotations in Scala are often used for various purposes, including code documentation and framework-specific configurations.==
+
+   ```scala
+   @deprecated("This method is deprecated. Use the newMethod instead.")
+   def oldMethod(): Unit = {
+     // Deprecated method implementation
+   }
+   ```
+
+   In this example, the `@deprecated` annotation is used to indicate that the `oldMethod` is deprecated and provides a message explaining that it should be replaced with a new method.
+
+The exact behavior and usage of the "@" symbol can vary depending on the context in which it is used. In pattern matching, it is used to create more flexible and expressive patterns, while in annotations, it provides metadata and instructions to the compiler or tools.
