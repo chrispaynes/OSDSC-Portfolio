@@ -58,3 +58,6 @@ Advantages of Snowflake Staging:
 - **Error Handling**: If issues arise during the loading process, you can address them in the staging area without affecting the target tables.
 
 Overall, Snowflake Staging is an essential component of the data pipeline in Snowflake-based data warehousing and analytics workflows, providing a streamlined and efficient way to prepare and load data into Snowflake for analysis.
+
+# Scripting
+- https://docs.snowflake.com/en/sql-reference-snowflake-scripting

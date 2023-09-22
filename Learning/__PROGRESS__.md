@@ -52,7 +52,7 @@
 - [ ] .
 ## Business
 - [ ] ✅ Data Science For Business ⭐⭐⭐⭐⭐
-- [ ] Financial Intelligence
+- [ ] ✅ Financial Intelligence ⭐⭐⭐⭐⭐
 - [ ] .
 - [ ] .
 - [ ] .
