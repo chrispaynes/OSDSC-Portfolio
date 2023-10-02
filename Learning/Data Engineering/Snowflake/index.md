@@ -61,3 +61,81 @@ Overall, Snowflake Staging is an essential component of the data pipeline in Sno
 
 # Scripting
 - https://docs.snowflake.com/en/sql-reference-snowflake-scripting
+
+# Temp Tables
+In Snowflake, a temporary table (often referred to as a "temp table") is a type of table that is used to store and manipulate data temporarily within a Snowflake session. Temporary tables are distinct from regular (persistent) tables in Snowflake in several ways:
+
+1. ==**Scope**: Temporary tables are session-specific, meaning they exist only for the duration of the user's session. Once the session ends, the temporary table is automatically dropped and its data is discarded. They are not visible or accessible to other sessions or users.==
+
+2. ==**Purpose**: Temporary tables are typically used for intermediate data processing within a session. They can be used to stage data, perform complex transformations, join data from multiple sources, or store interim results during a session's analytical or ETL (Extract, Transform, Load) processes.==
+
+3. ==**Data Isolation**: Each user's session can have its own set of temporary tables. This isolation ensures that temporary table names used in one session do not conflict with those used in other sessions.==
+
+4. ==**No Permanent Storage**: Temporary tables do not consume storage in the Snowflake data warehouse. They are purely in-memory structures designed to improve query and data processing performance during a session.==
+
+5. ==**Automatic Cleanup**: Snowflake automatically cleans up and drops temporary tables at the end of the session, reducing the risk of cluttering the database with unnecessary objects.==
+
+Here's how you can create and use a temporary table in Snowflake:
+
+**Creating a Temporary Table**:
+```sql
+-- Create a temporary table within the current session
+CREATE OR REPLACE TEMPORARY TABLE temp_table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+);
+```
+
+**Inserting Data into a Temporary Table**:
+```sql
+-- Insert data into the temporary table
+INSERT INTO temp_table_name
+VALUES (value1, value2, ...);
+```
+
+**Querying and Manipulating Data in a Temporary Table**:
+```sql
+-- Query data from the temporary table
+SELECT * FROM temp_table_name;
+
+-- Update or manipulate data in the temporary table
+UPDATE temp_table_name SET column1 = new_value WHERE condition;
+```
+
+**Dropping a Temporary Table**:
+```sql
+-- Drop the temporary table at the end of the session
+-- This can also be done explicitly using the DROP TABLE statement
+-- DROP TABLE temp_table_name;
+```
+
+Temporary tables in Snowflake provide a convenient and efficient way to work with intermediate data during data processing tasks without the need to create permanent tables. They are particularly useful when you want to stage data, perform complex transformations, or experiment with data within the context of a session.
+
+# Materialized View
+![[Pasted image 20230926105501.png]]
+A Snowflake materialized view is a database object that stores the results of a query in a precomputed and optimized form. ==Materialized views are used to improve query performance by allowing users to retrieve data from the view, which is already precomputed and stored, instead of re-executing complex queries on the underlying data. In Snowflake, materialized views are a feature that helps speed up analytical workloads.==
+
+Here are key characteristics and details about Snowflake materialized views:
+
+1. ==**Precomputed Results**: Materialized views store the results of a specific query in a precomputed form. These results are calculated and updated automatically based on changes to the underlying data.==
+
+2. **Query Optimization**: Materialized views are used to optimize query performance. When users query a materialized view, they can retrieve data much faster than if they were to execute the original, potentially complex query on the raw data.
+
+3. **Reduced Query Load**: By using materialized views, query workloads on the primary data are reduced. This can significantly improve query response times and reduce the overall load on the data warehouse.
+
+4. ==**Aggregations and Joins**: Materialized views are commonly used for aggregations, summarizations, and joins of data. They are especially beneficial for analytical use cases that involve large datasets and complex transformations.==
+
+5. ==**Automatic Refresh**: Snowflake provides automatic refresh capabilities for materialized views. When the underlying data changes, Snowflake can automatically refresh the materialized view to reflect the latest data.==
+
+6. **Querying Materialized Views**: Querying a materialized view is similar to querying a regular table. Users can write SQL queries against the materialized view as if it were a standard table, making it convenient for analytical and reporting tasks.
+
+7. ==**Storage Cost**: Materialized views consume storage space in the data warehouse because they store precomputed data. However, the trade-off is often justified by the query performance improvements.==
+
+8. **Complex Queries**: Materialized views are typically used for queries that involve complex joins, aggregations, or transformations. They are not needed for simple queries that can be efficiently executed on the raw data.
+
+9. **Query Rewrite**: Snowflake's query optimizer has the ability to automatically rewrite user queries to use materialized views when appropriate. This helps ensure that queries benefit from the performance improvements offered by materialized views.
+
+10. ==**Materialized View Logs**: Snowflake maintains logs to track changes in the underlying data. These logs are used to determine when a materialized view needs to be refreshed.==
+
+Materialized views are a powerful tool for optimizing query performance in Snowflake, particularly for analytical workloads with large datasets. By storing precomputed results, Snowflake materialized views can significantly reduce query execution times and enhance the overall efficiency of data analytics.

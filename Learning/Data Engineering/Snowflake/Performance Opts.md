@@ -1,0 +1,1 @@
+- perform COPY table A to COPY table B instead of individual row insets
