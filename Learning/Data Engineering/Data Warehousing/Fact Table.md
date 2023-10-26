@@ -23,3 +23,32 @@ Here are some key characteristics of a relational fact table:
 10. ==**Dimension Foreign Keys**: Foreign keys in a fact table reference primary keys in dimension tables. These keys enable data analysts to join fact and dimension tables to perform queries and generate reports.==
 
 Relational fact tables play a central role in data warehousing because they store the core business data that organizations analyze to make informed decisions. By connecting fact tables to dimension tables through foreign keys, analysts can create meaningful reports and gain insights into various aspects of their business, such as sales performance, customer behavior, or inventory management. The star schema and snowflake schema are common schema designs that incorporate fact tables in data warehousing environments.
+
+
+# Example
+A fact table in a Relational Database Management System (RDBMS) typically ==stores quantitative data or measures related to business events or transactions. These measures are associated with dimensions, which provide context to the data.== Below is an example of records that might be found in a fact table in a hypothetical sales data warehouse:
+
+Assuming a simplified schema, here are example records in a Sales Fact Table:
+
+**Sales Fact Table:**
+- **fact_id (Primary Key)**: An auto-incrementing unique identifier for each fact record.
+- **order_date_id (Foreign Key)**: A foreign key that links to the Date Dimension, indicating the date of the sales transaction.
+- **customer_id (Foreign Key)**: A foreign key that links to the Customer Dimension, representing the customer making the purchase.
+- **product_id (Foreign Key)**: A foreign key that links to the Product Dimension, specifying the product being sold.
+- **sales_rep_id (Foreign Key)**: A foreign key that links to the Sales Rep Dimension, identifying the sales representative handling the sale.
+- **quantity_sold**: The number of units of the product sold in this transaction.
+- **sales_amount**: The total revenue generated from the sale.
+- **discount_amount**: The amount of discounts applied to the sale.
+- **tax_amount**: The taxes associated with the sale.
+- **profit**: The profit earned from the sale (sales_amount - discount_amount - tax_amount).
+
+Here's an example of a few records in this Sales Fact Table:
+
+| fact_id | order_date_id | customer_id | product_id | sales_rep_id | quantity_sold | sales_amount | discount_amount | tax_amount | profit |
+| ------- | ------------- | ----------- | ---------- | ----------- | -------------- | ------------ | --------------- | ---------- | ------ |
+| 1       | 20230930      | 101         | 501        | 201         | 5              | 250.00       | 10.00           | 22.50      | 217.50 |
+| 2       | 20230930      | 102         | 502        | 202         | 10             | 500.00       | 20.00           | 45.00      | 435.00 |
+| 3       | 20230930      | 103         | 503        | 201         | 2              | 100.00       | 5.00            | 9.00       | 86.00  |
+| 4       | 20230930      | 104         | 504        | 203         | 7              | 350.00       | 14.00           | 31.50      | 304.50 |
+
+These records represent sales transactions, each associated with a specific date, customer, product, sales representative, and corresponding sales metrics. The fact table serves as the central repository for these quantitative measures and allows for the analysis of business performance across various dimensions.

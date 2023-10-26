@@ -1,0 +1,1 @@
+https://www.alation.com/blog/what-is-a-data-catalog/
