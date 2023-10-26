@@ -10,8 +10,6 @@ Sprint 5 - Recommendation Engines
 Sprint 3 - NLP
 Sprint 0 - LinkedIn's Tech Stack / Engineering
 Graph Data Science
-- Pandas
-	- Stack, Unstack, Pivot, Etc.
 - Data Science Lifecycle
 - Distributions
 - Clustering
