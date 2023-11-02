@@ -1,3 +1,5 @@
+https://docs.getdbt.com/reference/dbt-jinja-functions/ref
+
 ==DBT (Data Build Tool) macros are reusable SQL code snippets or templates that allow you to parameterize and abstract common data transformation patterns in your data analytics and data warehousing workflows. DBT macros are a powerful feature of the DBT framework, which is used for orchestrating data transformations and modeling in a data warehouse.==
 
 Here are some key characteristics and use cases of DBT macros:

@@ -1,4 +1,4 @@
-## Chapter 1 What makes a successful data scientist?
+## Chapter 1 - What makes a successful data scientist?
 ![[Pasted image 20230827142947.png]]
 - With data scientist virtues defined and included in the expectations for success, we have transformed Drew Conway’s Venn diagram into a fan with six parts: technology, execution, expert knowledge, ethics, rigor, and attitude—or the TEE-ERA fan (figure 1.2)
 
@@ -12,16 +12,16 @@
 # Part 1. The tech lead: Cultivating leadership
 
 
-## Chapter 2 Capabilities for leading projects
+## Chapter 2 — Capabilities for leading projects
 
 
-## Chapter 3 Virtues for leading projects
+## Chapter 3 — Virtues for leading projects
 
 ---
 # Part 2. The manager: Nurturing a team
 
 
-## Chapter 4 Capabilities for leading people
+## Chapter 4 — Capabilities for leading people
 
 ![[Pasted image 20230827154807.png]]
 ![[Pasted image 20230827155636.png]]
