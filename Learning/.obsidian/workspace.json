@@ -13,13 +13,48 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming/Scala/functional_programming.md",
+                "file": "Data Engineering/misc.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "697d70a6a3708702",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Science/Book - How to Lead in Data Science.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0dac29116818a4bf",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "_IMAGES/Pasted image 20231114123846.png"
+              }
+            }
+          },
+          {
+            "id": "8ddebe8b322a4739",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering/Data Warehousing/Kimball/Grain.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -48,7 +83,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "book - fundamentals",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +104,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 428.5
+    "width": 309.5
   },
   "right": {
     "id": "dd4cd17aef2c051d",
@@ -85,7 +120,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming/Scala/functional_programming.md",
+                "file": "_IMAGES/Pasted image 20231114123846.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +137,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming/Scala/functional_programming.md",
+                "file": "_IMAGES/Pasted image 20231114123846.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,15 +160,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming/Scala/functional_programming.md"
+                "file": "_IMAGES/Pasted image 20231114123846.png"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -149,51 +185,51 @@
   },
   "active": "fc785b9ac502760f",
   "lastOpenFiles": [
-    "Programming/Scala/operators and symbols.md",
-    "Programming/Scala/packages.md",
-    "Programming/Scala/syntax.md",
-    "Programming/SQL/index.md",
-    "Programming/Scala/functions.md",
-    "Programming/Scala/functional_programming.md",
-    "Programming/SQL/joins.md",
-    "Data Science/Evaluation Measures.md",
-    "Data Science/Linear Discriminant Analysis.md",
-    "index.md",
-    "Technology/Kubernetes/Argo/index.md",
-    "Technology/Sagemaker/index.md",
-    "Technology/Kubernetes/Argo",
-    "Technology/Sagemaker",
-    "Technology/Kubernetes",
-    "Technology",
-    "Programming/Python/index.md",
-    "Programming/Julia/index.md",
-    "Programming/Golang/index.md",
-    "Programming/Scala",
-    "Programming/SQL",
-    "Programming/Python",
-    "Programming/Julia",
-    "Programming/Golang",
-    "Programming",
-    "Data Governance/index.md",
-    "Data Engineering/Snowflake/index.md",
-    "Data Engineering/PostgreSQL/index.md",
+    "Data Engineering/Data Warehousing/Kimball/Dimensional Modeling Techniques.md",
+    "Data Engineering/Data Warehousing/Kimball/Grain.md",
+    "Data Engineering/Data Warehousing/Kimball/Header-Line Fact Table.md",
+    "Programming/SQL/CONNECT BY.md",
+    "Data Engineering/Data Warehousing/Kimball/Enterprise Data Warehouse (EDW) Bus Matrix.md",
+    "_IMAGES/Pasted image 20231114184019.png",
+    "Data Engineering/Data Warehousing/Kimball/Conformed Dimensions.md",
+    "Data Engineering/Data Warehousing/Kimball/Accumulating Snapshot Fact Table.md",
+    "Data Engineering/Data Warehousing/Kimball/Kimball Design Tips.md",
+    "Data Engineering/Data Warehousing/Kimball/Junk Dimension.md",
+    "Data Engineering/Data Warehousing/Kimball/Degenerate Dimension Key.md",
+    "Data Engineering/Data Warehousing/Corporate Information Factory (CIF) Architecture.md",
+    "Data Engineering/Data Warehousing/Kimball",
+    "Data Engineering/misc.md",
+    "_IMAGES/Pasted image 20231114124239.png",
+    "_IMAGES/Pasted image 20231114123846.png",
+    "Data Science/Book - Data Science for Business.md",
+    "Data Engineering/Fivetran/Transformations - Beta.md",
+    "_IMAGES/Pasted image 20231107085910.png",
+    "__PROGRESS__.md",
+    "Data Engineering/OpenSearch/Query Operators.md",
+    "Data Engineering/OpenSearch/Datatypes.md",
     "Data Engineering/Fivetran/index.md",
-    "Data Engineering/ElasticSearch/index.md",
-    "Data Engineering/DynamoDB/index.md",
-    "Data Engineering/DuckDB/index.md",
-    "Data Engineering/DBT/index.md",
-    "Data Engineering/ClickHouse/index.md",
-    "Data Analytics/Looker/index.md",
-    "Business/index.md",
-    "_IMAGES/Pasted image 20230904193138.png",
-    "_IMAGES/Pasted image 20230904192515.png",
-    "_IMAGES/Pasted image 20230904192956.png",
-    "_IMAGES/Pasted image 20230904191700.png",
-    "_IMAGES/Pasted image 20230904183653.png",
-    "_IMAGES/Pasted image 20230904183644.png",
-    "_IMAGES/Pasted image 20230904183407.png",
-    "_IMAGES/Pasted image 20230904183349.png",
-    "_IMAGES/Pasted image 20230830210544.png",
-    "_IMAGES/Pasted image 20230829222939.png"
+    "Data Engineering/Fivetran/Pricing.md",
+    "Data Engineering/Fivetran/pipeline.md",
+    "Data Engineering/Fivetran/Alternative Options.md",
+    "_IMAGES/Pasted image 20231109095844.png",
+    "_IMAGES/Pasted image 20231109094855.png",
+    "_IMAGES/Pasted image 20231109094824.png",
+    "_IMAGES/Pasted image 20231109094628.png",
+    "_IMAGES/Pasted image 20231109094611.png",
+    "_IMAGES/Pasted image 20231109094439.png",
+    "Programming/SQL/Window Functions.md",
+    "Programming/SQL/Aggregations.md",
+    "Data Analytics/Looker/View.md",
+    "Data Analytics/Looker/Explore.md",
+    "Data Analytics/Looker/Overview.md",
+    "Data Science/_ARTICLES",
+    "Programming/SQL/Administration",
+    "Misc. Math",
+    "Calculus",
+    "argo-darwin-amd64",
+    "argo-darwin-amd64.gz",
+    "argocd-darwin-arm64",
+    "Data Analytics/Biz Metrics",
+    "Technology/Terraform"
   ]
 }

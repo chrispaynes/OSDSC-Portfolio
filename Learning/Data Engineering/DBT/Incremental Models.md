@@ -1,3 +1,5 @@
+https://hevodata.com/learn/incremental-model-using-dbt-snowflake/
+
 DBT (Data Build Tool) Incremental models are a ==feature that allows you to efficiently update and maintain your data warehouse tables or views by only processing and transforming the new or modified data, rather than recomputing everything from scratch. This incremental approach can significantly improve the speed and efficiency of your data transformation processes.== Here's how DBT Incremental models work:
 
 1. ==**Identifying Changes**: To use Incremental models, you need a way to identify the new or modified data that needs to be processed. This often involves comparing timestamps, record IDs, or other change indicators in your source data. Commonly, a "last modified" timestamp column is used to determine which records have changed since the last update.==

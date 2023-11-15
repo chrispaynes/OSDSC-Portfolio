@@ -1,0 +1,1 @@
+### Creating a Python UDF With Code Uploaded from a Stage[¶](https://docs.snowflake.com/en/developer-guide/udf/python/udf-python-creating#creating-a-python-udf-with-code-uploaded-from-a-stage "Permalink to this headline")

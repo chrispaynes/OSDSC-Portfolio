@@ -24,3 +24,49 @@ Key features and aspects of Fivetran include:
 10. **Extensibility**: While Fivetran offers a wide range of connectors, it also supports custom connectors and API integrations for unique data sources.
 
 Fivetran is commonly used by data engineers, data analysts, and data scientists to simplify the process of data ingestion, making it easier to centralize data from various sources into a data warehouse or data lake. This centralized data can then be used for analytics, reporting, and business intelligence purposes.
+
+
+# Setup Demo
+- https://youtu.be/z7AwXj-iP9c?feature=shared
+- can connect to google sheet, google analytics, hubspot
+
+![[Pasted image 20231109092209.png]]
+![[Pasted image 20231109092118.png]]
+	- can set a keypair
+![[Pasted image 20231109092252.png]]
+![[Pasted image 20231109092319.png]]
+![[Pasted image 20231109092534.png]]
+![[Pasted image 20231109092616.png]]
+![[Pasted image 20231109092700.png]]
+![[Pasted image 20231109092732.png]]
+![[Pasted image 20231109092806.png]]
+![[Pasted image 20231109092925.png]]
+![[Pasted image 20231109092959.png]]
+![[Pasted image 20231109093021.png]]
+![[Pasted image 20231109093032.png]]
+
+# FiveTran Product Demo 
+![[Pasted image 20231109093212.png]]
+- https://www.fivetran.com/connectors/hubspot
+
+![[Pasted image 20231109093437.png]]
+![[Pasted image 20231109093514.png]]
+![[Pasted image 20231109093542.png]]
+![[Pasted image 20231109093557.png]]
+	- could use to automate S3 loads into snowflake
+	- can build your own connector
+
+![[Pasted image 20231109093916.png]]
+![[Pasted image 20231109094000.png]]
+- will normalize denormalized (JSON data) into table structure
+![[Pasted image 20231109094125.png]]
+	- auto creates ERDs
+
+![[Pasted image 20231109094209.png]]
+- will auto update destination when the source changes
+- fivetran generally does not delete columns, will stop writing to it
+
+![[Pasted image 20231109094257.png]]
+- has Type II slowly changing dimensions
+	- won't delete records, settings delete column to TRUE
+![[Pasted image 20231109094439.png]]
