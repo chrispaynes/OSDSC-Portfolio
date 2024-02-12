@@ -2,6 +2,8 @@
 
 ==The dot product of two vectors **a** and **b**, typically denoted as **a · b** or **(a, b)**,== is calculated as follows:
 
+
+
 If **a** = [a₁, a₂, a₃, ... aₙ] and **b** = [b₁, b₂, b₃, ... bₙ], then
 
 **a · b = a₁ * b₁ + a₂ * b₂ + a₃ * b₃ + ... + aₙ * bₙ**

@@ -8,53 +8,32 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d6c95850459a1a62",
+            "id": "169903d031e56aa6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Engineering/misc.md",
+                "file": "Book - Essentialism.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "697d70a6a3708702",
+            "id": "99ac694764861c4d",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Science/Book - How to Lead in Data Science.md",
+                "file": "Data Science/_BOOKS/Book - Build a Career in Data Science.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "0dac29116818a4bf",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "_IMAGES/Pasted image 20231114123846.png"
-              }
-            }
-          },
-          {
-            "id": "8ddebe8b322a4739",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Engineering/Data Warehousing/Kimball/Grain.md",
-                "mode": "source",
-                "source": false
-              }
+              },
+              "pinned": true
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -83,7 +62,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "book - fundamentals",
+                "query": "Spear",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -100,11 +79,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 309.5
+    "width": 448.5
   },
   "right": {
     "id": "dd4cd17aef2c051d",
@@ -120,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_IMAGES/Pasted image 20231114123846.png",
+                "file": "Book - Essentialism.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_IMAGES/Pasted image 20231114123846.png",
+                "file": "Book - Essentialism.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -160,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_IMAGES/Pasted image 20231114123846.png"
+                "file": "Book - Essentialism.md"
               }
             }
           }
@@ -169,7 +149,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
+    "width": 527.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -183,53 +163,53 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "fc785b9ac502760f",
+  "active": "e380938e7227e322",
   "lastOpenFiles": [
-    "Data Engineering/Data Warehousing/Kimball/Dimensional Modeling Techniques.md",
-    "Data Engineering/Data Warehousing/Kimball/Grain.md",
-    "Data Engineering/Data Warehousing/Kimball/Header-Line Fact Table.md",
-    "Programming/SQL/CONNECT BY.md",
-    "Data Engineering/Data Warehousing/Kimball/Enterprise Data Warehouse (EDW) Bus Matrix.md",
-    "_IMAGES/Pasted image 20231114184019.png",
-    "Data Engineering/Data Warehousing/Kimball/Conformed Dimensions.md",
-    "Data Engineering/Data Warehousing/Kimball/Accumulating Snapshot Fact Table.md",
-    "Data Engineering/Data Warehousing/Kimball/Kimball Design Tips.md",
-    "Data Engineering/Data Warehousing/Kimball/Junk Dimension.md",
-    "Data Engineering/Data Warehousing/Kimball/Degenerate Dimension Key.md",
-    "Data Engineering/Data Warehousing/Corporate Information Factory (CIF) Architecture.md",
-    "Data Engineering/Data Warehousing/Kimball",
-    "Data Engineering/misc.md",
-    "_IMAGES/Pasted image 20231114124239.png",
-    "_IMAGES/Pasted image 20231114123846.png",
-    "Data Science/Book - Data Science for Business.md",
-    "Data Engineering/Fivetran/Transformations - Beta.md",
-    "_IMAGES/Pasted image 20231107085910.png",
-    "__PROGRESS__.md",
-    "Data Engineering/OpenSearch/Query Operators.md",
-    "Data Engineering/OpenSearch/Datatypes.md",
-    "Data Engineering/Fivetran/index.md",
-    "Data Engineering/Fivetran/Pricing.md",
-    "Data Engineering/Fivetran/pipeline.md",
-    "Data Engineering/Fivetran/Alternative Options.md",
-    "_IMAGES/Pasted image 20231109095844.png",
-    "_IMAGES/Pasted image 20231109094855.png",
-    "_IMAGES/Pasted image 20231109094824.png",
-    "_IMAGES/Pasted image 20231109094628.png",
-    "_IMAGES/Pasted image 20231109094611.png",
-    "_IMAGES/Pasted image 20231109094439.png",
-    "Programming/SQL/Window Functions.md",
-    "Programming/SQL/Aggregations.md",
-    "Data Analytics/Looker/View.md",
-    "Data Analytics/Looker/Explore.md",
-    "Data Analytics/Looker/Overview.md",
-    "Data Science/_ARTICLES",
-    "Programming/SQL/Administration",
-    "Misc. Math",
-    "Calculus",
-    "argo-darwin-amd64",
-    "argo-darwin-amd64.gz",
-    "argocd-darwin-arm64",
-    "Data Analytics/Biz Metrics",
-    "Technology/Terraform"
+    "Statistics/Linear Discriminant Analysis.md",
+    "Statistics/Linear Discriminant.md",
+    "Data Science/Graph Science/Link Prediction.md",
+    "Data Science/Graph Science/Temporal Graph Analysis.md",
+    "Data Science/Natural Language Processing/Named Entity Disambiguation (NED) or Named Entity Recognition and Disambiguation (NERD).md",
+    "Data Science/Graph Science/Social Network Analysis (SNA).md",
+    "Data Science/Graph Science/Monopartite Networks.md",
+    "Data Science/Ensemble Methods/Bagging.md",
+    "Data Science/Ensemble Methods/Random Forest.md",
+    "Data Science/Ensemble Methods/Stacking.md",
+    "Data Science/Neural Networks and Deep Learning/Transfer Learning.md",
+    "Data Science/Neural Networks and Deep Learning/Q-Learning.md",
+    "Data Science/Neural Networks and Deep Learning/Hyperbolic Tangent Activation Function (tanh).md",
+    "Statistics/Bayesian Statistics/Dirichlet Process (DP).md",
+    "Statistics/Hidden Markov Models (HMMs).md",
+    "Data Analytics/Spine Plot.md",
+    "Pasted image 20240211185116.png",
+    "Data Analytics/Ridge Plot.md",
+    "Pasted image 20240211184951.png",
+    "Linear Algebra/Singular Value Decomposition (SVD).md",
+    "Linear Algebra/Overview.md",
+    "Linear Algebra/Maxtrix Factorization Methods.md",
+    "Linear Algebra/Matrix Inversion.md",
+    "Linear Algebra/Math - Linear Algebra.md",
+    "Linear Algebra/Linear Combination.md",
+    "Linear Algebra/Greek Letters.md",
+    "Linear Algebra/Eigenvalues and Eigenvectors.md",
+    "Linear Algebra/Dot Product.md",
+    "Data Science/Graph Science",
+    "Data Science/Regression",
+    "Statistics/Bayesian Statistics",
+    "Data Science/Neural Networks and Deep Learning",
+    "Data Science/Ensemble Methods",
+    "Data Science/Natural Language Processing",
+    "Programming/Rust",
+    "Pasted image 20240211160726.png",
+    "Statistics/Statistical Tests",
+    "Data Science/_PODCASTS",
+    "Data Science/_BOOKS",
+    "Pasted image 20240211142054.png",
+    "Pasted image 20240131115255.png",
+    "Pasted image 20240131115234.png",
+    "Pasted image 20240131115142.png",
+    "Pasted image 20240131115119.png",
+    "Pasted image 20240131115000.png",
+    "Pasted image 20240131114915.png"
   ]
 }

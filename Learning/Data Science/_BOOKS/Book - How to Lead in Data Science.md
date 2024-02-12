@@ -21,7 +21,7 @@
 # Part 2. The manager: Nurturing a team
 
 
-## Chapter 4 — Capabilities for leading people
+## ==Chapter 4 — Capabilities for leading people == CONTINUE FROM HERE
 
 ![[Pasted image 20230827154807.png]]
 ![[Pasted image 20230827155636.png]]

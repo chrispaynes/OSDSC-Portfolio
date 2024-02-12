@@ -1,0 +1,1 @@
+- finding the expected value of an exponential random variable?

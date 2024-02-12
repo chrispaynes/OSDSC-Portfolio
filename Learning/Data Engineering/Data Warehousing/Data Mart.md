@@ -24,6 +24,8 @@ Here are some key characteristics and points to understand about data marts:
 
 Data marts are often used to address the specific reporting and analytical needs of various parts of an organization, allowing business units to have more control over their data while still benefiting from the centralized storage and management provided by the enterprise data warehouse. In some cases, multiple data marts may exist within an organization, each serving different departments or business functions. These data marts can collectively contribute to a broader data warehousing and analytics strategy.
 
+![[Pasted image 20231120124337.png]]
+![[Pasted image 20231120124402.png]]
 
 # Common Marts
 Snowflake is a cloud-based data warehousing platform that enables organizations to build and manage data marts for various business needs. ==Data marts are subsets of a data warehouse that are designed for specific departments, teams, or use cases.== Common Snowflake data marts include:
