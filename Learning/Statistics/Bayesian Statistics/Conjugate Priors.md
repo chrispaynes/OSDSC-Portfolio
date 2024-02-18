@@ -1,3 +1,5 @@
+https://en.wikipedia.org/wiki/Conjugate_prior#Table_of_conjugate_distributions
+
 In Bayesian statistics, a conjugate prior is a ==prior probability distribution that, when combined with a specific likelihood function, leads to a posterior distribution that belongs to the same family as the prior. In simpler terms, the posterior distribution has the same mathematical form as the prior.==
 
 Conjugate priors are particularly useful because they simplify the computation of posterior distributions, especially in cases where analytical solutions are sought. When the prior and the likelihood function are chosen to be conjugate, the resulting posterior distribution can be expressed in a closed-form formula, making the Bayesian analysis more tractable.

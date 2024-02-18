@@ -1,3 +1,4 @@
+![[Pasted image 20240216205835.png]]
 A dendrogram is a tree-like diagram used in data analysis and data visualization, particularly in the fields of hierarchical clustering, taxonomy, and graph theory. It is a graphical representation that displays the arrangement of objects or data points based on their similarity or dissimilarity.
 
 Key features of a dendrogram:

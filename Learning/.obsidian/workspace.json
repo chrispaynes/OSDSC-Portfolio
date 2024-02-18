@@ -4,29 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "2ccc9128a1a3737a",
+        "id": "0fae1bfc1a7920ff",
         "type": "tabs",
         "children": [
           {
-            "id": "169903d031e56aa6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Book - Essentialism.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "99ac694764861c4d",
+            "id": "ef8943be0aadbc7e",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Science/_BOOKS/Book - Build a Career in Data Science.md",
+                "file": "College Courses/CSU/MATH 271 Applied Mathematics for Chemists I.md",
                 "mode": "source",
                 "source": false
               },
@@ -62,7 +50,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Spear",
+                "query": "Latent Semanti",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,12 +67,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 448.5
+    "width": 353.5024719238281
   },
   "right": {
     "id": "dd4cd17aef2c051d",
@@ -100,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Book - Essentialism.md",
+                "file": "College Courses/CSU/MATH 271 Applied Mathematics for Chemists I.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Book - Essentialism.md",
+                "file": "College Courses/CSU/MATH 271 Applied Mathematics for Chemists I.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Book - Essentialism.md"
+                "file": "College Courses/CSU/MATH 271 Applied Mathematics for Chemists I.md"
               }
             }
           }
@@ -149,7 +136,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 527.5,
+    "width": 271.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -163,53 +150,53 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "e380938e7227e322",
+  "active": "ef8943be0aadbc7e",
   "lastOpenFiles": [
-    "Statistics/Linear Discriminant Analysis.md",
-    "Statistics/Linear Discriminant.md",
-    "Data Science/Graph Science/Link Prediction.md",
-    "Data Science/Graph Science/Temporal Graph Analysis.md",
-    "Data Science/Natural Language Processing/Named Entity Disambiguation (NED) or Named Entity Recognition and Disambiguation (NERD).md",
-    "Data Science/Graph Science/Social Network Analysis (SNA).md",
-    "Data Science/Graph Science/Monopartite Networks.md",
-    "Data Science/Ensemble Methods/Bagging.md",
-    "Data Science/Ensemble Methods/Random Forest.md",
-    "Data Science/Ensemble Methods/Stacking.md",
-    "Data Science/Neural Networks and Deep Learning/Transfer Learning.md",
-    "Data Science/Neural Networks and Deep Learning/Q-Learning.md",
-    "Data Science/Neural Networks and Deep Learning/Hyperbolic Tangent Activation Function (tanh).md",
-    "Statistics/Bayesian Statistics/Dirichlet Process (DP).md",
-    "Statistics/Hidden Markov Models (HMMs).md",
-    "Data Analytics/Spine Plot.md",
+    "Data Engineering/ElasticSearch/Retrieval Patterns.md",
+    "Databases/Snowflake/index.md",
+    "Databases/Snowflake/Worksheet.md",
+    "Databases/Snowflake/Warehouses.md",
+    "Databases/Snowflake/Virtual Warehouses.md",
+    "Databases/Snowflake/Using Third-Party Packages.md",
+    "Databases/Snowflake/Untitled.md",
+    "Databases/Snowflake/Time Travel.md",
+    "Databases/Snowflake/Time Travel with Soft Deletes.md",
+    "Databases/Snowflake/Table Types.md",
+    "Databases/Snowflake/Snowpipe.md",
+    "Databases/Snowflake/Snowflake User Interface.md",
+    "Databases/Snowflake/Snowpark.md",
+    "Databases/Snowflake/Snowflake Views.md",
+    "Databases/Snowflake/Snowflake Tables.md",
+    "Databases/Snowflake/Snowflake Storage.md",
+    "Databases/Snowflake/Snowflake Streams.md",
+    "Databases/Snowflake/Snowflake Stages.md",
+    "Databases/Snowflake/Snowflake Schema.md",
+    "Databases/Snowflake/Snowflake Security.md",
+    "Databases/Snowflake/Snowflake Roles.md",
+    "Databases/Snowflake/Snowflake Procedures.md",
+    "Databases/Snowflake/Snowflake Metadata.md",
+    "Databases/Snowflake/Secure Data Sharing.md",
+    "Databases/Snowflake/Snowflake Architecture.md",
+    "Databases/Snowflake/Snowflake Data Sharing.md",
+    "Databases/Snowflake",
+    "Databases/PostgreSQL",
+    "Databases/OpenSearch",
+    "Databases/Neo4J",
+    "Databases/ElasticSearch",
+    "Databases/DynamoDB",
+    "Databases/DuckDB",
+    "Databases/ClickHouse",
+    "Databases",
+    "node2vec.pdf",
+    "Pasted image 20240217151235.png",
+    "Pasted image 20240217150751.png",
+    "Pasted image 20240217143017.png",
+    "Pasted image 20240217130127.png",
+    "Pasted image 20240216205835.png",
+    "Pasted image 20240215090246.png",
     "Pasted image 20240211185116.png",
-    "Data Analytics/Ridge Plot.md",
     "Pasted image 20240211184951.png",
-    "Linear Algebra/Singular Value Decomposition (SVD).md",
-    "Linear Algebra/Overview.md",
-    "Linear Algebra/Maxtrix Factorization Methods.md",
-    "Linear Algebra/Matrix Inversion.md",
-    "Linear Algebra/Math - Linear Algebra.md",
-    "Linear Algebra/Linear Combination.md",
-    "Linear Algebra/Greek Letters.md",
-    "Linear Algebra/Eigenvalues and Eigenvectors.md",
-    "Linear Algebra/Dot Product.md",
-    "Data Science/Graph Science",
-    "Data Science/Regression",
-    "Statistics/Bayesian Statistics",
-    "Data Science/Neural Networks and Deep Learning",
-    "Data Science/Ensemble Methods",
-    "Data Science/Natural Language Processing",
-    "Programming/Rust",
     "Pasted image 20240211160726.png",
-    "Statistics/Statistical Tests",
-    "Data Science/_PODCASTS",
-    "Data Science/_BOOKS",
-    "Pasted image 20240211142054.png",
-    "Pasted image 20240131115255.png",
-    "Pasted image 20240131115234.png",
-    "Pasted image 20240131115142.png",
-    "Pasted image 20240131115119.png",
-    "Pasted image 20240131115000.png",
-    "Pasted image 20240131114915.png"
+    "Pasted image 20240211142054.png"
   ]
 }
