@@ -17,3 +17,8 @@
 Other important trigonometric concepts and identities include the Pythagorean identity, sum and difference formulas, double-angle formulas, and half-angle formulas.
 
 Trigonometric functions are essential in fields such as physics, engineering, computer graphics, and astronomy, where they are used to model and analyze periodic phenomena, angles, and rotations. They are also fundamental in calculus and mathematical analysis.
+
+
+- Cosecant (csc)
+- Secant (sec)
+- Cotangent (cot)

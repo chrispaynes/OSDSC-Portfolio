@@ -3,8 +3,7 @@ Trigonometry is a branch of mathematics that focuses on the relationships betwee
 1. **Basic Trigonometric Functions**:
    - Trigonometry begins with the study of six basic trigonometric functions: sine (sin), cosine (cos), tangent (tan), cosecant (csc), secant (sec), and cotangent (cot). These functions relate the angles and sides of right triangles.
 
-2. **Unit Circle**:
-   - The unit circle is a circle with a radius of 1 centered at the origin (0, 0) on a coordinate plane. It provides a geometric representation of trigonometric functions and their values.
+2. 
 
 3. **Right Triangle Trigonometry**:
    - Trigonometric functions can be defined in terms of ratios of the sides of right triangles. The three primary trigonometric ratios are sine, cosine, and tangent.
