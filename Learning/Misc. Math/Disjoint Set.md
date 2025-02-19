@@ -1,0 +1,5 @@
+In mathematics, a disjoint set, also known as a pairwise disjoint set, refers to a collection of sets in which no two distinct sets have any elements in common. Formally, a set of sets $\{A_i\}$ is said to be disjoint if the intersection of any two different sets $A_i$ and $A_j$ is an empty set, i.e., $A_i \cap A_j = \emptyset$ for all $i \neq j$.
+
+Disjoint sets are essentially sets that do not share any common elements. This concept is often used in various branches of mathematics, including set theory, topology, and graph theory. In graph theory, for example, disjoint sets play a role in defining partitions of the vertices of a graph, where each part is a set with no common elements with the other parts.
+
+The concept of disjoint sets is fundamental in mathematics and is used to express the idea of non-overlapping or mutually exclusive collections of elements.
