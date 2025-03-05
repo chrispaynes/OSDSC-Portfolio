@@ -102,9 +102,51 @@
               "icon": "lucide-file",
               "title": "Spearman Correlation Coefficient"
             }
+          },
+          {
+            "id": "0379723c908ed5d2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "BOOKS/A Mind For Numbers - How to Excel at Math and Science.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "A Mind For Numbers - How to Excel at Math and Science"
+            }
+          },
+          {
+            "id": "dda12bf41eb5518c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Understanding Analysis (Undergraduate Texts in Mathematics).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Understanding Analysis (Undergraduate Texts in Mathematics)"
+            }
+          },
+          {
+            "id": "ff03c9dbe40b4d29",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "BOOKS/Data Analysis Using Regression and Multilevel-Hierarchical Models.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Data Analysis Using Regression and Multilevel-Hierarchical Models"
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -251,34 +293,37 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "7e9acdb9e9cf5ca0",
+  "active": "ff03c9dbe40b4d29",
   "lastOpenFiles": [
-    "Statistics/Spearman Correlation Coefficient.md",
-    "Spearman Correlation Coefficient.md",
-    "Data Science - AI/RAG (Retrieval Augmented Generation).md",
-    "Data Science - AI/DPO (Direct Preference Optimization).md",
-    "Data Science - AI/LHF (Reinforcement Learning from Human Feedback).md",
-    "Data Science - AI/LoRA (Low-Rank Adaptation).md",
-    "Untitled 1.md",
-    "Statistics/Pearson Correlation Coefficient (Pearson's R).md",
-    "Computer Science/Log-Structured Merge (LSM) Tree.md",
-    "Computer Science/Heavy-Light Decomposition.md",
-    "Computer Science/Heavy-Light Decomposition (HLD).md",
-    "Untitled.md",
-    "Statistics/Untitled.md",
-    "Statistics/Time Series.md",
-    "Statistics/T-Test.md",
-    "Statistics/Statistical Measures.md",
-    "Statistics/F-statistic.md",
-    "Statistics/Exploratory Data Analysis.md",
-    "Statistics/Data Distributions/Weibull Distribution.md",
-    "Statistics/Data Distributions/Student's t-Distribution.md",
-    "Statistics/Data Distributions/Poisson.md",
-    "Statistics/Data Distributions/Log-Normal Distribution.md",
-    "Statistics/Data Distributions/Gaussian, Normal, Bell Curve.md",
-    "Statistics/Data Distributions/Gamma Distribution.md",
-    "Statistics/Data Distributions/F-Distribution.md",
-    "Statistics/Data Distributions/Exponential Distribution.md",
+    "BOOKS/Generalized Additive Models.md",
+    "BOOKS/Data Analysis Using Regression and Multilevel-Hierarchical Models.md",
+    "BOOKS/An Introduction to Statistical Learning - with Applications in Python.md",
+    "BOOKS/Untitled 1.md",
+    "BOOKS/Python for Finance Cookbook.md",
+    "Advancing into Analytics - From Excel to Python and R.md",
+    "Understanding Analysis (Undergraduate Texts in Mathematics).md",
+    "BOOKS/A Mind For Numbers - How to Excel at Math and Science.md",
+    "BOOKS/Designing Data-Intensive Applications - The Big Ideas Behind Reliable, Scalable, and Maintainable Systems.md",
+    "2402.08426.pdf",
+    "BOOKS/Essentialism.md",
+    "BOOKS/Data Science for Business - What You Need to Know about Data Mining and Data-Analytic Thinking.md",
+    "BOOKS/Bulletproof Problem Solving - The One Skill That Changes Everything.md",
+    "BOOKS/⏳Competing on Analytics.md",
+    "Pasted image 20250303150355.png",
+    "BOOKS/⏳The Model Thinker.md",
+    "BOOKS/⏳Deep Learning with Python.md",
+    "BOOKS/Moneyball - The Art of Winning an Unfair Game.md",
+    "BOOKS/Generative Deep Learning - Teaching Machines To Paint, Write, Compose, and Play.md",
+    "BOOKS/Causal Inference in Python.md",
+    "BOOKS/Generative AI on AWS - Building Context-Aware Multimodal Reasoning Applications.md",
+    "BOOKS/Natural Language Processing with Transformers, Revised Edition.md",
+    "BOOKS/Linear Algebra - Step by Step.md",
+    "BOOKS/Lean Analytics.md",
+    "BOOKS/Data Analytics for Absolute Beginners.md",
+    "BOOKS/Untitled.md",
+    "BOOKS/Becoming a Data Head - How to Think, Speak, and Understand Data Science, Statistics, and Machine Learning.md",
+    "BOOKS/The Elements of Statistical Learning - Data Mining, Inference, and Prediction.md",
+    "BOOKS/Untitled",
     "Statistics/Data Distributions",
     "Pasted image 20231027113949.png",
     "Pasted image 20231027113004.png",
@@ -291,13 +336,10 @@
     "_IMAGES/Pasted image 20231114123846.png",
     "_IMAGES/Pasted image 20231109095844.png",
     "_IMAGES/Pasted image 20231109094855.png",
-    "_IMAGES/Pasted image 20231109094824.png",
     "Statistics/Statistical Tests",
     "Statistics/Bayesian Statistics",
     "Programming/Rust",
     "Programming/Python/Pandas",
-    "Databases/Snowflake",
-    "Databases/PostgreSQL",
-    "Databases/OpenSearch"
+    "Databases/Snowflake"
   ]
 }
