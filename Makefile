@@ -1,7 +1,19 @@
+PYTHON_NB_FILES := $(shell find . -name "*.ipynb")
+PYTHON_PY_FILES := $(shell find . -name "*.py")
+
 .PHONY: jupyterNBBaseImage goodreadsNB datascrapeNB randomizedOptimization8QueensNB tfLinearRegressionsNB mnistHandwrittenNB
 
 jupyterNBBaseImage:
 	docker build ./docker -t local/jupyter_nb_base
+
+
+formatPythonNB:
+	nbqa black .
+	nbqa ruff check --fix .
+
+formatPythonPY:
+	ruff format .
+	ruff check --fix .
 
 goodreadsNB:
 	python -m webbrowser -t "http://goodreads-notebook.localhost:8001" && docker-compose up goodreads-notebook

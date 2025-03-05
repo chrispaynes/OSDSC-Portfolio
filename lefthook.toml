@@ -1,0 +1,8 @@
+[pre-commit.commands.python-linter-combined]
+root = "./"
+glob = "**/*.{py,ipynb}"
+run = """
+make formatPython
+make formatPythonNB
+"""
+stage_fixed = true
