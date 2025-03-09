@@ -5,7 +5,7 @@ PYTHON_PY_FILES := $(shell find . -name "*.py")
 .PHONY: jupyterNBBaseImage goodreadsNB datascrapeNB randomizedOptimization8QueensNB tfLinearRegressionsNB mnistHandwrittenNB
 =======
 # Variables
-DOCKER_COMPOSE_CMD := docker-compose up
+DOCKER_COMPOSE_CMD := docker compose up
 WEB_BROWSER_CMD := python -m webbrowser -t
 >>>>>>> e20b6bd (formatting)
 
@@ -24,11 +24,15 @@ TIMESERIES_AIRBNB_URL := "http://timeseries_airbnb_nb.localhost:8007"
         tfLinearRegressionsNB mnistHandwrittenNB practicalMLtutNB \
         timeseriesAirbnbNB
 
+
 # Help
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 # Build
+build: ## build the docker image
+	docker build -t jupyter-notebook .
+
 jupyterNBBaseImage: ## Build the base image for the jupyter notebooks
 	docker build ./docker -t local/jupyter_nb_base
 
@@ -69,3 +73,6 @@ tfLinearRegressionsNB: ## Open the tf linear regressions notebook in the browser
 
 timeseriesAirbnbNB: ## Open the timeseries airbnb notebook in the browser
 	$(WEB_BROWSER_CMD) $(TIMESERIES_AIRBNB_URL) && $(DOCKER_COMPOSE_CMD) timeseries_airbnb_nb
+
+run: ## run the docker container
+	docker run -p 8888:8888 jupyter-notebook
