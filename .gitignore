@@ -108,3 +108,6 @@ venv.bak/
 data/
 
 .DS_Store
+
+# Obsidian workspace files
+**/.obsidian/**/
