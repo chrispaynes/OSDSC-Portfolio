@@ -1,1 +1,0 @@
-**Course Description:** Programming using the R Project for the Statistical Computing. Data objects, for loops, if statements, using packages.

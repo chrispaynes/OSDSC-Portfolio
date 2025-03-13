@@ -1,1 +1,0 @@
-**Course Description:** Estimation and inference based upon Gaussian linear regression models; residual analysis; variable selection; non-linear regression.

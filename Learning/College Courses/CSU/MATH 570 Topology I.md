@@ -1,1 +1,0 @@
-**Course Description:** Point-set topology including basic set theory, continuity, product and quotient spaces, metrization, compactness, and connectedness.

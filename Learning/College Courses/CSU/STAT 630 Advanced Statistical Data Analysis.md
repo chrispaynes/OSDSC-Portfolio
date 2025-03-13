@@ -1,1 +1,0 @@
-**Course Description:** Advanced statistical modeling techniques and data analysis methods, including likelihood-based methods, M-estimation, bootstrap and EM algorithm, and other advanced topics. For example, Jackknife, permutation tests, and nonparametric statistics.

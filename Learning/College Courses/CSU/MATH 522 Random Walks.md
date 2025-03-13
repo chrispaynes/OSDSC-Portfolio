@@ -1,1 +1,0 @@
-**Course Description:** Mathematical aspects of random walks and diffusion processes. Stochastic modeling of complex systems.

@@ -1,1 +1,0 @@
-**Course Description:** Algebra and trigonometry, study skills for calculus. Limits, continuity, differentiation of elementary functions with applications.

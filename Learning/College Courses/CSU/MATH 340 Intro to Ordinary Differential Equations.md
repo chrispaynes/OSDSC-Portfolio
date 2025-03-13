@@ -1,1 +1,0 @@
-**Course Description:** First and second order equations, series, Laplace transforms, linear algebra, eigenvalues, first order systems of equations, numerical techniques.

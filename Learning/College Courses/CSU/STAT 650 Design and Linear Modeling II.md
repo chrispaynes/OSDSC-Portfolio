@@ -1,1 +1,0 @@
-**Course Description:** Mixed factorials; response surface methodology; Taguchi methods; variance components.

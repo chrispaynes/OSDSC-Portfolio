@@ -1,1 +1,0 @@
-**Course Description:** Advanced topics from algebra: representation theory, Wedderburn theory, bilinear forms, multilinear and homological algebra.

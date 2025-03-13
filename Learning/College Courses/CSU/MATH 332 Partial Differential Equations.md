@@ -1,1 +1,0 @@
-**Course Description:** Partial differential equations, separation of variables, Fourier series and transforms, Laplace, heat and wave equations.

@@ -1,1 +1,0 @@
-**Course Description:** Topics selected from nonlinear boundary value problems, periodic phenomena, differential operators, and others.

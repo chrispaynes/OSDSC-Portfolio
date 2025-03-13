@@ -1,1 +1,0 @@
-**Course Description:** Statistical computation and simulation methods used to estimate probability distribution of non-standard test statistics, find estimators, test hypotheses, and compute confidence intervals. Optimization, bootstrapping, pivoting techniques.partial semester course.

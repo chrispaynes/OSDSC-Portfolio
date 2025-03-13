@@ -1,1 +1,0 @@
-**Course Description:** Convergence, stability, error estimates and computing.

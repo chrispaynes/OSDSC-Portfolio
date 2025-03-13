@@ -1,1 +1,0 @@
-**Course Description:** Statistical methods for experimenters and researchers emphasizing design and analysis of experiments.offered: Online. Credit not allowed for both STAR 511 and STAT 511A. Credit not allowed for both STAR 511 and STAT 511B.

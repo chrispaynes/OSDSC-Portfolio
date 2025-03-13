@@ -1,1 +1,0 @@
-**Course Description:** Applied Bayesian data analysis, Bayesian inference and interpretation of results, computing methods including MCMC, model selection and evaluation.

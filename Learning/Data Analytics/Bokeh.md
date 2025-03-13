@@ -1,1 +1,0 @@
-https://hub.ovh2.mybinder.org/user/bokeh-tutorial-vtwpu2nh/notebooks/notebooks/01_introduction.ipynb

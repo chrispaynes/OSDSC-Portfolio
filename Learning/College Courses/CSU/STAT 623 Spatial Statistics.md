@@ -1,1 +1,0 @@
-**Course Description:** Spatial autocorrelation, geostatistical models and kriging, analysis/modeling of point patterns, discretely-indexed spatial models.

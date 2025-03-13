@@ -1,1 +1,0 @@
-**Course Description:** Theory and application of optimal control and optimal estimation theory; continuous and discrete time systems; Pontryagin maximum principle.

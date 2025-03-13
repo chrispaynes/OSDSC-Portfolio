@@ -1,1 +1,0 @@
-**Course Description:** Introduction to data collection, data management, data visualization, statistical and machine learning methods related to exploratory and predictive analysis of sports data. Real world examples from baseball, football, basketball, hockey, and soccer are covered.STAT 380A2 and STAT 451.

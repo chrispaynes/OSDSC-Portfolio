@@ -1,1 +1,0 @@
-**Course Description:** Skills necessary to collaborate with non-statisticians, including project management, presentation, and technical writing. Serve in the walk-in consulting lab. Collaborate on a semester-long active CSU project identified by the instructor. Engage in all phases of the long-term project.

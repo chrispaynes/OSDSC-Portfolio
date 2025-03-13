@@ -1,1 +1,0 @@
-**Course Description:** Existence and uniqueness, continuation, continuous dependence, linear systems, and stability.

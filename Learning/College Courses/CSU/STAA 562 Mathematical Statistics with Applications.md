@@ -1,1 +1,0 @@
-**Course Description:** Theory and applications of estimations, testing, and confidence intervals. Computer simulations, sampling from the normal distribution.course.

@@ -1,2 +1,0 @@
-**Unit Circle**:
-   - The unit circle is a circle with a radius of 1 centered at the origin (0, 0) on a coordinate plane. It provides a geometric representation of trigonometric functions and their values.

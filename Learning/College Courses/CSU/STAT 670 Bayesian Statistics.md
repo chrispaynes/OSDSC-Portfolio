@@ -1,1 +1,0 @@
-**Course Description:** Bayesian statistical theory and applications, including Markov chain Monte Carlo methods which are used to facilitate inference for more complex statistical models.

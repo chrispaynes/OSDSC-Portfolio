@@ -1,1 +1,0 @@
-**Course Description:** Normed linear spaces, Banach and Hilbert spaces, elements of functional analysis.

@@ -1,1 +1,0 @@
-**Course Description:** Principles of effective graphs, data visualization methods, grammar of graphics, multi-panel conditioning, exploratory data analysis using graphics, 3D plotting, ROC curves, data wrangling.Certificate in Data Analysis.

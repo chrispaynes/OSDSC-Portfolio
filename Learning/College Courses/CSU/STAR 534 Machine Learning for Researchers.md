@@ -1,1 +1,0 @@
-**Course Description:** K-means clustering, perceptron algorithm, evaluating model performance, neural networks, learning theory and dimension reduction

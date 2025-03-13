@@ -1,1 +1,0 @@
-**Course Description:** Sets, integers, polynomials, real and complex numbers, groups, integral domains, and fields; development of skills for proving theorems.

@@ -1,1 +1,0 @@
-**Course Description:** Statistical procedures and database operations using the SAS programming language.

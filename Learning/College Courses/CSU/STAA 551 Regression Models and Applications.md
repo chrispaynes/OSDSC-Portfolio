@@ -1,1 +1,0 @@
-**Course Description:** Model estimation and goodness of fit for linear models; confidence intervals for prediction and estimation; lack of fit, model diagnostics, transformations, model selection, influential observations, collinearity, interaction, weighted least squares, imputation.the Graduate Certificate in Theory and Applications of Regression Models.

@@ -1,1 +1,0 @@
-**Course Description:** Hierarchical ecological modeling using common forms of data in fish and wildlife studies and emphasizing spatial and temporal aspects of analysis.

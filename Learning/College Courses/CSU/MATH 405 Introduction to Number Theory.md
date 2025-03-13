@@ -1,1 +1,0 @@
-**Course Description:** Diophantine equations; distribution of primes; multiplicative functions; finite fields; quadratic reciprocity; quadratic number fields.

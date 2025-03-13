@@ -1,1 +1,0 @@
-**Course Description:** Counting problems; binomial coefficients; proof techniques in combinatorics; recurrence relations and generating functions; graph theory, including walks, trees, and planar graphs.

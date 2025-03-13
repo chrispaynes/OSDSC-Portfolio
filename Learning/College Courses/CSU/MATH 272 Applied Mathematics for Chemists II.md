@@ -1,1 +1,0 @@
-**Course Description:** Vector fields, partial differentiation, cylindrical and spherical coordinates, multiple integrals, line integrals, the Wave and the Schrödinger equations, separation of variables method. Inner Product Spaces. Fourier Series.

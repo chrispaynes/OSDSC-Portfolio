@@ -1,1 +1,0 @@
-**Course Description:** Characterization of stochastic processes. Markov chains in discrete and continuous time, branching processes, renewal theory, Brownian motion.

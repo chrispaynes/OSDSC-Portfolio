@@ -1,1 +1,0 @@
-**Course Description:** Analyticity, Cauchy integral theorem and formula, Taylor and Laurent series, residue calculus, conformal mapping and harmonic functions.

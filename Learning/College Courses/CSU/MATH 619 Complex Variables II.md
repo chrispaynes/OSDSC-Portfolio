@@ -1,1 +1,0 @@
-**Course Description:** Infinite products, entire functions, analytic continuation, Riemann surfaces, other topics.

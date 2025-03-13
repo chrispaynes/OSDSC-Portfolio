@@ -1,1 +1,0 @@
-**Course Description:** Survey designs; simple random, stratified, cluster samples; theory of estimation; optimization techniques for minimum variance or costs.

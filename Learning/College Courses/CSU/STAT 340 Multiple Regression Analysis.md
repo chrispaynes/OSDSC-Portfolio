@@ -1,1 +1,0 @@
-**Course Description:** Estimation and testing for linear, polynomial, and multiple regression models; analysis of residuals; selection of variables; nonlinear regression.

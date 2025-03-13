@@ -1,1 +1,0 @@
-**Course Description:** Codes, ciphers, Chinese remainder theorem, primality testing, public key ciphers, RSA, finite fields, discrete algorithms, AES encryption.

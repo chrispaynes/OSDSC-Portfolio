@@ -1,1 +1,0 @@
-**Course Description:** Spectral theory, operator theory, semigroups of transformations, and distribution theory.

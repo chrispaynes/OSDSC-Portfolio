@@ -1,1 +1,0 @@
-**Course Description:** Principles for multivariate estimation and testing; multivariate analysis of variance, discriminant analysis; principal components, factor analysis.

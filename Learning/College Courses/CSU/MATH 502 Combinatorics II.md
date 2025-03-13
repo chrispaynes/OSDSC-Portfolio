@@ -1,1 +1,0 @@
-**Course Description:** Graph algorithms, external set theory; partitions, Hadamard matrices, q-binomials, finite geometries, strongly regular graphs, triple systems, designs.

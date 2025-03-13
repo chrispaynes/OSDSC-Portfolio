@@ -1,1 +1,0 @@
-**Course Description:** Data manipulation in R, importing and exporting data, variable transformation, converting dataset formats, generating summary statistics, principles of effective graphs, data visualization methods, exploratory data analysis using graphics, multi-panel plotting, high-density plotting, 3D plotting Credit not allowed for both STAR 501 and STAT 580A3.

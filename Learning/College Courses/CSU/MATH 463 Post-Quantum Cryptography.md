@@ -1,1 +1,0 @@
-**Course Description:** Exploration of secure communication in an environment where an adversary has a quantum computer. Survey of known quantum attacks on classical public key cryptosystems, and a detailed study of some of the leading candidates for quantum-resistant protocols.

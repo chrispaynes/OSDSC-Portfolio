@@ -1,1 +1,0 @@
-**Course Description:** Topics in linear models that have both fixed and random predictors: split-plot and related designs, mixed-effects factorials, repeated measures, random coefficients, and spatial models for designed experiments. Introduction to generalized linear and nonlinear mixed models. Statistical topics will be integrated with implementation in SAS and R.553.

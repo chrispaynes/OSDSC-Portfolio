@@ -1,1 +1,0 @@
-**Course Description:** Exploratory analysis of time series, including periodicity and trends, moving average and auto-regressive models, estimation and forecasting. Financial and environmental applications.Certificate in Data Analysis; students in the Graduate Certificate in Data Analysis require permission of the instructor.

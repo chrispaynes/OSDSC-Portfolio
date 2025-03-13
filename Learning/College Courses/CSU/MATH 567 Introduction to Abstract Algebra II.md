@@ -1,1 +1,0 @@
-**Course Description:** Field theory, Galois theory, and advanced linear algebra.

@@ -1,1 +1,0 @@
-**Course Description:** Interpolation, approximation, quadrature, initial and boundary value problems.

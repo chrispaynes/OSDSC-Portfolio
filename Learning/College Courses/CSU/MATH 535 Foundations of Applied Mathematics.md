@@ -1,1 +1,0 @@
-**Course Description:** Calculus of variations, peturbation methods, models of continuum, dimensional analysis, stochastic models, integral equations, diffusion.

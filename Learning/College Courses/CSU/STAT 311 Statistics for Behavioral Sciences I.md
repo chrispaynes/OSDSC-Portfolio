@@ -1,1 +1,0 @@
-**Course Description:** Statistical literacy, quantitative reasoning, statistical methods in SPSS including ANOVA, regression, logistic regression, and categorical data.of the following: ERHS 307, STAT 301, STAT 307, STAT 311 or STAT 315.

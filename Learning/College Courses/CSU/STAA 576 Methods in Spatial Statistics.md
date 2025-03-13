@@ -1,1 +1,0 @@
-**Course Description:** Covariance estimation, covariance/variogram models, spatial regression models, spatial prediction, spatial point patterns.partial semester course.

@@ -1,6 +1,0 @@
-- https://amazon-ion.github.io/ion-docs/index.html
-- https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/S3DataExport.Output.html
-
-**Amazon Ion** is a [richly-typed](https://amazon-ion.github.io/ion-docs/guides/why.html#rich-type-system), [self-describing](https://amazon-ion.github.io/ion-docs/guides/why.html#self-describing), hierarchical data serialization format offering [interchangeable binary and text](https://amazon-ion.github.io/ion-docs/guides/why.html#dual-format-interoperability) representations. The [text format](https://amazon-ion.github.io/ion-docs/docs/spec.html) (a superset of [JSON](http://json.org)) is easy to read and author, supporting rapid prototyping. The [binary representation](https://amazon-ion.github.io/ion-docs/docs/binary.html) is [efficient to store, transmit, and skip-scan parse](https://amazon-ion.github.io/ion-docs/guides/why.html#read-optimized-binary-format). The rich type system provides unambiguous semantics for long-term preservation of data which can survive multiple generations of software evolution.
-
-Ion was built to address rapid development, decoupling, and efficiency challenges faced every day while engineering large-scale, service-oriented architectures. It has been addressing these challenges within Amazon for nearly a decade, and we believe others will benefit as well.

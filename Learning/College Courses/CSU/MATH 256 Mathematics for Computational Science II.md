@@ -1,1 +1,0 @@
-**Course Description:** Methods from vector calculus, advanced calculus, and analytic geometry as relevant to machine learning and data science. Optimization.

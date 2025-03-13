@@ -1,1 +1,0 @@
-**Course Description:** Solutions of systems of linear and nonlinear equations, interpolation, approximation.

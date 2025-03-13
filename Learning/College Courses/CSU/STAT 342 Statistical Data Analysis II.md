@@ -1,1 +1,0 @@
-**Course Description:** Single-factor analysis of variance models; multi-factor analysis of variance models; randomized block design; Latin squares; split-plot design.

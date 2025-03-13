@@ -1,1 +1,0 @@
-**Course Description:** Probability, random variables, distributions, expectations, generating functions, limit theorems, convergence, random processes.

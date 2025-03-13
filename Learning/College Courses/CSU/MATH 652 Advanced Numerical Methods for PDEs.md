@@ -1,1 +1,0 @@
-**Course Description:** Theory of numerical methods for solution of PDEs: convergence and stability properties; error estimation; approximation theory.

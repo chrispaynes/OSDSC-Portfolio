@@ -1,1 +1,0 @@
-**Course Description:** Distribution theory, Green's functions, Sobolev spaces, elliptic and parabolic equations.

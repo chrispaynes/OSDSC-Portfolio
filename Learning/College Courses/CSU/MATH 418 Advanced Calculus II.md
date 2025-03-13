@@ -1,1 +1,0 @@
-**Course Description:** Line and surface integrals, series, sequences and series of functions.

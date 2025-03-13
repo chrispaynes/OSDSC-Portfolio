@@ -1,1 +1,0 @@
-**Course Description:** Sampling distributions, estimates, testing, confidence intervals, exact and asymptotic theories of maximum likelihood and distribution-free methods.

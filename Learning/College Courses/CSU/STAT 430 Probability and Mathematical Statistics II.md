@@ -1,1 +1,0 @@
-**Course Description:** Theories and applications of estimation, testing, and confidence intervals, sampling distributions including normal, gamma, beta X-squared, t, and F.

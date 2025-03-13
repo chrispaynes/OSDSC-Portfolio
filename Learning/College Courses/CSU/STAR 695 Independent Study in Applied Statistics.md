@@ -1,1 +1,0 @@
-**Course Description:** Application of statistics to a student's specific research, guided by a statistician. Intended for students who are not in the Statistics department.STAR 695 and STAT 681A1.

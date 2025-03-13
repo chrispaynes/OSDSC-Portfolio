@@ -1,1 +1,0 @@
-**Course Description:** Proof-oriented linear algebra, ordinary and partial differential equations.

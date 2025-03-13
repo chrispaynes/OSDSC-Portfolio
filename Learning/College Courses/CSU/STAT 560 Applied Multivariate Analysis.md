@@ -1,1 +1,0 @@
-**Course Description:** Multivariate analysis of variance; principal components; factor analysis; discriminant analysis; cluster analysis.

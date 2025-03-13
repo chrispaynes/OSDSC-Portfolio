@@ -1,1 +1,0 @@
-**Course Description:** Team solution of problems arising in industrial and applied mathematics. Problem formulation, solution proposal, implementation and analysis.

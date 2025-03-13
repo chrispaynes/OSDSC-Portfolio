@@ -1,1 +1,0 @@
-**Course Description:** Euclidean and metric spaces, compactness, continuity, sequences, series, multivariable differentiation, inverse and implicit function theorems.

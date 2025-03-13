@@ -1,1 +1,0 @@
-**Course Description:** Abstract vector spaces, general theory of linear transformations, theory of determinants, canonical forms.

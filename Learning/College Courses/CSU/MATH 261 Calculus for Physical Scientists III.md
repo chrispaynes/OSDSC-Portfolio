@@ -1,1 +1,0 @@
-**Course Description:** Vector functions, partial differentiation, cylindrical and spherical coordinates, multiple integrals, line integrals, Green's theorem.

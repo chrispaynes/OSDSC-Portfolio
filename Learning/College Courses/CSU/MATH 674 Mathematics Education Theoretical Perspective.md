@@ -1,1 +1,0 @@
-**Course Description:** Analysis, synthesis, and re-conceptualization of theoretical perspectives that are adopted in mathematics education research.

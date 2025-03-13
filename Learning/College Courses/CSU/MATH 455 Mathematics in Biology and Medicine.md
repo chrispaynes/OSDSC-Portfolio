@@ -1,1 +1,0 @@
-**Course Description:** Models in population biology, cell division, host-parasoid systems, bacterial growth and predator-prey systems.

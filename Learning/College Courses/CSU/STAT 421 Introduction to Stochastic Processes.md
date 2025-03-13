@@ -1,1 +1,0 @@
-**Course Description:** Modeling phenomena with stochastic processes and the simulation and analysis of stochastic process models.
